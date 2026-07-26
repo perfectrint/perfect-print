@@ -9,7 +9,6 @@
 <title>Perfect Prints</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -19,13 +18,17 @@
 
 body{
     font-family:Arial, Helvetica, sans-serif;
-    background:#f4f4f4;
+    background:linear-gradient(180deg,#f7f2ff 0%,#ece2ff 40%,#ddd6fe 100%);
     color:#333;
     line-height:1.6;
+    min-height:100vh;
 }
 
+/* Navigation */
+
 nav{
-    background:#222;
+    background:rgba(34,34,34,.95);
+    backdrop-filter:blur(10px);
     color:white;
     display:flex;
     justify-content:space-between;
@@ -34,11 +37,13 @@ nav{
     position:sticky;
     top:0;
     z-index:1000;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
 }
 
 .logo{
-    font-size:28px;
+    font-size:30px;
     font-weight:bold;
+    letter-spacing:1px;
 }
 
 nav ul{
@@ -51,74 +56,123 @@ nav a{
     color:white;
     text-decoration:none;
     transition:.3s;
+    font-weight:bold;
 }
 
 nav a:hover{
-    color:#b388ff;
+    color:#d8b4fe;
 }
 
+/* Hero */
+
 .hero{
-    background:linear-gradient(135deg,#6d28d9,#8b5cf6);
+    background:linear-gradient(135deg,#6d28d9,#8b5cf6,#a855f7);
     color:white;
     text-align:center;
-    padding:100px 20px;
+    padding:120px 20px;
+    box-shadow:0 10px 30px rgba(109,40,217,.35);
 }
 
 .hero h1{
-    font-size:55px;
+    font-size:58px;
     margin-bottom:20px;
 }
 
 .hero p{
-    max-width:700px;
+    max-width:750px;
     margin:auto;
     font-size:22px;
-    margin-bottom:35px;
+    margin-bottom:40px;
+}
+
+/* Buttons */
+
+.button,
+.card button{
+
+    display:inline-block;
+    background:#6d28d9;
+    color:white;
+    padding:14px 28px;
+    border:none;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    cursor:pointer;
+
+    transition:
+        transform .3s,
+        box-shadow .3s,
+        background .3s;
+
+    box-shadow:0 10px 25px rgba(109,40,217,.30);
 }
 
 .button{
-    display:inline-block;
     background:white;
     color:#6d28d9;
-    padding:15px 30px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:bold;
-    transition:.3s;
 }
 
-.button:hover{
-    transform:scale(1.05);
+.button:hover,
+.card button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 30px rgba(109,40,217,.45);
 }
+
+.card button:hover{
+    background:#5521b5;
+}
+
+/* Sections */
 
 section{
-    padding:70px 40px;
+    padding:80px 40px;
 }
 
 h2{
     text-align:center;
-    margin-bottom:40px;
-    font-size:38px;
+    font-size:42px;
+    margin-bottom:45px;
+    color:#4c1d95;
 }
+
+/* Product Cards */
 
 .cards{
     display:flex;
     justify-content:center;
+    gap:35px;
     flex-wrap:wrap;
-    gap:30px;
 }
 
 .card{
+
     width:320px;
-    background:white;
-    border-radius:12px;
+
+    background:rgba(255,255,255,.92);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.6);
+
+    border-radius:18px;
+
     overflow:hidden;
-    box-shadow:0 8px 20px rgba(0,0,0,.15);
-    transition:.3s;
+
+    transition:.35s;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+
 }
 
 .card:hover{
-    transform:translateY(-8px);
+
+    transform:translateY(-10px) scale(1.03);
+
+    box-shadow:0 20px 40px rgba(109,40,217,.35);
+
 }
 
 .card img{
@@ -127,7 +181,7 @@ h2{
 }
 
 .card-content{
-    padding:20px;
+    padding:22px;
 }
 
 .card h3{
@@ -135,38 +189,38 @@ h2{
 }
 
 .price{
-    font-size:22px;
+    font-size:24px;
     color:#6d28d9;
     font-weight:bold;
     margin:15px 0;
 }
 
-.card button{
-    width:100%;
-    background:#6d28d9;
-    color:white;
-    border:none;
-    padding:12px;
-    border-radius:6px;
-    cursor:pointer;
-    font-size:16px;
-}
-
-.card button:hover{
-    background:#5521b5;
-}
+/* Gallery */
 
 .gallery{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+    gap:25px;
 }
 
 .gallery img{
+
     width:100%;
-    border-radius:12px;
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
+    border-radius:15px;
+
+    transition:.3s;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
+
 }
+
+.gallery img:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* Reviews */
 
 .reviews{
     display:grid;
@@ -175,43 +229,74 @@ h2{
 }
 
 .review{
+
     background:white;
+
     padding:25px;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+    border-radius:15px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
 }
+
+/* Contact */
 
 .contact{
     text-align:center;
 }
 
 .contact p{
-    margin:10px 0;
+    margin:12px 0;
     font-size:18px;
 }
 
+/* Footer */
+
 footer{
+
     background:#222;
+
     color:white;
+
     text-align:center;
-    padding:30px;
-    margin-top:40px;
+
+    padding:35px;
+
+    margin-top:50px;
+
 }
+
+/* Mobile */
 
 @media(max-width:768px){
 
 nav{
+
     flex-direction:column;
+
 }
 
 nav ul{
+
     margin-top:15px;
+
     flex-wrap:wrap;
+
     justify-content:center;
+
 }
 
 .hero h1{
-    font-size:40px;
+
+    font-size:42px;
+
+}
+
+.hero p{
+
+    font-size:18px;
+
 }
 
 }
