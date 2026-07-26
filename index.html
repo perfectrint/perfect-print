@@ -216,7 +216,9 @@ h2{
 
 .gallery img:hover{
 
-    transform:scale(1.05);
+    transform:scale(1.08) rotate(1deg);
+
+    box-shadow:0 18px 35px rgba(109,40,217,.35);
 
 }
 
@@ -229,17 +231,28 @@ h2{
 }
 
 .review{
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:15px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.12);
-
+    background:rgba(255,255,255,.95);
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    transition:.3s;
 }
 
+.review:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 35px rgba(109,40,217,.25);
+}
+
+.review h3{
+    color:#f59e0b;
+    margin-bottom:15px;
+}
+
+.review strong{
+    display:block;
+    margin-top:20px;
+    color:#6d28d9;
+}
 /* Contact */
 
 .contact{
@@ -542,16 +555,21 @@ Want something unique? Send us your design or idea and we'll print it just for y
 
 <section id="gallery">
 
-<h2>Photo Gallery</h2>
+<h2>📸 Product Gallery</h2>
+
+<p style="text-align:center; margin-bottom:35px;">
+Take a closer look at some of our high-quality 3D printed creations.
+</p>
 
 <div class="gallery">
 
-<img src="dragon.jpg" alt="Dragon">
+<img src="dragon.jpg" alt="Crystal Dragon">
 <img src="dinosaur.jpg" alt="Dinosaur">
 <img src="axolotl.jpg" alt="Axolotl">
 <img src="turtle.jpg" alt="Turtle">
 <img src="snake.jpg" alt="Snake">
 <img src="octopus.jpg" alt="Octopus">
+<img src="custom.jpg" alt="Custom Print">
 
 </div>
 
@@ -559,7 +577,11 @@ Want something unique? Send us your design or idea and we'll print it just for y
 
 <section id="reviews">
 
-<h2>Customer Reviews</h2>
+<h2>⭐ Customer Reviews</h2>
+
+<p style="text-align:center; margin-bottom:35px;">
+Here's what some of our happy customers have to say.
+</p>
 
 <div class="reviews">
 
@@ -568,11 +590,12 @@ Want something unique? Send us your design or idea and we'll print it just for y
 <h3>⭐⭐⭐⭐⭐</h3>
 
 <p>
-"The Crystal Dragon was amazing quality and arrived quickly.
-Will definitely order again!"
+"The Crystal Dragon exceeded my expectations! The colours are amazing,
+the print quality is perfect, and it arrived quickly."
 </p>
 
-<strong>— Sarah</strong>
+<strong>— Sarah M.</strong><br>
+<small>Purchased Crystal Dragon</small>
 
 </div>
 
@@ -581,11 +604,12 @@ Will definitely order again!"
 <h3>⭐⭐⭐⭐⭐</h3>
 
 <p>
-"My son absolutely loves his dinosaur.
-Excellent print quality!"
+"My son absolutely loves his articulated dinosaur.
+The joints move smoothly and it's become his favourite toy."
 </p>
 
-<strong>— Michael</strong>
+<strong>— Michael T.</strong><br>
+<small>Purchased Dinosaur</small>
 
 </div>
 
@@ -594,66 +618,72 @@ Excellent print quality!"
 <h3>⭐⭐⭐⭐⭐</h3>
 
 <p>
-"Fantastic customer service and beautiful colours.
-Highly recommended."
+"Fantastic communication and excellent print quality.
+I'll definitely be ordering another custom print!"
 </p>
 
-<strong>— Emma</strong>
+<strong>— Emma R.</strong><br>
+<small>Custom Print Customer</small>
 
 </div>
 
 </div>
+
+</section>
 <section id="contact" class="contact">
 
-<h2>Contact Perfect Prints</h2>
+<h2>📞 Contact Perfect Prints</h2>
 
-<p>📧 Email: perfectprints@outlook.com</p>
+<p><strong>📧 Email:</strong> perfectprints@outlook.com</p>
 
-<p>📱 discord: Perfect Prints</p>
+<p><strong>💬 Discord:</strong> Perfect Prints</p>
 
 <p>
-Have a custom design in mind? We'd love to bring your ideas to life!
-Contact us for custom 3D prints, colours and bulk orders.
+Looking for a custom design? Whether it's a unique gift,
+a replacement part, or your own 3D model, we'd love to help.
+Get in touch for custom colours, bulk orders, or personalised prints.
 </p>
 
-<a href="mailto:perfectprints@email.com" class="button">
-Email Us
+<br>
+
+<a href="mailto:perfectprints@outlook.com" class="button">
+📩 Email Us
 </a>
 
 </section>
 
 <section id="faq">
 
-<h2>Frequently Asked Questions</h2>
+<h2>❓ Frequently Asked Questions</h2>
 
 <div class="reviews">
 
 <div class="review">
 
-<h3>How long do orders take?</h3>
+<h3>🚚 How long do orders take?</h3>
 
 <p>
-Most orders are completed within 2-4 business days depending on size and demand and the amout of orders.
+Most orders are completed within 2–4 business days, depending on the size of the print and how many orders we're currently processing.
 </p>
 
 </div>
 
 <div class="review">
 
-<h3>Can I request custom colours?</h3>
+<h3>🎨 Can I request custom colours?</h3>
 
 <p>
-Yes! Most models are available in a range of colours. Just ask when ordering.
+Absolutely! Most prints are available in a range of colours. Let us know what you're after when you place your order.
 </p>
 
 </div>
 
 <div class="review">
 
-<h3>Do you make custom prints?</h3>
+<h3>🖨️ Do you make custom prints?</h3>
 
 <p>
-Absolutely! Send us your idea or STL file on either bambu handy or maker world and we'll provide a quote.
+Yes! Send us your STL file or tell us what you'd like made, and we'll provide a quote for your custom print.
 </p>
 
 </div>
@@ -664,10 +694,17 @@ Absolutely! Send us your idea or STL file on either bambu handy or maker world a
 
 <footer>
 
-<h3>🐉 Perfect Prints</h3>
+<h2>🐉 Perfect Prints</h2>
 
 <p>
-Premium 3D Printed Dragons • Dinosaurs • Axolotls • Fidget Toys • Custom Prints
+Premium 3D Printed Dragons • Dinosaurs • Axolotls •
+Fidget Toys • Custom Prints
+</p>
+
+<br>
+
+<p>
+Thank you for supporting a small Australian 3D printing business!
 </p>
 
 <br>
@@ -679,4 +716,4 @@ Premium 3D Printed Dragons • Dinosaurs • Axolotls • Fidget Toys • Custom
 </footer>
 
 </body>
-</section>
+</html>
