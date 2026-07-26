@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,12 +14,14 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+    scroll-behavior:smooth;
 }
 
 body{
     font-family:Arial, Helvetica, sans-serif;
     background:#f4f4f4;
     color:#333;
+    line-height:1.6;
 }
 
 nav{
@@ -26,102 +30,190 @@ nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:15px 40px;
+    padding:18px 40px;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
 .logo{
-    font-size:24px;
+    font-size:28px;
     font-weight:bold;
 }
 
 nav ul{
     display:flex;
     list-style:none;
-    gap:20px;
+    gap:25px;
 }
 
 nav a{
     color:white;
     text-decoration:none;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#b388ff;
 }
 
 .hero{
-    text-align:center;
-    padding:80px 20px;
-    background:#6d28d9;
+    background:linear-gradient(135deg,#6d28d9,#8b5cf6);
     color:white;
+    text-align:center;
+    padding:100px 20px;
 }
 
 .hero h1{
-    font-size:48px;
+    font-size:55px;
     margin-bottom:20px;
 }
 
 .hero p{
-    font-size:20px;
-    margin-bottom:30px;
+    max-width:700px;
+    margin:auto;
+    font-size:22px;
+    margin-bottom:35px;
 }
 
 .button{
+    display:inline-block;
     background:white;
     color:#6d28d9;
-    padding:12px 24px;
-    text-decoration:none;
+    padding:15px 30px;
     border-radius:8px;
+    text-decoration:none;
     font-weight:bold;
+    transition:.3s;
 }
 
-.products{
-    padding:50px 20px;
+.button:hover{
+    transform:scale(1.05);
 }
 
-.products h2{
+section{
+    padding:70px 40px;
+}
+
+h2{
     text-align:center;
     margin-bottom:40px;
+    font-size:38px;
 }
 
 .cards{
     display:flex;
     justify-content:center;
-    gap:30px;
     flex-wrap:wrap;
+    gap:30px;
 }
 
 .card{
-    background:white;
     width:320px;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,.15);
-    text-align:center;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
 }
 
 .card img{
     width:100%;
-    border-radius:10px;
+    display:block;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:22px;
+    color:#6d28d9;
+    font-weight:bold;
     margin:15px 0;
 }
 
 .card button{
+    width:100%;
     background:#6d28d9;
     color:white;
     border:none;
-    padding:10px 20px;
+    padding:12px;
     border-radius:6px;
     cursor:pointer;
-    margin-top:10px;
+    font-size:16px;
 }
 
 .card button:hover{
     background:#5521b5;
 }
 
-footer{
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.gallery img{
+    width:100%;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.reviews{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.review{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.contact{
     text-align:center;
-    padding:20px;
+}
+
+.contact p{
+    margin:10px 0;
+    font-size:18px;
+}
+
+footer{
     background:#222;
     color:white;
+    text-align:center;
+    padding:30px;
     margin-top:40px;
+}
+
+@media(max-width:768px){
+
+nav{
+    flex-direction:column;
+}
+
+nav ul{
+    margin-top:15px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.hero h1{
+    font-size:40px;
+}
+
 }
 
 </style>
@@ -135,56 +227,296 @@ footer{
 <div class="logo">🐉 Perfect Prints</div>
 
 <ul>
-<li><a href="#">Home</a></li>
-<li><a href="#">Products</a></li>
-<li><a href="#">Gallery</a></li>
-<li><a href="#">Reviews</a></li>
-<li><a href="#">Contact</a></li>
+<li><a href="#home">Home</a></li>
+<li><a href="#products">Products</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#reviews">Reviews</a></li>
+<li><a href="#contact">Contact</a></li>
 </ul>
 
 </nav>
 
-<section class="hero">
+<section class="hero" id="home">
 
 <h1>Bring Imagination to Life</h1>
 
 <p>
-Premium 3D printed dragons, dinosaurs, fidget toys,
-axolotls and custom creations.
+Premium 3D printed dragons, dinosaurs, axolotls,
+fidget toys and custom creations made with quality and care.
 </p>
 
-<a href="#" class="button">Browse Toys</a>
+<a href="#products" class="button">Browse Products</a>
 
 </section>
 
-<section class="products">
+<section id="products">
 
 <h2>Popular Products</h2>
 
 <div class="cards">
 
 <div class="card">
+
 <img src="dragon.jpg" alt="Crystal Dragon">
+
+<div class="card-content">
+
 <h3>🐉 Crystal Dragon</h3>
-<p>Flexible articulated dragon available in many colours.</p>
-<p><strong>$15</strong></p>
+
+<p>
+Flexible articulated dragon available in a variety of colours.
+Perfect for collectors and gifts.
+</p>
+
+<p class="price">$15</p>
+
 <button>Contact to Order</button>
+
+</div>
+
 </div>
 
 <div class="card">
+
 <img src="dinosaur.jpg" alt="Dinosaur">
+
+<div class="card-content">
+
 <h3>🦖 Dinosaur</h3>
-<p>Fun articulated dinosaur perfect for collectors.</p>
-<p><strong>$15</strong></p>
+
+<p>
+Articulated dinosaur with movable joints and vibrant colours.
+</p>
+
+<p class="price">$15</p>
+
 <button>Contact to Order</button>
+
+</div>
+
+</div>
+<div class="card">
+
+<img src="axolotl.jpg" alt="Axolotl">
+
+<div class="card-content">
+
+<h3>🦎 Axolotl</h3>
+
+<p>
+Colourful articulated axolotl with smooth movement and flexible body.
+</p>
+
+<p class="price">$15</p>
+
+<button>Contact to Order</button>
+
+</div>
+
 </div>
 
 <div class="card">
-<img src="axolotl.jpg" alt="Axolotl">
-<h3>🦎 Axolotl</h3>
-<p>Colourful articulated axolotl with smooth movement.</p>
-<p><strong>$15</strong></p>
+
+<img src="turtle.jpg" alt="Turtle">
+
+<div class="card-content">
+
+<h3>🐢 Turtle</h3>
+
+<p>
+Cute articulated turtle available in multiple colours.
+</p>
+
+<p class="price">$15</p>
+
 <button>Contact to Order</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="snake.jpg" alt="Snake">
+
+<div class="card-content">
+
+<h3>🐍 Snake</h3>
+
+<p>
+Long articulated snake with smooth flexible movement.
+</p>
+
+<p class="price">$15</p>
+
+<button>Contact to Order</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="octopus.jpg" alt="Octopus">
+
+<div class="card-content">
+
+<h3>🐙 Octopus</h3>
+
+<p>
+Fun desk fidget with movable tentacles.
+</p>
+
+<p class="price">$15</p>
+
+<button>Contact to Order</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="custom.jpg" alt="Custom Print">
+
+<div class="card-content">
+
+<h3>✨ Custom Prints</h3>
+
+<p>
+Have an idea? We can create custom 3D prints just for you.
+</p>
+
+<p class="price">Contact for Quote</p>
+
+<button>Request a Quote</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="gallery">
+
+<h2>Photo Gallery</h2>
+
+<div class="gallery">
+
+<img src="dragon.jpg" alt="Dragon">
+<img src="dinosaur.jpg" alt="Dinosaur">
+<img src="axolotl.jpg" alt="Axolotl">
+<img src="turtle.jpg" alt="Turtle">
+<img src="snake.jpg" alt="Snake">
+<img src="octopus.jpg" alt="Octopus">
+
+</div>
+
+</section>
+
+<section id="reviews">
+
+<h2>Customer Reviews</h2>
+
+<div class="reviews">
+
+<div class="review">
+
+<h3>⭐⭐⭐⭐⭐</h3>
+
+<p>
+"The Crystal Dragon was amazing quality and arrived quickly.
+Will definitely order again!"
+</p>
+
+<strong>— Sarah</strong>
+
+</div>
+
+<div class="review">
+
+<h3>⭐⭐⭐⭐⭐</h3>
+
+<p>
+"My son absolutely loves his dinosaur.
+Excellent print quality!"
+</p>
+
+<strong>— Michael</strong>
+
+</div>
+
+<div class="review">
+
+<h3>⭐⭐⭐⭐⭐</h3>
+
+<p>
+"Fantastic customer service and beautiful colours.
+Highly recommended."
+</p>
+
+<strong>— Emma</strong>
+
+</div>
+
+</div>
+<section id="contact" class="contact">
+
+<h2>Contact Perfect Prints</h2>
+
+<p>📧 Email: perfectprints@email.com</p>
+
+<p>📱 Facebook: Perfect Prints</p>
+
+<p>📸 Instagram: @perfectprints</p>
+
+<p>
+Have a custom design in mind? We'd love to bring your ideas to life!
+Contact us for custom 3D prints, colours and bulk orders.
+</p>
+
+<a href="mailto:perfectprints@email.com" class="button">
+Email Us
+</a>
+
+</section>
+
+<section id="faq">
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="reviews">
+
+<div class="review">
+
+<h3>How long do orders take?</h3>
+
+<p>
+Most orders are completed within 3–7 business days depending on size and demand.
+</p>
+
+</div>
+
+<div class="review">
+
+<h3>Can I request custom colours?</h3>
+
+<p>
+Yes! Most models are available in a range of colours. Just ask when ordering.
+</p>
+
+</div>
+
+<div class="review">
+
+<h3>Do you make custom prints?</h3>
+
+<p>
+Absolutely! Send us your idea or STL file and we'll provide a quote.
+</p>
+
 </div>
 
 </div>
@@ -193,9 +525,19 @@ axolotls and custom creations.
 
 <footer>
 
-<p>&copy; 2026 Perfect Prints</p>
+<h3>🐉 Perfect Prints</h3>
+
+<p>
+Premium 3D Printed Dragons • Dinosaurs • Axolotls • Fidget Toys • Custom Prints
+</p>
+
+<br>
+
+<p>
+&copy; 2026 Perfect Prints. All Rights Reserved.
+</p>
 
 </footer>
 
 </body>
-</html>
+</section>
