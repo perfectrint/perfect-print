@@ -1,54 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfect Prints</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Perfect Prints</title>
+
 <style>
-.gallery {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.gallery img {
-  width: 300px;
-  border-radius: 10px;
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#f4f4f4;
+    color:#333;
 }
+
+nav{
+    background:#222;
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:bold;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:20px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+}
+
+.hero{
+    text-align:center;
+    padding:80px 20px;
+    background:#6d28d9;
+    color:white;
+}
+
+.hero h1{
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:20px;
+    margin-bottom:30px;
+}
+
+.button{
+    background:white;
+    color:#6d28d9;
+    padding:12px 24px;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.products{
+    padding:50px 20px;
+}
+
+.products h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.cards{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.card{
+    background:white;
+    width:320px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    text-align:center;
+}
+
+.card img{
+    width:100%;
+    border-radius:10px;
+    margin:15px 0;
+}
+
+.card button{
+    background:#6d28d9;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.card button:hover{
+    background:#5521b5;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#222;
+    color:white;
+    margin-top:40px;
+}
+
 </style>
-    <link rel="stylesheet" href="style.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<h2>My Prints</h2>
 
-<img src="dragon.jpg" alt="Dragon Print">
-<img src="dinosaur.jpg" alt="Dinosaur Print">
-<img src="axolotl.jpg" alt="Axolotl Print">
 <nav>
-    <div class="logo">🐉 Perfect Prints</div>
 
-    <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Products</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li><a href="#">Reviews</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
+<div class="logo">🐉 Perfect Prints</div>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">Products</a></li>
+<li><a href="#">Gallery</a></li>
+<li><a href="#">Reviews</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+
 </nav>
 
 <section class="hero">
 
-    <h1>Bring Imagination to Life</h1>
+<h1>Bring Imagination to Life</h1>
 
-    <p>
-        Premium 3D printed dragons, dinosaurs, fidget toys,
-        axolotls and custom creations.
-    </p>
+<p>
+Premium 3D printed dragons, dinosaurs, fidget toys,
+axolotls and custom creations.
+</p>
 
-    <a href="#" class="button">Browse Toys</a>
+<a href="#" class="button">Browse Toys</a>
 
 </section>
 
@@ -59,30 +164,27 @@
 <div class="cards">
 
 <div class="card">
+<img src="dragon.jpg" alt="Crystal Dragon">
 <h3>🐉 Crystal Dragon</h3>
 <p>Flexible articulated dragon available in many colours.</p>
+<p><strong>$15</strong></p>
 <button>Contact to Order</button>
-<img src="dragon.jpg" alt="Dragon Print" width="300">
-<h3>Dragon Print</h3>
-<p>$15</p>
 </div>
 
 <div class="card">
+<img src="dinosaur.jpg" alt="Dinosaur">
 <h3>🦖 Dinosaur</h3>
 <p>Fun articulated dinosaur perfect for collectors.</p>
+<p><strong>$15</strong></p>
 <button>Contact to Order</button>
-<img src="dinosaur.jpg" alt="Dinosaur Print" width="300">
-<h3>Dinosaur Print</h3>
-<p>$15</p>
 </div>
 
 <div class="card">
+<img src="axolotl.jpg" alt="Axolotl">
 <h3>🦎 Axolotl</h3>
 <p>Colourful articulated axolotl with smooth movement.</p>
+<p><strong>$15</strong></p>
 <button>Contact to Order</button>
-<img src="axolotl.jpg" alt="Axolotl Print" width="300">
-<h3>Axolotl Print</h3>
-<p>$15</p>
 </div>
 
 </div>
@@ -91,7 +193,7 @@
 
 <footer>
 
-<p>© 2026 Perfect Prints</p>
+<p>&copy; 2026 Perfect Prints</p>
 
 </footer>
 
