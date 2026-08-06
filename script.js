@@ -1,4 +1,4 @@
-alert("Script Loaded!");
+alert("SCRIPT IS WORKING!");
 
 // Shopping Cart
 
