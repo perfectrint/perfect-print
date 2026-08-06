@@ -348,6 +348,108 @@ footer{
     margin-left:8px;
 
 }
+    /* Cart Panel */
+
+.cart-panel{
+
+position:fixed;
+
+top:0;
+
+right:-400px;
+
+width:350px;
+
+height:100%;
+
+background:white;
+
+box-shadow:-5px 0 20px rgba(0,0,0,.25);
+
+transition:.4s;
+
+z-index:5000;
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+.cart-panel.open{
+
+right:0;
+
+}
+
+.cart-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:20px;
+
+background:#6d28d9;
+
+color:white;
+
+}
+
+.cart-header button{
+
+background:none;
+
+border:none;
+
+color:white;
+
+font-size:22px;
+
+cursor:pointer;
+
+}
+
+#cartItems{
+
+flex:1;
+
+padding:20px;
+
+overflow-y:auto;
+
+}
+
+.cart-footer{
+
+padding:20px;
+
+border-top:1px solid #ddd;
+
+}
+
+.checkout-btn{
+
+width:100%;
+
+padding:14px;
+
+background:#6d28d9;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+font-size:18px;
+
+cursor:pointer;
+
+}
+
 @media(max-width:768px){
 
 nav{
@@ -410,7 +512,7 @@ nav ul{
 </ul>
 
 <div class="icons">
-    <button class="cart-btn">
+<button class="cart-btn" onclick="openCart()">
         🛒 Cart
         <span id="cartCount">0</span>
     </button>
@@ -513,7 +615,9 @@ Perfect for collectors and gifts.
 
 <p class="price">$15 AUD</p>
 
-<button>🛒 Order Now</button>
+<button onclick="addToCart('Dinosaur', 15)">
+🛒 Add to Cart
+</button>
 
 </div>
 
@@ -535,7 +639,9 @@ Cute articulated axolotl with smooth movement and bright colours.
 
 <p class="price">$15 AUD</p>
 
-<button>🛒 Order Now</button>
+<button onclick="addToCart('Axolotl', 15)">
+🛒 Add to Cart
+</button>
 
 </div>
 
@@ -558,7 +664,9 @@ A fun articulated turtle that makes a great gift for all ages.
 
 <p class="price">$15 AUD</p>
 
-<button>🛒 Order Now</button>
+<button onclick="addToCart('Turtle', 15)">
+🛒 Add to Cart
+</button>
 
 </div>
 
@@ -581,7 +689,9 @@ Long articulated snake with realistic movement and vibrant colours.
 
 <p class="price">$15 AUD</p>
 
-<button>🛒 Order Now</button>
+<button onclick="addToCart('Snake', 15)">
+🛒 Add to Cart
+</button>
 
 </div>
 
@@ -604,7 +714,9 @@ A fun articulated octopus that is perfect for your desk or collection.
 
 <p class="price">$15 AUD</p>
 
-<button>🛒 Order Now</button>
+<button onclick="addToCart('Octopus', 15)">
+🛒 Add to Cart
+</button>
 
 </div>
 
@@ -628,7 +740,9 @@ Want something unique? Send us your design or idea and we'll print it just for y
 
 <p class="price">Quote on Request</p>
 
-<button>📩 Request a Quote</button>
+<button onclick="addToCart('Custom Print', 0)">
+📩 Request Quote
+</button>
 
 </div>
 
@@ -798,7 +912,30 @@ Thank you for supporting a small Australian 3D printing business!
 <p>
 &copy; 2026 Perfect Prints. All Rights Reserved.
 </p>
+<div id="cartPanel" class="cart-panel">
 
+    <div class="cart-header">
+        <h2>🛒 Your Cart</h2>
+        <button onclick="closeCart()">✖</button>
+    </div>
+
+    <div id="cartItems">
+
+        <p>Your cart is empty.</p>
+
+    </div>
+
+    <div class="cart-footer">
+
+        <h3>Total: $<span id="cartTotal">0</span></h3>
+
+        <button class="checkout-btn">
+            Checkout
+        </button>
+
+    </div>
+
+</div>
 </footer>
 
 <script src="script.js"></script>
