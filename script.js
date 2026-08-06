@@ -1,3 +1,5 @@
+alert("Script Loaded!");
+
 // Shopping Cart
 
 let cart = [];
