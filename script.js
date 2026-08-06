@@ -69,12 +69,11 @@ gap:10px;
 margin:10px 0;
 ">
 
-<button onclick="decreaseQuantity('${item.name}')">➖</button>
+<button class="quantity-btn" onclick="decreaseQuantity('${item.name}')">➖</button>
 
 <strong>${item.quantity}</strong>
 
-<button onclick="increaseQuantity('${item.name}')">➕</button>
-
+<button class="quantity-btn" onclick="increaseQuantity('${item.name}')">➕</button>
 </div>
 
 <p>$${item.price * item.quantity}</p>
@@ -85,8 +84,6 @@ margin:10px 0;
     });
 
     cartTotal.textContent = total;
-
-}
 
 }
 
@@ -121,5 +118,16 @@ function decreaseQuantity(productName){
         updateCart();
 
     }
+
+}
+function openCart(){
+
+    document.getElementById("cartPanel").classList.add("open");
+
+}
+
+function closeCart(){
+
+    document.getElementById("cartPanel").classList.remove("open");
 
 }
