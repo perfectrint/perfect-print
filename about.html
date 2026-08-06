@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Perfect Prints | About Us</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="sale-banner">
+🚚 FREE SHIPPING on orders over $75 • Premium Australian 3D Printing
+</div>
+
+<nav>
+
+<div class="logo">
+🐉 Perfect Prints
+</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="products.html">Products</a></li>
+<li><a href="gallery.html">Gallery</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+
+<button class="cart-btn" onclick="openCart()">
+🛒 Cart
+<span id="cartCount">0</span>
+</button>
+
+</nav>
+
+</header>
+
+<section class="hero small-hero">
+
+<h1>About Perfect Prints</h1>
+
+<p>
+We're passionate about creating fun, high-quality articulated
+3D prints that people love to collect, display and play with.
+</p>
+
+</section>
+
+<section>
+
+<h2>Our Story</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="card-content">
+
+<h3>🚀 Our Beginning</h3>
+
+<p>
+Perfect Prints started with one goal:
+to create amazing quality 3D prints that everyone could enjoy.
+Every model is carefully printed, cleaned and inspected before shipping.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-content">
+
+<h3>🎯 Our Mission</h3>
+
+<p>
+We believe every customer deserves professional-quality prints,
+fast shipping and excellent customer service at affordable prices.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-content">
+
+<h3>🌎 Looking Ahead</h3>
+
+<p>
+As we grow, we plan to offer hundreds of exciting models,
+exclusive designs and even more custom printing services.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Why Choose Perfect Prints?</h2>
+
+<div class="reviews">
+
+<div class="review">
+
+<h3>🖨️ Premium Printers</h3>
+
+<p>
+Every print is produced using carefully calibrated printers
+to achieve smooth layers and excellent detail.
+</p>
+
+</div>
+
+<div class="review">
+
+<h3>🎨 Huge Colour Selection</h3>
+
+<p>
+Choose from silk, matte, rainbow,
+metallic, glow-in-the-dark and many more colours.
+</p>
+
+</div>
+
+<div class="review">
+
+<h3>📦 Safe Packaging</h3>
+
+<p>
+Orders are securely packaged to protect your print
+during shipping.
+</p>
+
+</div>
+
+<div class="review">
+
+<h3>⚡ Fast Production</h3>
+
+<p>
+Most orders are printed and shipped
+within just a few business days.
+</p>
+
+</div>
+
+<div class="review">
+
+<h3>💬 Friendly Support</h3>
+
+<p>
+Need help choosing a print?
+We're always happy to answer questions.
+</p>
+
+</div>
+
+<div class="review">
+
+<h3>⭐ Quality Guaranteed</h3>
+
+<p>
+Every order is inspected before shipping
+to ensure it meets our high standards.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Our Values</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="card-content">
+
+<h3>❤️ Passion</h3>
+
+<p>
+We genuinely enjoy creating awesome 3D prints
+for collectors and families.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-content">
+
+<h3>🏆 Quality</h3>
+
+<p>
+Every product is printed using premium materials
+and checked before it leaves our workshop.
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-content">
+
+<h3>🤝 Trust</h3>
+
+<p>
+Honest pricing, friendly communication,
+and excellent customer service are at the heart of our business.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>Fun Facts</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<div class="card-content">
+
+<h1>100+</h1>
+
+<p>
+Prints Sold
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-content">
+
+<h1>★★★★★</h1>
+
+<p>
+Customer Rating
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-content">
+
+<h1>50+</h1>
+
+<p>
+Colours Available
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<div id="cartPanel" class="cart-panel">
+
+<div class="cart-header">
+
+<h2>Your Cart</h2>
+
+<button onclick="closeCart()">
+✖
+</button>
+
+</div>
+
+<div id="cartItems">
+
+<p>Your cart is empty.</p>
+
+</div>
+
+<div class="cart-footer">
+
+<h3>
+Total:
+$
+<span id="cartTotal">0</span>
+</h3>
+
+<button class="checkout-btn">
+Checkout
+</button>
+
+</div>
+
+</div>
+
+<footer>
+
+<h2>🐉 Perfect Prints</h2>
+
+<p>
+Designed with passion.
+Printed with precision.
+Delivered with care.
+</p>
+
+<p>
+© 2026 Perfect Prints. All Rights Reserved.
+</p>
+
+</footer>
+
+</body>
+
+</html>
