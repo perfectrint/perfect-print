@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Perfect Prints | Products</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="sale-banner">
+🚚 FREE SHIPPING on orders over $75 • New Colours Available!
+</div>
+
+<nav>
+
+<div class="logo">
+🐉 Perfect Prints
+</div>
+
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="products.html">Products</a></li>
+<li><a href="gallery.html">Gallery</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+
+<button class="cart-btn" onclick="openCart()">
+🛒 Cart
+<span id="cartCount">0</span>
+</button>
+
+</nav>
+
+</header>
+
+<section class="hero small-hero">
+
+<h1>Our Products</h1>
+
+<p>
+Browse our range of premium articulated 3D prints.
+Every item is printed using high quality filament
+for maximum strength and amazing detail.
+</p>
+
+</section>
+
+<section class="products">
+
+<h2>Popular Products</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<img src="dragon.jpg" alt="Crystal Dragon">
+
+<div class="card-content">
+
+<span class="badge purple">
+🔥 Best Seller
+</span>
+
+<h3>Crystal Dragon</h3>
+
+<p>
+Premium articulated dragon with flexible joints.
+Available in many colours.
+</p>
+
+<p class="price">$25 AUD</p>
+
+<button onclick="addToCart('Crystal Dragon',25)">
+Add to Cart
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="dinosaur.jpg" alt="Dinosaur">
+
+<div class="card-content">
+
+<span class="badge green">
+⭐ Popular
+</span>
+
+<h3>Dinosaur</h3>
+
+<p>
+Strong articulated dinosaur with realistic movement.
+</p>
+
+<p class="price">$15 AUD</p>
+
+<button onclick="addToCart('Dinosaur',15)">
+Add to Cart
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="axolotl.jpg" alt="Axolotl">
+
+<div class="card-content">
+
+<span class="badge pink">
+💖 New
+</span>
+
+<h3>Axolotl</h3>
+
+<p>
+Cute articulated axolotl that moves smoothly.
+</p>
+
+<p class="price">$15 AUD</p>
+
+<button onclick="addToCart('Axolotl',15)">
+Add to Cart
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="snake.jpg" alt="Snake">
+
+<div class="card-content">
+
+<span class="badge lime">
+🐍 Flexible
+</span>
+
+<h3>Snake</h3>
+
+<p>
+Long articulated snake with realistic movement.
+</p>
+
+<p class="price">$15 AUD</p>
+
+<button onclick="addToCart('Snake',15)">
+Add to Cart
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="turtle.jpg" alt="Turtle">
+
+<div class="card-content">
+
+<span class="badge teal">
+🐢 Family Favourite
+</span>
+
+<h3>Turtle</h3>
+
+<p>
+Fun articulated turtle printed in premium filament.
+</p>
+
+<p class="price">$10 AUD</p>
+
+<button onclick="addToCart('Turtle',10)">
+Add to Cart
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="octopus.jpg" alt="Octopus">
+
+<div class="card-content">
+
+<span class="badge blue">
+🐙 Fidget Toy
+</span>
+
+<h3>Octopus</h3>
+
+<p>
+Perfect desk toy with smooth flexible movement.
+</p>
+
+<p class="price">$10 AUD</p>
+
+<button onclick="addToCart('Octopus',10)">
+Add to Cart
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<img src="custom.jpg" alt="Custom Print">
+
+<div class="card-content">
+
+<span class="badge gold">
+✨ Custom Order
+</span>
+
+<h3>Custom Prints</h3>
+
+<p>
+Send us your STL or idea and we'll print it.
+</p>
+
+<p class="price">
+Quote Required
+</p>
+
+<button onclick="location.href='contact.html'">
+Request Quote
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<div id="cartPanel" class="cart-panel">
+
+<div class="cart-header">
+
+<h2>Your Cart</h2>
+
+<button onclick="closeCart()">
+✖
+</button>
+
+</div>
+
+<div id="cartItems">
+
+<p>Your cart is empty.</p>
+
+</div>
+
+<div class="cart-footer">
+
+<h3>
+Total:
+$
+<span id="cartTotal">0</span>
+</h3>
+
+<button class="checkout-btn">
+Checkout
+</button>
+
+</div>
+
+</div>
+
+<footer>
+
+<p>
+© 2026 Perfect Prints
+</p>
+
+</footer>
+
+</body>
+</html>
