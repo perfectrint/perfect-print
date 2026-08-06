@@ -6,591 +6,168 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Perfect Prints</title>
+<title>Perfect Prints | Premium 3D Printed Models</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    scroll-behavior:smooth;
-}
-.sale-banner{
-    background:#4c1d95;
-    color:white;
-    text-align:center;
-    padding:10px;
-    font-weight:bold;
-    font-size:15px;
-    letter-spacing:.5px;
-}
-body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:linear-gradient(180deg,#f7f2ff 0%,#ece2ff 40%,#ddd6fe 100%);
-    color:#333;
-    line-height:1.6;
-    min-height:100vh;
-}
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-/* Navigation */
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-nav{
-    background:rgba(34,34,34,.95);
-    backdrop-filter:blur(10px);
-    color:white;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-    padding:15px 40px;
-    position:sticky;
-    top:0;
-    z-index:1000;
-    box-shadow:0 5px 20px rgba(0,0,0,.25);
-    flex-wrap:wrap;
-}
-
-.logo{
-    font-size:30px;
-    font-weight:bold;
-    letter-spacing:1px;
-}
-
-nav ul{
-    display:flex;
-    list-style:none;
-    gap:25px;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    transition:.3s;
-    font-weight:bold;
-}
-
-nav a:hover{
-    color:#d8b4fe;
-}
-
-/* Hero */
-
-.hero{
-    background:linear-gradient(135deg,#6d28d9,#8b5cf6,#a855f7);
-    color:white;
-    text-align:center;
-    padding:120px 20px;
-    box-shadow:0 10px 30px rgba(109,40,217,.35);
-}
-
-.hero h1{
-    font-size:58px;
-    margin-bottom:20px;
-}
-
-.hero p{
-    max-width:750px;
-    margin:auto;
-    font-size:22px;
-    margin-bottom:40px;
-}
-
-/* Buttons */
-
-.button,
-.card button{
-
-    display:inline-block;
-    background:#6d28d9;
-    color:white;
-    padding:14px 28px;
-    border:none;
-    border-radius:10px;
-    text-decoration:none;
-    font-weight:bold;
-    cursor:pointer;
-
-    transition:
-        transform .3s,
-        box-shadow .3s,
-        background .3s;
-
-    box-shadow:0 10px 25px rgba(109,40,217,.30);
-}
-
-.button{
-    background:white;
-    color:#6d28d9;
-}
-
-.button:hover,
-.card button:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:0 15px 30px rgba(109,40,217,.45);
-}
-
-.card button:hover{
-    background:#5521b5;
-}
-
-/* Sections */
-
-section{
-    padding:80px 40px;
-}
-
-h2{
-    text-align:center;
-    font-size:42px;
-    margin-bottom:45px;
-    color:#4c1d95;
-}
-
-/* Product Cards */
-
-.cards{
-    display:flex;
-    justify-content:center;
-    gap:35px;
-    flex-wrap:wrap;
-}
-
-.card{
-
-    width:320px;
-
-    background:rgba(255,255,255,.92);
-
-    backdrop-filter:blur(12px);
-
-    border:1px solid rgba(255,255,255,.6);
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    transition:.35s;
-
-    box-shadow:0 12px 30px rgba(0,0,0,.15);
-
-}
-
-.card:hover{
-
-    transform:translateY(-10px) scale(1.03);
-
-    box-shadow:0 20px 40px rgba(109,40,217,.35);
-
-}
-
-.card img{
-    width:100%;
-    display:block;
-}
-
-.card-content{
-    padding:22px;
-}
-
-.card h3{
-    margin-bottom:10px;
-}
-
-.price{
-    font-size:24px;
-    color:#6d28d9;
-    font-weight:bold;
-    margin:15px 0;
-}
-
-/* Gallery */
-
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-
-.gallery img{
-
-    width:100%;
-    border-radius:15px;
-
-    transition:.3s;
-
-    box-shadow:0 10px 20px rgba(0,0,0,.2);
-
-}
-
-.gallery img:hover{
-
-    transform:scale(1.08) rotate(1deg);
-
-    box-shadow:0 18px 35px rgba(109,40,217,.35);
-
-}
-
-/* Reviews */
-
-.reviews{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:25px;
-}
-
-.review{
-    background:rgba(255,255,255,.95);
-    padding:30px;
-    border-radius:18px;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-    transition:.3s;
-}
-
-.review:hover{
-    transform:translateY(-8px);
-    box-shadow:0 18px 35px rgba(109,40,217,.25);
-}
-
-.review h3{
-    color:#f59e0b;
-    margin-bottom:15px;
-}
-
-.review strong{
-    display:block;
-    margin-top:20px;
-    color:#6d28d9;
-}
-/* Contact */
-
-.contact{
-    text-align:center;
-}
-
-.contact p{
-    margin:12px 0;
-    font-size:18px;
-}
-
-/* Footer */
-
-footer{
-
-    background:#222;
-
-    color:white;
-
-    text-align:center;
-
-    padding:35px;
-
-    margin-top:50px;
-
-}
-
-/* Mobile */
-#cartCount{
-    background:white;
-    color:#6d28d9;
-    padding:2px 8px;
-    border-radius:50%;
-    font-weight:bold;
-    margin-left:8px;
-}
-
-/* 👇 Paste the new CSS here */
-
-.search-box{
-    flex:1;
-    display:flex;
-    justify-content:center;
-}
-
-.search-box input{
-    width:100%;
-    max-width:350px;
-    padding:10px 18px;
-    border:none;
-    border-radius:30px;
-    outline:none;
-    font-size:15px;
-}
-
-.icons{
-    display:flex;
-    align-items:center;
-}
-
-.cart-btn{
-    background:#6d28d9;
-    color:white;
-    border:none;
-    padding:10px 18px;
-    border-radius:30px;
-    cursor:pointer;
-    font-size:16px;
-    transition:.3s;
-}
-
-.cart-btn:hover{
-    background:#7c3aed;
-    transform:scale(1.05);
-}
-
-#cartCount{
-    background:white;
-    color:#6d28d9;
-    padding:2px 8px;
-    border-radius:50%;
-    font-weight:bold;
-    margin-left:8px;
-
-}
-    /* Cart Panel */
-
-.cart-panel{
-
-position:fixed;
-
-top:0;
-
-right:-400px;
-
-width:350px;
-
-height:100%;
-
-background:white;
-
-box-shadow:-5px 0 20px rgba(0,0,0,.25);
-
-transition:.4s;
-
-z-index:5000;
-
-display:flex;
-
-flex-direction:column;
-
-}
-
-.cart-panel.open{
-
-right:0;
-
-}
-
-.cart-header{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:20px;
-
-background:#6d28d9;
-
-color:white;
-
-}
-
-.cart-header button{
-
-background:none;
-
-border:none;
-
-color:white;
-
-font-size:22px;
-
-cursor:pointer;
-
-}
-
-#cartItems{
-
-flex:1;
-
-padding:20px;
-
-overflow-y:auto;
-
-}
-
-.cart-footer{
-
-padding:20px;
-
-border-top:1px solid #ddd;
-
-}
-
-.checkout-btn{
-
-width:100%;
-
-padding:14px;
-
-background:#6d28d9;
-
-color:white;
-
-border:none;
-
-border-radius:10px;
-
-font-size:18px;
-
-cursor:pointer;
-
-}
-
-@media(max-width:768px){
-
-nav{
-
-    flex-direction:column;
-
-}
-
-nav ul{
-
-    margin-top:15px;
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-}
-
-.hero h1{
-
-    font-size:42px;
-
-}
-
-.hero p{
-
-    font-size:18px;
-
-}
-
-}
-
-</style>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="sale-banner">
-🚚 FREE SHIPPING on orders over $75 • 🎉 New colours now available!
+<!-- SALE BAR -->
+
+<div class="sale-bar">
+
+🚚 FREE SHIPPING Australia Wide on Orders Over $75
+
 </div>
+
+<!-- HEADER -->
+
+<header>
 
 <nav>
 
-<div class="logo">🐉 Perfect Prints</div>
+<div class="logo">
 
-<div class="search-box">
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="🔍 Search products...">
+<img src="images/logo.png" alt="Perfect Prints">
+
+<h1>Perfect Prints</h1>
+
+</div>
+
+<div class="search">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search dragons, dinosaurs, axolotls...">
+
+<button>
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+</button>
+
 </div>
 
 <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#products">Shop</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="#contact">Contact</a></li>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="shop.html">Shop</a></li>
+
+<li><a href="gallery.html">Gallery</a></li>
+
+<li><a href="reviews.html">Reviews</a></li>
+
+<li><a href="about.html">About</a></li>
+
+<li><a href="contact.html">Contact</a></li>
+
 </ul>
 
-<div class="icons">
-<button class="cart-btn" onclick="openCart()">
-        🛒 Cart
-        <span id="cartCount">0</span>
-    </button>
+<div class="header-icons">
+
+<a href="account.html">
+
+<i class="fa-regular fa-user"></i>
+
+</a>
+
+<a href="wishlist.html">
+
+<i class="fa-regular fa-heart"></i>
+
+</a>
+
+<a href="cart.html" class="cart">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<span id="cartCount">0</span>
+
+</a>
+
 </div>
 
 </nav>
 
-<section class="hero" id="home">
+</header>
 
-<h1>🐉 Perfect Prints</h1>
+<!-- HERO -->
 
-<h2>Bring Imagination to Life</h2>
+<section class="hero">
+
+<div class="hero-left">
+
+<h4>
+
+⭐ Australia's Premium 3D Printing Store
+
+</h4>
+
+<h1>
+
+Bring Your Imagination To Life
+
+</h1>
 
 <p>
-High-quality articulated dragons, dinosaurs, axolotls,
-fidget toys and custom 3D prints made with precision and care.
-Whether you're shopping for yourself or looking for the perfect gift,
-Perfect Prints has something for everyone.
+
+Discover professionally printed dragons,
+dinosaurs, axolotls, fidget toys and
+fully custom creations made using premium
+quality filament and precision printers.
+
 </p>
 
-<div style="margin-top:35px;">
+<div class="hero-buttons">
 
-<a href="#products" class="button">
-🛒 Shop Now
+<a href="shop.html" class="btn">
+
+Shop Now
+
 </a>
 
-<a href="#contact" class="button" style="margin-left:15px; background:#ffffff20; color:white; border:2px solid white;">
-📞 Contact Us
+<a href="gallery.html" class="btn-outline">
+
+View Gallery
+
 </a>
 
 </div>
 
-<div style="display:flex; justify-content:center; gap:50px; flex-wrap:wrap; margin-top:60px;">
+<div class="stats">
 
 <div>
+
 <h2>100+</h2>
-<p>Prints Sold</p>
+
+<p>Orders Completed</p>
+
 </div>
 
 <div>
+
 <h2>★★★★★</h2>
+
 <p>Customer Rating</p>
+
 </div>
 
 <div>
-<h2>Custom</h2>
-<p>Orders Welcome</p>
-</div>
 
-</div>
+<h2>50+</h2>
 
-</section>
-<section id="products">
-
-<h2>Popular Products</h2>
-
-<div class="cards">
-
-<div class="card">
-
-<img src="dragon.jpg" alt="Crystal Dragon">
-
-<div class="card-content">
-
-<p style="color:#6d28d9;font-weight:bold;">🔥 BEST SELLER</p>
-
-<h3>🐉 Crystal Dragon</h3>
-
-<p>
-Premium articulated crystal dragon with smooth flexible movement.
-Available in a wide range of colours.
-</p>
-
-<p class="price">$25 AUD</p>
-
-<button onclick="addToCart('Crystal Dragon', 15)">
-    🛒 Add to Cart
-</button>
+<p>Colours Available</p>
 
 </div>
 
@@ -598,317 +175,437 @@ Available in a wide range of colours.
 
 </div>
 
-<div class="card">
+<div class="hero-right">
 
-<img src="dinosaur.jpg" alt="Dinosaur">
-
-<div class="card-content">
-
-<p style="color:#10b981;font-weight:bold;">⭐ POPULAR</p>
-
-<h3>🦖 Dinosaur</h3>
-
-<p>
-Articulated dinosaur printed in high quality filament.
-Perfect for collectors and gifts.
-</p>
-
-<p class="price">$15 AUD</p>
-
-<button onclick="addToCart('Dinosaur', 15)">
-🛒 Add to Cart
-</button>
-
-</div>
-
-</div>
-</div>
-<div class="card">
-
-<img src="axolotl.jpg" alt="Axolotl">
-
-<div class="card-content">
-
-<p style="color:#ec4899;font-weight:bold;">💖 NEW</p>
-
-<h3>🦎 Axolotl</h3>
-
-<p>
-Cute articulated axolotl with smooth movement and bright colours.
-</p>
-
-<p class="price">$15 AUD</p>
-
-<button onclick="addToCart('Axolotl', 15)">
-🛒 Add to Cart
-</button>
-
-</div>
-
-</div>
-</div>
-
-<div class="card">
-
-<img src="turtle.jpg" alt="Turtle">
-
-<div class="card-content">
-
-<p style="color:#22c55e;font-weight:bold;">🐢 FAMILY FAVOURITE</p>
-
-<h3>🐢 Turtle</h3>
-
-<p>
-A fun articulated turtle that makes a great gift for all ages.
-</p>
-
-<p class="price">$10 AUD</p>
-
-<button onclick="addToCart('Turtle', 15)">
-🛒 Add to Cart
-</button>
-
-</div>
-
-</div>
-</div>
-
-<div class="card">
-
-<img src="snake.jpg" alt="Snake">
-
-<div class="card-content">
-
-<p style="color:#84cc16;font-weight:bold;">🐍 FLEXIBLE</p>
-
-<h3>🐍 Snake</h3>
-
-<p>
-Long articulated snake with realistic movement and vibrant colours.
-</p>
-
-<p class="price">$15 AUD</p>
-
-<button onclick="addToCart('Snake', 15)">
-🛒 Add to Cart
-</button>
-
-</div>
-
-</div>
-</div>
-
-<div class="card">
-
-<img src="octopus.jpg" alt="Octopus">
-
-<div class="card-content">
-
-<p style="color:#06b6d4;font-weight:bold;">🐙 FIDGET TOY</p>
-
-<h3>🐙 Octopus</h3>
-
-<p>
-A fun articulated octopus that is perfect for your desk or collection.
-</p>
-
-<p class="price">$10 AUD</p>
-
-<button onclick="addToCart('Octopus', 15)">
-🛒 Add to Cart
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img src="custom.jpg" alt="Custom Print">
-
-<div class="card-content">
-
-<p style="color:#f59e0b;font-weight:bold;">✨ CUSTOM MADE</p>
-
-<h3>✨ Custom Prints</h3>
-
-<p>
-Want something unique? Send us your design or idea and we'll print it just for you.
-</p>
-
-<p class="price">Quote on Request</p>
-
-<button onclick="addToCart('Custom Print', 0)">
-📩 Request Quote
-</button>
-
-</div>
-
-</div>
-</div>
+<img src="images/hero-dragon.png"
+alt="Crystal Dragon">
 
 </div>
 
 </section>
 
-<section id="gallery">
+<!-- FEATURES -->
 
-<h2>📸 Product Gallery</h2>
+<section class="features">
 
-<p style="text-align:center; margin-bottom:35px;">
-Take a closer look at some of our high-quality 3D printed creations.
+<div class="feature">
+
+<i class="fa-solid fa-truck-fast"></i>
+
+<h3>Fast Shipping</h3>
+
+<p>
+
+Australia-wide shipping
+within days.
+
 </p>
 
-<div class="gallery">
+</div>
 
-<img src="dragon.jpg" alt="Crystal Dragon">
-<img src="dinosaur.jpg" alt="Dinosaur">
-<img src="axolotl.jpg" alt="Axolotl">
-<img src="turtle.jpg" alt="Turtle">
-<img src="snake.jpg" alt="Snake">
-<img src="octopus.jpg" alt="Octopus">
-<img src="custom.jpg" alt="Custom Print">
+<div class="feature">
+
+<i class="fa-solid fa-cubes"></i>
+
+<h3>Premium Filament</h3>
+
+<p>
+
+Only high-quality
+PLA materials.
+
+</p>
+
+</div>
+
+<div class="feature">
+
+<i class="fa-solid fa-palette"></i>
+
+<h3>Custom Colours</h3>
+
+<p>
+
+Choose from
+dozens of colours.
+
+</p>
+
+</div>
+
+<div class="feature">
+
+<i class="fa-solid fa-award"></i>
+
+<h3>High Quality</h3>
+
+<p>
+
+Professionally tuned
+printers.
+
+</p>
 
 </div>
 
 </section>
 
-<section id="reviews">
+<!-- FEATURED PRODUCTS -->
 
-<h2>⭐ Customer Reviews</h2>
+<section class="featured">
 
-<p style="text-align:center; margin-bottom:35px;">
-Here's what some of our happy customers have to say.
-</p>
+<h2>
 
-<div class="reviews">
+🔥 Featured Products
 
-<div class="review">
+</h2>
 
-<h3>⭐⭐⭐⭐⭐</h3>
+<div class="product-grid">
+    <!-- Product 1 -->
 
-<p>
-"The Crystal Dragon exceeded my expectations! The colours are amazing,
-the print quality is perfect, and it arrived quickly."
-</p>
+<div class="product-card">
 
-<strong>— Sarah M.</strong><br>
-<small>Purchased Crystal Dragon</small>
+<div class="badge best">BEST SELLER</div>
 
+<div class="wishlist">
+<i class="fa-regular fa-heart"></i>
 </div>
 
-<div class="review">
+<img src="images/dragon.jpg" alt="Crystal Dragon">
 
-<h3>⭐⭐⭐⭐⭐</h3>
+<div class="product-info">
 
-<p>
-"My son absolutely loves his articulated dinosaur.
-The joints move smoothly and it's become his favourite toy."
-</p>
+<h3>Crystal Dragon</h3>
 
-<strong>— Michael T.</strong><br>
-<small>Purchased Dinosaur</small>
-
+<div class="stars">
+★★★★★
 </div>
 
-<div class="review">
-
-<h3>⭐⭐⭐⭐⭐</h3>
-
 <p>
-"Fantastic communication and excellent print quality.
-I'll definitely be ordering another custom print!"
+A premium articulated crystal dragon with smooth flexible movement and stunning colours.
 </p>
 
-<strong>— Emma R.</strong><br>
-<small>Custom Print Customer</small>
+<h4>$25.00 AUD</h4>
 
-</div>
+<div class="product-buttons">
 
-</div>
+<button onclick="addToCart('Crystal Dragon',25)">
+<i class="fa-solid fa-cart-shopping"></i>
+Add to Cart
+</button>
 
-</section>
-<section id="contact" class="contact">
-
-<h2>📞 Contact Perfect Prints</h2>
-
-<p><strong>📧 Email:</strong> perfectprints@outlook.com</p>
-
-<p><strong>💬 Discord:</strong> Perfect Prints</p>
-
-<p>
-Looking for a custom design? Whether it's a unique gift,
-a replacement part, or your own 3D model, we'd love to help.
-Get in touch for custom colours, bulk orders, or personalised prints.
-</p>
-
-<br>
-
-<a href="mailto:perfectprints@outlook.com" class="button">
-📩 Email Us
+<a href="product.html" class="view-btn">
+View
 </a>
 
+</div>
+
+</div>
+
+</div>
+
+<!-- Product 2 -->
+
+<div class="product-card">
+
+<div class="badge new">NEW</div>
+
+<div class="wishlist">
+<i class="fa-regular fa-heart"></i>
+</div>
+
+<img src="images/dinosaur.jpg" alt="Dinosaur">
+
+<div class="product-info">
+
+<h3>Articulated Dinosaur</h3>
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+Large articulated dinosaur printed in premium PLA with flexible joints.
+</p>
+
+<h4>$15.00 AUD</h4>
+
+<div class="product-buttons">
+
+<button onclick="addToCart('Dinosaur',15)">
+<i class="fa-solid fa-cart-shopping"></i>
+Add to Cart
+</button>
+
+<a href="product.html" class="view-btn">
+View
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Product 3 -->
+
+<div class="product-card">
+
+<div class="badge sale">SALE</div>
+
+<div class="wishlist">
+<i class="fa-regular fa-heart"></i>
+</div>
+
+<img src="images/axolotl.jpg" alt="Axolotl">
+
+<div class="product-info">
+
+<h3>Axolotl</h3>
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+Cute articulated axolotl available in multiple colours.
+Perfect as a gift.
+</p>
+
+<h4>$15.00 AUD</h4>
+
+<div class="product-buttons">
+
+<button onclick="addToCart('Axolotl',15)">
+<i class="fa-solid fa-cart-shopping"></i>
+Add to Cart
+</button>
+
+<a href="product.html" class="view-btn">
+View
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Product 4 -->
+
+<div class="product-card">
+
+<div class="badge popular">POPULAR</div>
+
+<div class="wishlist">
+<i class="fa-regular fa-heart"></i>
+</div>
+
+<img src="images/turtle.jpg" alt="Turtle">
+
+<div class="product-info">
+
+<h3>Turtle</h3>
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+A flexible articulated turtle printed using high-quality filament.
+</p>
+
+<h4>$10.00 AUD</h4>
+
+<div class="product-buttons">
+
+<button onclick="addToCart('Turtle',10)">
+<i class="fa-solid fa-cart-shopping"></i>
+Add to Cart
+</button>
+
+<a href="product.html" class="view-btn">
+View
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Product 5 -->
+
+<div class="product-card">
+
+<div class="wishlist">
+<i class="fa-regular fa-heart"></i>
+</div>
+
+<img src="images/snake.jpg" alt="Snake">
+
+<div class="product-info">
+
+<h3>Snake</h3>
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+Long articulated snake with smooth realistic movement.
+</p>
+
+<h4>$15.00 AUD</h4>
+
+<div class="product-buttons">
+
+<button onclick="addToCart('Snake',15)">
+<i class="fa-solid fa-cart-shopping"></i>
+Add to Cart
+</button>
+
+<a href="product.html" class="view-btn">
+View
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Product 6 -->
+
+<div class="product-card">
+
+<div class="wishlist">
+<i class="fa-regular fa-heart"></i>
+</div>
+
+<img src="images/octopus.jpg" alt="Octopus">
+
+<div class="product-info">
+
+<h3>Octopus</h3>
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+Fun articulated octopus that makes a perfect desk toy.
+</p>
+
+<h4>$10.00 AUD</h4>
+
+<div class="product-buttons">
+
+<button onclick="addToCart('Octopus',10)">
+<i class="fa-solid fa-cart-shopping"></i>
+Add to Cart
+</button>
+
+<a href="product.html" class="view-btn">
+View
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Product 7 -->
+
+<div class="product-card">
+
+<div class="badge custom">CUSTOM</div>
+
+<div class="wishlist">
+<i class="fa-regular fa-heart"></i>
+</div>
+
+<img src="images/custom.jpg" alt="Custom Print">
+
+<div class="product-info">
+
+<h3>Custom Print</h3>
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+Upload your own STL file or tell us your idea and we'll print it.
+</p>
+
+<h4>Quote Required</h4>
+
+<div class="product-buttons">
+
+<button onclick="location.href='contact.html'">
+Request Quote
+</button>
+
+<a href="product.html" class="view-btn">
+View
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="faq">
+<!-- FEATURED COLLECTION -->
 
-<h2>❓ Frequently Asked Questions</h2>
+<section class="collection">
 
-<div class="reviews">
+<h2>
 
-<div class="review">
+✨ Why Choose Perfect Prints?
 
-<h3>🚚 How long do orders take?</h3>
+</h2>
 
 <p>
-Most orders are completed within 2–4 business days, depending on the size of the print and how many orders we're currently processing.
+
+Every model is printed using premium PLA filament,
+carefully inspected before shipping,
+and packed safely to ensure it arrives in perfect condition.
+
 </p>
+
+<div class="collection-grid">
+
+<div>
+
+<h3>🎨 50+ Colours</h3>
+
+<p>Choose from silk, rainbow, glow and matte finishes.</p>
 
 </div>
 
-<div class="review">
+<div>
 
-<h3>🎨 Can I request custom colours?</h3>
+<h3>⚡ Fast Printing</h3>
 
-<p>
-Absolutely! Most prints are available in a range of colours. Let us know what you're after when you place your order.
-</p>
+<p>Orders are usually dispatched within 2–4 business days.</p>
 
 </div>
 
-<div class="review">
+<div>
 
-<h3>🖨️ Do you make custom prints?</h3>
+<h3>🖨 Precision Quality</h3>
 
-<p>
-Yes! Send us your STL file or tell us what you'd like made, and we'll provide a quote for your custom print.
-</p>
+<p>Every print is tuned for smooth movement and strong layer adhesion.</p>
 
 </div>
 
 </div>
 
 </section>
-
-<footer>
-
-<h2>🐉 Perfect Prints</h2>
-
-...
-
-<p>&copy; 2026 Perfect Prints. All Rights Reserved.</p>
-
-</footer>
-
-<div id="cartPanel" class="cart-panel">
-
-    ...
-
-</div>
-
-<script src="script.js"></script>
-
-</body>
-</html>
