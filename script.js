@@ -3,12 +3,23 @@
 let cart = [];
 
 // Add product to cart
-function addToCart(productName, price) {
+function addToCart(productName, price){
 
-    cart.push({
-        name: productName,
-        price: price
-    });
+    const existing = cart.find(item => item.name === productName);
+
+    if(existing){
+
+        existing.quantity++;
+
+    }else{
+
+        cart.push({
+            name: productName,
+            price: price,
+            quantity: 1
+        });
+
+    }
 
     updateCart();
 
@@ -41,19 +52,74 @@ function updateCart() {
     // Add each product
     cart.forEach(item =>{
 
-        total += item.price;
+       total += item.price * item.quantity;
 
-        cartItems.innerHTML += `
-            <div style="padding:12px;border-bottom:1px solid #ddd;">
-                <strong>${item.name}</strong><br>
-                $${item.price}
-            </div>
-        `;
+       cartItems.innerHTML += `
+<div style="
+padding:15px;
+border-bottom:1px solid #ddd;
+">
+
+<strong>${item.name}</strong>
+
+<div style="
+display:flex;
+align-items:center;
+gap:10px;
+margin:10px 0;
+">
+
+<button onclick="decreaseQuantity('${item.name}')">➖</button>
+
+<strong>${item.quantity}</strong>
+
+<button onclick="increaseQuantity('${item.name}')">➕</button>
+
+</div>
+
+<p>$${item.price * item.quantity}</p>
+
+</div>
+`;
 
     });
 
     cartTotal.textContent = total;
 
 }
+
+}
+
+function increaseQuantity(productName){
+
+    const item = cart.find(item => item.name === productName);
+
+    if(item){
+
+        item.quantity++;
+
+        updateCart();
+
+    }
+
+}
+
+function decreaseQuantity(productName){
+
+    const item = cart.find(item => item.name === productName);
+
+    if(item){
+
+        item.quantity--;
+
+        if(item.quantity <= 0){
+
+            cart = cart.filter(i => i.name !== productName);
+
+        }
+
+        updateCart();
+
+    }
 
 }
