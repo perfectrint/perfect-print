@@ -1,7 +1,8 @@
-/* ==========================================
+/* =========================================
    PERFECT PRINTS
-   PROFESSIONAL WEBSITE STYLESHEET
-========================================== */
+   STYLE.CSS
+   PART 8A
+========================================= */
 
 /* ---------- RESET ---------- */
 
@@ -9,6 +10,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+    scroll-behavior:smooth;
 }
 
 html{
@@ -19,14 +21,15 @@ body{
 
     font-family:Arial, Helvetica, sans-serif;
 
+    color:#333;
+
     background:linear-gradient(
         180deg,
-        #f8f5ff,
-        #ece4ff,
-        #ddd6fe
+        #faf8ff 0%,
+        #f3edff 25%,
+        #ebe2ff 50%,
+        #ddd6fe 100%
     );
-
-    color:#333;
 
     line-height:1.6;
 
@@ -34,11 +37,62 @@ body{
 
 }
 
+/* ---------- SCROLLBAR ---------- */
+
+::-webkit-scrollbar{
+
+    width:12px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#ece2ff;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#6d28d9;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#5521b5;
+
+}
+
+/* ---------- LINKS ---------- */
+
+a{
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
 /* ---------- SALE BANNER ---------- */
 
 .sale-banner{
 
-    background:#4c1d95;
+    background:linear-gradient(
+        90deg,
+        #4c1d95,
+        #6d28d9,
+        #8b5cf6
+    );
 
     color:white;
 
@@ -46,11 +100,33 @@ body{
 
     padding:12px;
 
-    font-size:15px;
-
     font-weight:bold;
 
     letter-spacing:.5px;
+
+    animation:bannerGlow 5s infinite;
+
+}
+
+@keyframes bannerGlow{
+
+0%{
+
+opacity:1;
+
+}
+
+50%{
+
+opacity:.8;
+
+}
+
+100%{
+
+opacity:1;
+
+}
 
 }
 
@@ -62,7 +138,7 @@ nav{
 
     top:0;
 
-    z-index:1000;
+    z-index:9999;
 
     display:flex;
 
@@ -70,13 +146,17 @@ nav{
 
     align-items:center;
 
-    padding:18px 40px;
+    gap:20px;
 
-    background:rgba(34,34,34,.92);
+    flex-wrap:wrap;
+
+    padding:18px 45px;
+
+    background:rgba(35,35,35,.95);
 
     backdrop-filter:blur(12px);
 
-    box-shadow:0 8px 20px rgba(0,0,0,.25);
+    box-shadow:0 8px 25px rgba(0,0,0,.25);
 
 }
 
@@ -87,8 +167,6 @@ nav{
     font-weight:bold;
 
     color:white;
-
-    letter-spacing:1px;
 
 }
 
@@ -102,31 +180,23 @@ nav ul{
 
 }
 
-nav ul li{
+nav li{
+
+    list-style:none;
+
+}
+
+nav a{
+
+    color:white;
+
+    font-weight:bold;
 
     position:relative;
 
 }
 
-nav ul li a{
-
-    color:white;
-
-    text-decoration:none;
-
-    font-weight:bold;
-
-    transition:.3s;
-
-}
-
-nav ul li a:hover{
-
-    color:#d8b4fe;
-
-}
-
-nav ul li a::after{
+nav a::after{
 
     content:"";
 
@@ -134,21 +204,27 @@ nav ul li a::after{
 
     left:0;
 
-    bottom:-6px;
+    bottom:-5px;
 
     width:0;
 
     height:3px;
 
-    background:#a855f7;
+    background:#c084fc;
 
-    transition:.3s;
+    transition:.35s;
 
 }
 
-nav ul li a:hover::after{
+nav a:hover::after{
 
     width:100%;
+
+}
+
+nav a:hover{
+
+    color:#d8b4fe;
 
 }
 
@@ -168,41 +244,45 @@ nav ul li a:hover::after{
 
     width:100%;
 
-    max-width:350px;
+    max-width:380px;
 
-    padding:12px 20px;
+    padding:12px 18px;
 
     border:none;
 
-    outline:none;
+    border-radius:50px;
 
-    border-radius:40px;
+    outline:none;
 
     font-size:15px;
 
-    background:white;
-
-    box-shadow:0 6px 20px rgba(0,0,0,.15);
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
 
 }
 
 /* ---------- CART ---------- */
 
+.icons{
+
+    display:flex;
+
+    align-items:center;
+
+}
+
 .cart-btn{
+
+    border:none;
 
     background:#6d28d9;
 
     color:white;
 
-    border:none;
-
     padding:12px 22px;
 
-    border-radius:40px;
+    border-radius:50px;
 
     cursor:pointer;
-
-    font-size:16px;
 
     font-weight:bold;
 
@@ -214,7 +294,9 @@ nav ul li a:hover::after{
 
     background:#7c3aed;
 
-    transform:translateY(-3px);
+    transform:translateY(-2px);
+
+    box-shadow:0 10px 20px rgba(109,40,217,.35);
 
 }
 
@@ -224,43 +306,45 @@ nav ul li a:hover::after{
 
     color:#6d28d9;
 
-    padding:3px 8px;
+    margin-left:8px;
+
+    padding:3px 9px;
 
     border-radius:50%;
-
-    margin-left:8px;
 
     font-weight:bold;
 
 }
-/* ==========================================
-   HERO SECTION
-========================================== */
+
+/* ---------- HERO ---------- */
 
 .hero{
 
-    background:linear-gradient(
+    text-align:center;
+
+    padding:140px 25px;
+
+    background:
+
+    linear-gradient(
+
         135deg,
-        #6d28d9,
-        #8b5cf6,
+
+        #5b21b6,
+
+        #7c3aed,
+
+        #9333ea,
+
         #a855f7
+
     );
 
     color:white;
 
-    text-align:center;
-
-    padding:120px 20px;
-
     position:relative;
 
     overflow:hidden;
-
-}
-
-.small-hero{
-
-    padding:80px 20px;
 
 }
 
@@ -270,17 +354,17 @@ nav ul li a:hover::after{
 
     position:absolute;
 
-    top:-150px;
+    width:600px;
 
-    right:-100px;
-
-    width:350px;
-
-    height:350px;
+    height:600px;
 
     background:rgba(255,255,255,.08);
 
     border-radius:50%;
+
+    top:-250px;
+
+    right:-180px;
 
 }
 
@@ -290,33 +374,51 @@ nav ul li a:hover::after{
 
     position:absolute;
 
-    bottom:-180px;
+    width:450px;
 
-    left:-120px;
+    height:450px;
 
-    width:420px;
-
-    height:420px;
-
-    background:rgba(255,255,255,.06);
+    background:rgba(255,255,255,.05);
 
     border-radius:50%;
+
+    left:-180px;
+
+    bottom:-180px;
 
 }
 
 .hero h1{
 
-    font-size:60px;
+    position:relative;
+
+    z-index:2;
+
+    font-size:64px;
 
     margin-bottom:20px;
+
+    animation:fadeUp 1s ease;
+
+}
+
+.hero h2{
 
     position:relative;
 
     z-index:2;
 
+    color:white;
+
+    margin-bottom:30px;
+
 }
 
 .hero p{
+
+    position:relative;
+
+    z-index:2;
 
     max-width:800px;
 
@@ -324,121 +426,170 @@ nav ul li a:hover::after{
 
     font-size:22px;
 
-    position:relative;
-
-    z-index:2;
+    margin-bottom:45px;
 
 }
 
-/* ==========================================
-   BUTTONS
-========================================== */
+@keyframes fadeUp{
 
-.button,
-.card button,
-.checkout-btn{
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ---------- BUTTONS ---------- */
+
+.button{
 
     display:inline-block;
 
-    padding:15px 32px;
-
-    background:#6d28d9;
-
-    color:white;
-
-    text-decoration:none;
-
-    border:none;
+    padding:16px 34px;
 
     border-radius:12px;
 
-    cursor:pointer;
+    background:white;
 
-    font-size:16px;
+    color:#6d28d9;
 
     font-weight:bold;
 
-    transition:.35s;
+    transition:.3s;
 
-    box-shadow:0 10px 25px rgba(109,40,217,.30);
+    box-shadow:0 12px 25px rgba(0,0,0,.18);
 
 }
 
-.button:hover,
-.card button:hover,
-.checkout-btn:hover{
+.button:hover{
 
     transform:translateY(-4px);
 
-    background:#7c3aed;
+    box-shadow:0 18px 35px rgba(0,0,0,.25);
 
-    box-shadow:0 18px 35px rgba(109,40,217,.45);
+}
+/* =========================================
+   PERFECT PRINTS
+   STYLE.CSS
+   PART 8B
+   PRODUCT SHOP & PRODUCT CARDS
+========================================= */
+
+/* ---------- PRODUCTS SECTION ---------- */
+
+#products{
+
+    padding:100px 40px;
+
+    position:relative;
 
 }
 
-/* ==========================================
-   SECTIONS
-========================================== */
-
-section{
-
-    padding:90px 40px;
-
-}
-
-section h2{
+#products > h2{
 
     text-align:center;
 
-    font-size:42px;
-
-    margin-bottom:45px;
+    font-size:46px;
 
     color:#4c1d95;
 
+    margin-bottom:15px;
+
 }
 
-/* ==========================================
-   PRODUCT GRID
-========================================== */
+#products > h2::after{
+
+    content:"";
+
+    display:block;
+
+    width:80px;
+
+    height:5px;
+
+    background:linear-gradient(
+        90deg,
+        #6d28d9,
+        #a855f7
+    );
+
+    border-radius:10px;
+
+    margin:15px auto 50px;
+
+}
+
+/* ---------- PRODUCT GRID ---------- */
 
 .cards{
 
+    max-width:1400px;
+
+    margin:auto;
+
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns:
+        repeat(auto-fit,minmax(280px,1fr));
 
-    gap:35px;
+    gap:30px;
+
+    align-items:stretch;
 
 }
 
-/* ==========================================
-   PRODUCT CARD
-========================================== */
+/* ---------- PRODUCT CARD ---------- */
 
 .card{
 
-    background:rgba(255,255,255,.92);
+    position:relative;
 
-    backdrop-filter:blur(16px);
+    display:flex;
 
-    border-radius:20px;
+    flex-direction:column;
+
+    background:rgba(255,255,255,.9);
+
+    border:1px solid rgba(255,255,255,.7);
+
+    border-radius:24px;
 
     overflow:hidden;
 
-    box-shadow:0 12px 30px rgba(0,0,0,.15);
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.12);
 
-    transition:.35s;
+    backdrop-filter:blur(15px);
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
 
 }
+
+/* ---------- CARD HOVER ---------- */
 
 .card:hover{
 
-    transform:translateY(-10px);
+    transform:translateY(-12px);
 
-    box-shadow:0 25px 45px rgba(109,40,217,.30);
+    box-shadow:
+        0 25px 55px rgba(109,40,217,.25);
 
 }
+
+/* ---------- PRODUCT IMAGE ---------- */
 
 .card img{
 
@@ -448,736 +599,1202 @@ section h2{
 
     object-fit:cover;
 
-    transition:.4s;
+    transition:
+        transform .5s ease;
 
 }
+
+/* Zoom image when card is hovered */
 
 .card:hover img{
 
-    transform:scale(1.06);
+    transform:scale(1.07);
 
 }
 
-.card-content{
+/* ---------- IMAGE AREA ---------- */
 
-    padding:25px;
+.card-image{
 
-}
+    position:relative;
 
-.card h3{
+    overflow:hidden;
 
-    margin-bottom:12px;
-
-    font-size:26px;
-
-    color:#4c1d95;
+    background:#f3f0ff;
 
 }
 
-.card p{
+/* ---------- PRODUCT BADGES ---------- */
 
-    margin-bottom:15px;
+.product-badge{
 
-    color:#555;
+    position:absolute;
 
-    line-height:1.7;
+    top:15px;
 
-}
+    left:15px;
 
-.price{
+    z-index:5;
 
-    font-size:28px;
+    padding:7px 13px;
 
-    color:#6d28d9;
-
-    font-weight:bold;
-
-    margin:20px 0;
-
-}
-
-/* ==========================================
-   BADGES
-========================================== */
-
-.badge{
-
-    display:inline-block;
-
-    padding:6px 12px;
-
-    border-radius:25px;
+    border-radius:30px;
 
     color:white;
 
-    font-size:13px;
+    font-size:12px;
 
     font-weight:bold;
 
-    margin-bottom:15px;
+    letter-spacing:.5px;
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,.2);
 
 }
 
-.badge.purple{
+.badge-best{
 
-    background:#7c3aed;
+    background:#ef4444;
 
 }
 
-.badge.green{
+.badge-popular{
 
     background:#10b981;
 
 }
 
-.badge.pink{
+.badge-new{
 
     background:#ec4899;
 
 }
 
-.badge.lime{
+.badge-favourite{
+
+    background:#22c55e;
+
+}
+
+.badge-flexible{
 
     background:#84cc16;
 
 }
 
-.badge.teal{
+.badge-fidget{
 
-    background:#14b8a6;
-
-}
-
-.badge.blue{
-
-    background:#0ea5e9;
+    background:#06b6d4;
 
 }
 
-.badge.gold{
+.badge-custom{
 
     background:#f59e0b;
 
 }
-/* ==========================================
-   GALLERY
-========================================== */
 
-.gallery{
+/* ---------- CARD CONTENT ---------- */
 
-    display:grid;
+.card-content{
 
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-
-    gap:30px;
-
-}
-
-.gallery img{
-
-    width:100%;
-
-    height:280px;
-
-    object-fit:cover;
-
-    border-radius:18px;
-
-    cursor:pointer;
-
-    transition:.4s;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.18);
-
-}
-
-.gallery img:hover{
-
-    transform:scale(1.06) rotate(1deg);
-
-    box-shadow:0 20px 40px rgba(109,40,217,.35);
-
-}
-
-/* ==========================================
-   REVIEWS
-========================================== */
-
-.reviews{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-
-    gap:30px;
-
-}
-
-.review{
-
-    background:white;
-
-    border-radius:20px;
-
-    padding:30px;
-
-    box-shadow:0 12px 30px rgba(0,0,0,.12);
-
-    transition:.35s;
-
-}
-
-.review:hover{
-
-    transform:translateY(-8px);
-
-    box-shadow:0 20px 40px rgba(109,40,217,.25);
-
-}
-
-.review h3{
-
-    color:#f59e0b;
-
-    margin-bottom:15px;
-
-    font-size:24px;
-
-}
-
-.review p{
-
-    color:#555;
-
-    line-height:1.8;
-
-}
-
-.review strong{
-
-    display:block;
-
-    margin-top:20px;
-
-    color:#6d28d9;
-
-}
-
-/* ==========================================
-   CONTACT FORM
-========================================== */
-
-.contact-form{
-
-    max-width:800px;
-
-    margin:auto;
-
-    background:white;
-
-    padding:40px;
-
-    border-radius:20px;
-
-    box-shadow:0 15px 35px rgba(0,0,0,.15);
-
-}
-
-.contact-form label{
-
-    display:block;
-
-    margin-top:20px;
-
-    margin-bottom:8px;
-
-    font-weight:bold;
-
-    color:#4c1d95;
-
-}
-
-.contact-form input,
-
-.contact-form textarea{
-
-    width:100%;
-
-    padding:15px;
-
-    border:2px solid #ddd;
-
-    border-radius:12px;
-
-    font-size:16px;
-
-    transition:.3s;
-
-}
-
-.contact-form input:focus,
-
-.contact-form textarea:focus{
-
-    border-color:#8b5cf6;
-
-    outline:none;
-
-    box-shadow:0 0 12px rgba(139,92,246,.25);
-
-}
-
-.contact-form textarea{
-
-    resize:vertical;
-
-}
-
-/* ==========================================
-   SHOPPING CART
-========================================== */
-
-.cart-panel{
-
-    position:fixed;
-
-    top:0;
-
-    right:-420px;
-
-    width:380px;
-
-    max-width:100%;
-
-    height:100vh;
-
-    background:white;
-
-    box-shadow:-10px 0 30px rgba(0,0,0,.25);
-
-    transition:.4s;
+    padding:25px;
 
     display:flex;
 
     flex-direction:column;
 
-    z-index:5000;
+    flex:1;
 
 }
 
-.cart-panel.open{
+/* ---------- PRODUCT CATEGORY ---------- */
 
-    right:0;
+.product-category{
+
+    color:#6d28d9;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    margin-bottom:7px;
 
 }
 
-.cart-header{
+/* ---------- PRODUCT TITLE ---------- */
+
+.card h3{
+
+    font-size:24px;
+
+    color:#2e1065;
+
+    margin-bottom:10px;
+
+}
+
+/* ---------- PRODUCT DESCRIPTION ---------- */
+
+.card p{
+
+    color:#555;
+
+    font-size:15px;
+
+}
+
+/* ---------- PRODUCT PRICE ---------- */
+
+.price{
+
+    font-size:25px !important;
+
+    color:#6d28d9 !important;
+
+    font-weight:bold;
+
+    margin:18px 0;
+
+}
+
+/* ---------- OLD PRICE ---------- */
+
+.old-price{
+
+    color:#999;
+
+    text-decoration:line-through;
+
+    font-size:15px;
+
+    margin-right:8px;
+
+}
+
+/* ---------- SALE PRICE ---------- */
+
+.sale-price{
+
+    color:#dc2626;
+
+    font-weight:bold;
+
+    font-size:25px;
+
+}
+
+/* ---------- PRODUCT BUTTON ---------- */
+
+.card button{
+
+    width:100%;
+
+    margin-top:auto;
+
+    padding:14px 20px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:linear-gradient(
+        135deg,
+        #6d28d9,
+        #8b5cf6
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 20px rgba(109,40,217,.25);
+
+    transition:
+        transform .3s,
+        box-shadow .3s,
+        background .3s;
+
+}
+
+.card button:hover{
+
+    transform:translateY(-3px);
+
+    background:linear-gradient(
+        135deg,
+        #5521b5,
+        #7c3aed
+    );
+
+    box-shadow:
+        0 14px 28px rgba(109,40,217,.4);
+
+}
+
+.card button:active{
+
+    transform:scale(.97);
+
+}
+
+/* ---------- PRODUCT RATING ---------- */
+
+.product-rating{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:5px;
+
+}
+
+.product-rating .stars{
+
+    color:#f59e0b;
+
+    letter-spacing:2px;
+
+}
+
+.product-rating span{
+
+    color:#777;
+
+    font-size:13px;
+
+}
+
+/* ---------- QUICK VIEW ---------- */
+
+.quick-view{
+
+    position:absolute;
+
+    right:15px;
+
+    top:15px;
+
+    width:42px;
+
+    height:42px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.9);
+
+    color:#6d28d9;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    transform:translateY(-10px);
+
+    transition:.3s;
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,.15);
+
+}
+
+.card:hover .quick-view{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+.quick-view:hover{
 
     background:#6d28d9;
 
     color:white;
 
+    transform:scale(1.1);
+
+}
+
+/* ---------- PRODUCT FEATURES ---------- */
+
+.product-features{
+
     display:flex;
 
-    justify-content:space-between;
+    flex-wrap:wrap;
+
+    gap:8px;
+
+    margin:15px 0;
+
+}
+
+.product-feature{
+
+    padding:5px 10px;
+
+    background:#f3e8ff;
+
+    color:#6d28d9;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+}
+
+/* ---------- SHOP FILTER BAR ---------- */
+
+.shop-controls{
+
+    max-width:1200px;
+
+    margin:0 auto 40px;
+
+    display:flex;
+
+    justify-content:center;
 
     align-items:center;
 
-    padding:20px;
+    gap:15px;
+
+    flex-wrap:wrap;
 
 }
 
-.cart-header button{
+.shop-filter{
 
-    background:none;
+    padding:11px 18px;
 
-    border:none;
+    border:2px solid #ddd6fe;
 
-    color:white;
+    border-radius:30px;
 
-    font-size:24px;
+    background:white;
+
+    color:#4c1d95;
+
+    font-weight:bold;
 
     cursor:pointer;
 
-}
-
-#cartItems{
-
-    flex:1;
-
-    overflow-y:auto;
-
-    padding:20px;
+    transition:.3s;
 
 }
 
-.cart-footer{
+.shop-filter:hover{
 
-    padding:20px;
+    border-color:#8b5cf6;
 
-    border-top:1px solid #ddd;
-
-}
-
-.checkout-btn{
-
-    width:100%;
+    background:#f5f3ff;
 
 }
 
-/* ==========================================
-   FOOTER
-========================================== */
+.shop-filter.active{
 
-footer{
-
-    background:#222;
+    background:#6d28d9;
 
     color:white;
+
+    border-color:#6d28d9;
+
+}
+
+/* ---------- SEARCH RESULTS ---------- */
+
+.no-products{
 
     text-align:center;
 
     padding:60px 20px;
 
-    margin-top:80px;
-
-}
-
-footer h2{
-
-    color:white;
-
-    margin-bottom:15px;
-
-}
-
-footer p{
-
-    color:#ccc;
-
-    margin:8px 0;
-
-}
-
-/* ==========================================
-   SIMPLE ANIMATIONS
-========================================== */
-
-@keyframes fadeUp{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(40px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-.hero,
-
-.card,
-
-.review,
-
-.gallery img{
-
-    animation:fadeUp .8s ease;
-
-}
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media(max-width:900px){
-
-nav{
-
-    flex-direction:column;
-
-    gap:20px;
-
-}
-
-nav ul{
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-}
-
-.hero h1{
-
-    font-size:42px;
-
-}
-
-.hero p{
+    color:#666;
 
     font-size:18px;
 
 }
 
-.cards{
+.no-products h3{
 
-    grid-template-columns:1fr;
+    color:#4c1d95;
 
-}
+    font-size:28px;
 
-.gallery{
-
-    grid-template-columns:1fr;
+    margin-bottom:10px;
 
 }
 
-.contact-form{
+/* ---------- PRODUCT DIVIDER ---------- */
 
-    padding:25px;
-
-}
-
-.cart-panel{
+.product-divider{
 
     width:100%;
 
+    height:1px;
+
+    background:#e5e7eb;
+
+    margin:15px 0;
+
+}
+
+/* ---------- CUSTOM PRODUCT CARD ---------- */
+
+.custom-card{
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(109,40,217,.95),
+            rgba(168,85,247,.95)
+        );
+
+    color:white;
+
+}
+
+.custom-card h3{
+
+    color:white;
+
+}
+
+.custom-card p{
+
+    color:rgba(255,255,255,.9);
+
+}
+
+.custom-card .price{
+
+    color:white !important;
+
+}
+
+.custom-card button{
+
+    background:white;
+
+    color:#6d28d9;
+
+}
+
+.custom-card button:hover{
+
+    background:#f5f3ff;
+
+}
+
+/* ---------- PRODUCT HEART ---------- */
+
+.product-heart{
+
+    position:absolute;
+
+    top:15px;
+
+    right:15px;
+
+    width:42px;
+
+    height:42px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(255,255,255,.92);
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    transition:.3s;
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,.15);
+
+}
+
+.product-heart:hover{
+
+    transform:scale(1.15);
+
+    background:#fee2e2;
+
+}
+
+/* ---------- PRODUCT CARD SHINE ---------- */
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.25),
+        transparent
+    );
+
+    transform:skewX(-20deg);
+
+    transition:1s;
+
+    pointer-events:none;
+
+    z-index:3;
+
+}
+
+.card:hover::before{
+
+    left:140%;
+
+}
+
+/* ---------- STOCK LABEL ---------- */
+
+.stock-label{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:#16a34a;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+.stock-dot{
+
+    width:8px;
+
+    height:8px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    animation:pulseStock 1.5s infinite;
+
+}
+
+@keyframes pulseStock{
+
+0%{
+
+box-shadow:0 0 0 0 rgba(34,197,94,.5);
+
+}
+
+70%{
+
+box-shadow:0 0 0 8px rgba(34,197,94,0);
+
+}
+
+100%{
+
+box-shadow:0 0 0 0 rgba(34,197,94,0);
+
 }
 
 }
-<!-- ========================= -->
-<!-- NEWSLETTER -->
-<!-- ========================= -->
 
-<section class="newsletter">
+/* ---------- PRODUCT CARD RESPONSIVE ---------- */
 
-    <div class="newsletter-box">
+@media(max-width:900px){
 
-        <h2>📩 Join the Perfect Prints Club</h2>
+    #products{
+
+        padding:80px 25px;
+
+    }
+
+    .cards{
+
+        grid-template-columns:
+            repeat(2,minmax(250px,1fr));
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    #products{
+
+        padding:60px 18px;
+
+    }
+
+    #products > h2{
+
+        font-size:36px;
+
+    }
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .card{
+
+        max-width:420px;
+
+        width:100%;
+
+        margin:auto;
+
+    }
+
+    .card img{
+
+        height:240px;
+
+    }
+
+}
+
+/* ---------- PRODUCT LOADING ANIMATION ---------- */
+
+.card{
+
+    animation:cardAppear .7s ease both;
+
+}
+
+.card:nth-child(1){
+
+    animation-delay:.05s;
+
+}
+
+.card:nth-child(2){
+
+    animation-delay:.1s;
+
+}
+
+.card:nth-child(3){
+
+    animation-delay:.15s;
+
+}
+
+.card:nth-child(4){
+
+    animation-delay:.2s;
+
+}
+
+.card:nth-child(5){
+
+    animation-delay:.25s;
+
+}
+
+.card:nth-child(6){
+
+    animation-delay:.3s;
+
+}
+
+.card:nth-child(7){
+
+    animation-delay:.35s;
+
+}
+
+@keyframes cardAppear{
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+<!-- =========================
+     PART 8C – EXTRA WEBSITE SECTIONS
+     ========================= -->
+
+<section class="features-section" id="why-us">
+
+    <div class="section-heading">
+        <span class="section-tag">WHY PERFECT PRINTS?</span>
+        <h2>Made With Care. Built To Impress.</h2>
+        <p>
+            Every print is created with attention to detail so you get
+            something that looks great, feels great, and lasts.
+        </p>
+    </div>
+
+    <div class="features-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🖨️
+            </div>
+
+            <h3>Quality 3D Printing</h3>
+
+            <p>
+                We focus on clean, detailed prints with smooth movement
+                and strong construction.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🎨
+            </div>
+
+            <h3>Awesome Colours</h3>
+
+            <p>
+                Choose from different colours to make your print
+                match your style.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ⚡
+            </div>
+
+            <h3>Fast Production</h3>
+
+            <p>
+                We aim to complete orders quickly while still making
+                sure every print meets our quality standards.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                💡
+            </div>
+
+            <h3>Custom Ideas</h3>
+
+            <p>
+                Have an idea that isn't in our shop? Ask us about
+                creating a custom 3D printed item.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURED COLLECTION
+     ========================= -->
+
+<section class="featured-section" id="featured">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            🔥 FEATURED
+        </span>
+
+        <h2>Our Favourite Prints</h2>
 
         <p>
-            Get exclusive discounts, early access to new models,
-            giveaways, and custom print announcements.
+            Some of the coolest creations available from Perfect Prints.
         </p>
 
-        <form class="newsletter-form">
+    </div>
 
-            <input
-                type="email"
-                placeholder="Enter your email address"
-                required
+
+    <div class="featured-grid">
+
+
+        <div class="featured-card">
+
+            <div class="featured-image">
+
+                <img
+                    src="dragon.jpg"
+                    alt="Perfect Prints Crystal Dragon"
+                >
+
+                <span class="featured-badge">
+                    BEST SELLER
+                </span>
+
+            </div>
+
+
+            <div class="featured-content">
+
+                <span class="product-category">
+                    ARTICULATED
+                </span>
+
+                <h3>Crystal Dragon</h3>
+
+                <p>
+                    A flexible articulated dragon designed to look
+                    amazing while being fun to play with.
+                </p>
+
+                <div class="featured-bottom">
+
+                    <strong>$25 AUD</strong>
+
+                    <button
+                        onclick="addToCart('Crystal Dragon',25)"
+                    >
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="featured-card">
+
+            <div class="featured-image">
+
+                <img
+                    src="dinosaur.jpg"
+                    alt="Perfect Prints Dinosaur"
+                >
+
+                <span class="featured-badge">
+                    POPULAR
+                </span>
+
+            </div>
+
+
+            <div class="featured-content">
+
+                <span class="product-category">
+                    ARTICULATED
+                </span>
+
+                <h3>Dinosaur</h3>
+
+                <p>
+                    A fun articulated dinosaur that makes a great
+                    gift for collectors and dinosaur fans.
+                </p>
+
+                <div class="featured-bottom">
+
+                    <strong>$15 AUD</strong>
+
+                    <button
+                        onclick="addToCart('Dinosaur',15)"
+                    >
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="featured-card">
+
+            <div class="featured-image">
+
+                <img
+                    src="axolotl.jpg"
+                    alt="Perfect Prints Axolotl"
+                >
+
+                <span class="featured-badge">
+                    NEW
+                </span>
+
+            </div>
+
+
+            <div class="featured-content">
+
+                <span class="product-category">
+                    CUTE
+                </span>
+
+                <h3>Axolotl</h3>
+
+                <p>
+                    A colourful articulated axolotl with smooth
+                    movement and an adorable design.
+                </p>
+
+                <div class="featured-bottom">
+
+                    <strong>$15 AUD</strong>
+
+                    <button
+                        onclick="addToCart('Axolotl',15)"
+                    >
+                        Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HOW IT WORKS
+     ========================= -->
+
+<section class="how-section" id="how-it-works">
+
+    <div class="section-heading">
+
+        <span class="section-tag">
+            🛒 HOW IT WORKS
+        </span>
+
+        <h2>Ordering Is Easy</h2>
+
+        <p>
+            Getting your next Perfect Prints creation is simple.
+        </p>
+
+    </div>
+
+
+    <div class="steps-container">
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <div class="step-icon">
+                🔎
+            </div>
+
+            <h3>Choose Your Print</h3>
+
+            <p>
+                Browse our collection and find something you like.
+            </p>
+
+        </div>
+
+
+
+        <div class="step-arrow">
+            →
+        </div>
+
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <div class="step-icon">
+                🛒
+            </div>
+
+            <h3>Add To Cart</h3>
+
+            <p>
+                Add your favourite products to your shopping cart.
+            </p>
+
+        </div>
+
+
+
+        <div class="step-arrow">
+            →
+        </div>
+
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <div class="step-icon">
+                💬
+            </div>
+
+            <h3>Confirm Your Order</h3>
+
+            <p>
+                Contact us to confirm your order and any special requests.
+            </p>
+
+        </div>
+
+
+
+        <div class="step-arrow">
+            →
+        </div>
+
+
+
+        <div class="step-card">
+
+            <div class="step-number">
+                04
+            </div>
+
+            <div class="step-icon">
+                🖨️
+            </div>
+
+            <h3>We Print It</h3>
+
+            <p>
+                Your order is carefully printed and prepared.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CUSTOM PRINT CTA
+     ========================= -->
+
+<section class="custom-cta">
+
+    <div class="custom-cta-content">
+
+        <span class="section-tag">
+            ✨ HAVE AN IDEA?
+        </span>
+
+        <h2>
+            Make Something<br>
+            Completely Yours.
+        </h2>
+
+        <p>
+            Tell us what you want printed and we'll see what we
+            can create. Custom colours, models, gifts and more.
+        </p>
+
+        <div class="custom-buttons">
+
+            <a
+                href="#contact"
+                class="button primary-button"
             >
+                ✨ Request a Custom Print
+            </a>
 
-            <button type="submit">
-                Subscribe
-            </button>
+            <a
+                href="mailto:perfectprints@outlook.com"
+                class="button secondary-button"
+            >
+                📧 Email Perfect Prints
+            </a>
 
-        </form>
-
-        <small>
-            We never spam. Unsubscribe anytime.
-        </small>
-
-    </div>
-
-</section>
-
-<!-- ========================= -->
-<!-- INSTAGRAM -->
-<!-- ========================= -->
-
-<section class="instagram">
-
-    <h2>📸 Follow Our Prints</h2>
-
-    <p>
-        See our latest creations, customer photos and behind-the-scenes
-        printing videos.
-    </p>
-
-    <div class="instagram-grid">
-
-        <img src="dragon.jpg" alt="">
-        <img src="dinosaur.jpg" alt="">
-        <img src="axolotl.jpg" alt="">
-        <img src="snake.jpg" alt="">
-        <img src="octopus.jpg" alt="">
-        <img src="turtle.jpg" alt="">
-        <img src="custom.jpg" alt="">
-        <img src="dragon.jpg" alt="">
+        </div>
 
     </div>
 
 </section>
-
-<!-- ========================= -->
-<!-- LIVE STATS -->
-<!-- ========================= -->
-
-<section class="stats">
-
-    <div class="stat">
-
-        <h2>500+</h2>
-
-        <p>Orders Completed</p>
-
-    </div>
-
-    <div class="stat">
-
-        <h2>98%</h2>
-
-        <p>5-Star Reviews</p>
-
-    </div>
-
-    <div class="stat">
-
-        <h2>100+</h2>
-
-        <p>Custom Colours</p>
-
-    </div>
-
-    <div class="stat">
-
-        <h2>24/7</h2>
-
-        <p>Customer Support</p>
-
-    </div>
-
-</section>
-
-<!-- ========================= -->
-<!-- FOOTER -->
-<!-- ========================= -->
-
-<footer>
-
-<div class="footer-grid">
-
-<div>
-
-<h3>🐉 Perfect Prints</h3>
-
-<p>
-
-Premium articulated 3D printed toys,
-dragons, dinosaurs, axolotls and
-custom creations.
-
-</p>
-
-</div>
-
-<div>
-
-<h3>Shop</h3>
-
-<ul>
-
-<li><a href="#products">Products</a></li>
-
-<li><a href="#gallery">Gallery</a></li>
-
-<li><a href="#reviews">Reviews</a></li>
-
-<li><a href="#faq">FAQ</a></li>
-
-</ul>
-
-</div>
-
-<div>
-
-<h3>Contact</h3>
-
-<p>📧 perfectprints@outlook.com</p>
-
-<p>💬 Discord: Perfect Prints</p>
-
-<p>🇦🇺 Australia</p>
-
-</div>
-
-<div>
-
-<h3>Follow Us</h3>
-
-<p>📸 Instagram</p>
-
-<p>🎥 TikTok</p>
-
-<p>👍 Facebook</p>
-
-<p>▶ YouTube</p>
-
-</div>
-
-</div>
-
-<hr>
-
-<p class="copyright">
-
-© 2026 Perfect Prints.
-Designed with ❤️ for amazing 3D printing.
-
-</p>
-
-</footer>
-
-<!-- ========================= -->
-<!-- CART PANEL -->
-<!-- ========================= -->
-
-<div id="cartPanel" class="cart-panel">
-
-<div class="cart-header">
-
-<h2>Your Cart</h2>
-
-<button onclick="closeCart()">✖</button>
-
-</div>
-
-<div id="cartItems">
-
-<p>Your cart is empty.</p>
-
-</div>
-
-<div class="cart-footer">
-
-<h3>
-
-Total:
-$<span id="cartTotal">0</span>
-
-</h3>
-
-<button class="checkout-btn">
-
-Proceed to Checkout
-
-</button>
-
-</div>
-
-</div>
-
-<script src="script.js"></script>
-
-</body>
-</html>
