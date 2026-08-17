@@ -1005,3 +1005,10 @@ footer p {
         max-width: 100%;
     }
 }
+.product-card img {
+    width: 70%;
+    height: 220px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
