@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Perfect Prints | My Account</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <div class="sale-banner">
+        🚚 FREE SHIPPING Australia Wide on Orders Over $75
+    </div>
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+                🐉 Perfect Prints
+            </div>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="header-icons">
+
+                <a href="account.html">
+                    👤
+                </a>
+
+                <a href="wishlist.html">
+                    ❤️
+                </a>
+
+                <a href="cart.html">
+                    🛒
+                    <span id="cartCount">0</span>
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main class="account-page">
+
+        <section>
+
+            <div class="section-heading">
+
+                <h2>👤 My Account</h2>
+
+                <p>
+                    Manage your Perfect Prints customer details.
+                </p>
+
+            </div>
+
+
+            <div class="account-card">
+
+                <div class="account-icon">
+                    👤
+                </div>
+
+                <h2 id="accountWelcome">
+                    Welcome to Perfect Prints!
+                </h2>
+
+                <p>
+                    Save your details so they're ready when you order.
+                </p>
+
+
+                <form id="accountForm">
+
+                    <label for="accountName">
+                        Your Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="accountName"
+                        placeholder="Enter your name"
+                        required
+                    >
+
+
+                    <label for="accountEmail">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="accountEmail"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+
+                    <label for="accountPhone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="accountPhone"
+                        placeholder="Enter your phone number"
+                    >
+
+
+                    <button
+                        type="submit"
+                        class="checkout-btn"
+                    >
+                        💾 Save Details
+                    </button>
+
+                </form>
+
+
+                <button
+                    onclick="clearAccount()"
+                    class="account-delete-btn"
+                >
+                    🗑️ Clear Account Details
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section>
+
+            <div class="section-heading">
+
+                <h2>📦 Your Orders</h2>
+
+                <p>
+                    Your orders will appear here after checkout.
+                </p>
+
+            </div>
+
+            <div id="accountOrders">
+
+                <div class="account-empty">
+
+                    <div>📦</div>
+
+                    <h3>No orders yet</h3>
+
+                    <p>
+                        Your completed orders will appear here.
+                    </p>
+
+                    <a
+                        href="shop.html"
+                        class="button button-purple"
+                    >
+                        🛍️ Start Shopping
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <h2>🐉 Perfect Prints</h2>
+
+        <p>
+            Creating amazing articulated 3D prints with quality,
+            creativity and care.
+        </p>
+
+        <p>
+            © 2026 Perfect Prints. All Rights Reserved.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
