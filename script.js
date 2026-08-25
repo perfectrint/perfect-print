@@ -326,6 +326,10 @@ function checkout() {
         return;
     }
 
+    window.location.href = "checkout.html";
+
+}
+
 
     const total = cart.reduce(
         (sum, item) =>
@@ -551,4 +555,216 @@ console.log(
 
 console.log(
     "🐉 Perfect Prints website JavaScript loaded successfully!"
+);
+/* =========================================================
+   CHECKOUT PAGE
+   ========================================================= */
+
+function loadCheckout() {
+
+    const checkoutItems =
+        document.getElementById("checkoutItems");
+
+    const checkoutTotal =
+        document.getElementById("checkoutTotal");
+
+    if (!checkoutItems || !checkoutTotal) {
+        return;
+    }
+
+
+    if (cart.length === 0) {
+
+        checkoutItems.innerHTML = `
+            <div class="empty-cart">
+                <h3>Your cart is empty.</h3>
+
+                <p>
+                    Add some products before checking out.
+                </p>
+
+                <a href="products.html">
+                    Browse Products
+                </a>
+            </div>
+        `;
+
+        checkoutTotal.textContent = "0.00";
+
+        return;
+    }
+
+
+    let total = 0;
+
+
+    checkoutItems.innerHTML = cart.map(item => {
+
+        const itemTotal =
+            item.price * item.quantity;
+
+        total += itemTotal;
+
+        return `
+            <div class="checkout-item">
+
+                <div>
+                    <strong>
+                        ${item.name}
+                    </strong>
+
+                    <p>
+                        Quantity: ${item.quantity}
+                    </p>
+                </div>
+
+                <strong>
+                    $${itemTotal.toFixed(2)}
+                </strong>
+
+            </div>
+        `;
+
+    }).join("");
+
+
+    checkoutTotal.textContent =
+        total.toFixed(2);
+
+}
+
+
+/* =========================================================
+   PLACE ORDER
+   ========================================================= */
+
+function setupCheckoutForm() {
+
+    const form =
+        document.getElementById("checkoutForm");
+
+    if (!form) {
+        return;
+    }
+
+
+    form.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            if (cart.length === 0) {
+
+                alert(
+                    "Your cart is empty."
+                );
+
+                return;
+            }
+
+
+            const name =
+                document.getElementById(
+                    "customerName"
+                ).value.trim();
+
+
+            const email =
+                document.getElementById(
+                    "customerEmail"
+                ).value.trim();
+
+
+            if (!name || !email) {
+
+                alert(
+                    "Please fill in your details."
+                );
+
+                return;
+            }
+
+
+            /*
+               Save order information locally.
+            */
+
+            const order = {
+
+                orderNumber:
+                    "PP-" +
+                    Date.now(),
+
+                customer: name,
+
+                email: email,
+
+                items: cart,
+
+                total: cart.reduce(
+                    (sum, item) =>
+                        sum +
+                        item.price *
+                        item.quantity,
+                    0
+                ),
+
+                date:
+                    new Date().toISOString()
+
+            };
+
+
+            localStorage.setItem(
+                "perfectPrintsLastOrder",
+                JSON.stringify(order)
+            );
+
+
+            /*
+               Empty cart after order.
+            */
+
+            cart = [];
+
+            saveCart();
+            updateCart();
+
+
+            /*
+               Show confirmation.
+            */
+
+            const success =
+                document.getElementById(
+                    "orderSuccess"
+                );
+
+            if (success) {
+
+                success.style.display =
+                    "flex";
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   START CHECKOUT
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadCheckout();
+        setupCheckoutForm();
+
+    }
 );
