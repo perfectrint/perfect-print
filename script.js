@@ -38,10 +38,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function saveCart() {
 
-    localStorage.setItem(
-        "perfectPrintsCart",
-        JSON.stringify(cart)
+   /* Save order for the admin dashboard */
+
+const savedOrders =
+    localStorage.getItem(
+        "perfectPrintsOrders"
     );
+
+let orders = [];
+
+if (savedOrders) {
+
+    try {
+
+        orders = JSON.parse(savedOrders);
+
+    } catch (error) {
+
+        orders = [];
+
+    }
+
+}
+
+order.status = "New";
+
+orders.push(order);
+
+localStorage.setItem(
+    "perfectPrintsOrders",
+    JSON.stringify(orders)
+);
 
 }
 
@@ -765,6 +792,557 @@ document.addEventListener(
 
         loadCheckout();
         setupCheckoutForm();
+
+    }
+);
+/* =========================================================
+   PERFECT PRINTS ADMIN SYSTEM
+   ========================================================= */
+
+let adminOrders = [];
+
+
+/* =========================================================
+   LOAD ORDERS
+   ========================================================= */
+
+function loadAdminOrders() {
+
+    const savedOrders =
+        localStorage.getItem("perfectPrintsOrders");
+
+    if (savedOrders) {
+
+        try {
+
+            adminOrders =
+                JSON.parse(savedOrders);
+
+            if (!Array.isArray(adminOrders)) {
+                adminOrders = [];
+            }
+
+        } catch (error) {
+
+            adminOrders = [];
+
+        }
+
+    } else {
+
+        adminOrders = [];
+
+    }
+
+    displayAdminOrders();
+
+}
+
+
+/* =========================================================
+   SAVE ORDERS
+   ========================================================= */
+
+function saveAdminOrders() {
+
+    localStorage.setItem(
+        "perfectPrintsOrders",
+        JSON.stringify(adminOrders)
+    );
+
+}
+
+
+/* =========================================================
+   DISPLAY ORDERS
+   ========================================================= */
+
+function displayAdminOrders() {
+
+    const container =
+        document.getElementById("adminOrdersList");
+
+    if (!container) return;
+
+
+    const searchInput =
+        document.getElementById("adminSearch");
+
+
+    const search =
+        searchInput
+            ? searchInput.value.toLowerCase().trim()
+            : "";
+
+
+    const filteredOrders =
+        adminOrders.filter(order => {
+
+            const text =
+                (
+                    order.orderNumber +
+                    " " +
+                    order.customer +
+                    " " +
+                    order.email
+                ).toLowerCase();
+
+            return text.includes(search);
+
+        });
+
+
+    if (filteredOrders.length === 0) {
+
+        container.innerHTML = `
+            <div class="admin-empty">
+
+                <div>📦</div>
+
+                <h3>No orders found</h3>
+
+                <p>
+                    There are no orders matching your search.
+                </p>
+
+            </div>
+        `;
+
+        updateAdminStats();
+
+        return;
+    }
+
+
+    container.innerHTML =
+        filteredOrders.map(order => {
+
+            const status =
+                order.status || "New";
+
+
+            const date =
+                order.date
+                    ? new Date(order.date)
+                        .toLocaleString()
+                    : "Unknown";
+
+
+            return `
+                <div class="admin-order">
+
+                    <div class="admin-order-main">
+
+                        <div>
+
+                            <h3>
+                                ${order.orderNumber}
+                            </h3>
+
+                            <p>
+                                👤 ${order.customer}
+                            </p>
+
+                            <p>
+                                📧 ${order.email}
+                            </p>
+
+                            <small>
+                                ${date}
+                            </small>
+
+                        </div>
+
+
+                        <div class="admin-order-right">
+
+                            <strong>
+                                $${Number(order.total || 0).toFixed(2)}
+                            </strong>
+
+
+                            <select
+                                onchange="changeOrderStatus(
+                                    '${order.orderNumber}',
+                                    this.value
+                                )"
+                            >
+
+                                <option
+                                    ${status === "New" ? "selected" : ""}
+                                >
+                                    New
+                                </option>
+
+                                <option
+                                    ${status === "Processing" ? "selected" : ""}
+                                >
+                                    Processing
+                                </option>
+
+                                <option
+                                    ${status === "Shipped" ? "selected" : ""}
+                                >
+                                    Shipped
+                                </option>
+
+                                <option
+                                    ${status === "Completed" ? "selected" : ""}
+                                >
+                                    Completed
+                                </option>
+
+                            </select>
+
+
+                            <button
+                                onclick="viewOrder(
+                                    '${order.orderNumber}'
+                                )"
+                            >
+                                👀 View
+                            </button>
+
+
+                            <button
+                                class="admin-delete-btn"
+                                onclick="deleteOrder(
+                                    '${order.orderNumber}'
+                                )"
+                            >
+                                🗑️
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+
+        }).join("");
+
+
+    updateAdminStats();
+
+}
+
+
+/* =========================================================
+   ADMIN STATISTICS
+   ========================================================= */
+
+function updateAdminStats() {
+
+    const orderCount =
+        document.getElementById(
+            "adminOrderCount"
+        );
+
+    const sales =
+        document.getElementById(
+            "adminSales"
+        );
+
+    const newOrders =
+        document.getElementById(
+            "adminNewOrders"
+        );
+
+
+    if (orderCount) {
+
+        orderCount.textContent =
+            adminOrders.length;
+
+    }
+
+
+    if (sales) {
+
+        const totalSales =
+            adminOrders.reduce(
+                (sum, order) =>
+                    sum +
+                    Number(order.total || 0),
+                0
+            );
+
+        sales.textContent =
+            totalSales.toFixed(2);
+
+    }
+
+
+    if (newOrders) {
+
+        const count =
+            adminOrders.filter(
+                order =>
+                    !order.status ||
+                    order.status === "New"
+            ).length;
+
+        newOrders.textContent =
+            count;
+
+    }
+
+}
+
+
+/* =========================================================
+   CHANGE ORDER STATUS
+   ========================================================= */
+
+function changeOrderStatus(
+    orderNumber,
+    newStatus
+) {
+
+    const order =
+        adminOrders.find(
+            order =>
+                order.orderNumber === orderNumber
+        );
+
+
+    if (!order) return;
+
+
+    order.status = newStatus;
+
+    saveAdminOrders();
+
+    displayAdminOrders();
+
+}
+
+
+/* =========================================================
+   VIEW ORDER
+   ========================================================= */
+
+function viewOrder(orderNumber) {
+
+    const order =
+        adminOrders.find(
+            order =>
+                order.orderNumber === orderNumber
+        );
+
+
+    if (!order) return;
+
+
+    const details =
+        document.getElementById(
+            "orderDetails"
+        );
+
+
+    if (!details) return;
+
+
+    const items =
+        (order.items || []).map(item => {
+
+            return `
+                <div class="admin-detail-item">
+
+                    <span>
+                        ${item.name}
+                        × ${item.quantity}
+                    </span>
+
+                    <strong>
+                        $${(
+                            item.price *
+                            item.quantity
+                        ).toFixed(2)}
+                    </strong>
+
+                </div>
+            `;
+
+        }).join("");
+
+
+    details.innerHTML = `
+
+        <h2>
+            📦 Order ${order.orderNumber}
+        </h2>
+
+        <hr>
+
+        <h3>Customer</h3>
+
+        <p>
+            👤 ${order.customer}
+        </p>
+
+        <p>
+            📧 ${order.email}
+        </p>
+
+
+        <h3>Items</h3>
+
+        ${items}
+
+
+        <div class="admin-detail-total">
+
+            <strong>Total</strong>
+
+            <strong>
+                $${Number(order.total || 0).toFixed(2)}
+            </strong>
+
+        </div>
+
+
+        <h3>Status</h3>
+
+        <p>
+            ${order.status || "New"}
+        </p>
+
+
+        <button
+            class="modal-action-btn"
+            onclick="closeOrderModal()"
+        >
+            Close
+        </button>
+
+    `;
+
+
+    const modal =
+        document.getElementById(
+            "orderModal"
+        );
+
+
+    if (modal) {
+
+        modal.style.display = "flex";
+
+    }
+
+}
+
+
+/* =========================================================
+   CLOSE ORDER MODAL
+   ========================================================= */
+
+function closeOrderModal() {
+
+    const modal =
+        document.getElementById(
+            "orderModal"
+        );
+
+
+    if (modal) {
+
+        modal.style.display = "none";
+
+    }
+
+}
+
+
+/* =========================================================
+   DELETE ORDER
+   ========================================================= */
+
+function deleteOrder(orderNumber) {
+
+    const confirmed =
+        confirm(
+            "Delete this order permanently?"
+        );
+
+
+    if (!confirmed) return;
+
+
+    adminOrders =
+        adminOrders.filter(
+            order =>
+                order.orderNumber !== orderNumber
+        );
+
+
+    saveAdminOrders();
+
+    displayAdminOrders();
+
+}
+
+
+/* =========================================================
+   CLEAR ALL ORDERS
+   ========================================================= */
+
+function clearAllOrders() {
+
+    if (adminOrders.length === 0) {
+
+        alert("There are no orders to clear.");
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            "WARNING: This will delete ALL orders. Continue?"
+        );
+
+
+    if (!confirmed) return;
+
+
+    adminOrders = [];
+
+    saveAdminOrders();
+
+    displayAdminOrders();
+
+}
+
+
+/* =========================================================
+   ADMIN SEARCH
+   ========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const search =
+            document.getElementById(
+                "adminSearch"
+            );
+
+
+        if (search) {
+
+            search.addEventListener(
+                "input",
+                displayAdminOrders
+            );
+
+        }
+
+
+        loadAdminOrders();
 
     }
 );
