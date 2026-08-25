@@ -1565,3 +1565,128 @@ footer p {
     }
 
 }
+/* =========================================================
+   ACCOUNT PAGE
+   ========================================================= */
+
+.account-page {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.account-card {
+    max-width: 600px;
+    margin: auto;
+
+    padding: 40px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow: var(--shadow-medium);
+
+    text-align: center;
+}
+
+.account-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.account-card h2 {
+    color: var(--purple-dark);
+    margin-bottom: 10px;
+}
+
+.account-card > p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+#accountForm {
+    text-align: left;
+}
+
+#accountForm label {
+    display: block;
+
+    margin-top: 18px;
+    margin-bottom: 7px;
+
+    font-weight: 700;
+}
+
+#accountForm input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    outline: none;
+}
+
+#accountForm input:focus {
+    border-color: var(--purple-light);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(139, 92, 246, 0.15);
+}
+
+#accountForm button {
+    margin-top: 25px;
+}
+
+.account-delete-btn {
+    margin-top: 15px;
+
+    padding: 10px 15px;
+
+    border: none;
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+    border-radius: 9px;
+
+    font-weight: 700;
+}
+
+.account-empty {
+    max-width: 600px;
+
+    margin: auto;
+
+    padding: 50px 20px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow: var(--shadow-small);
+}
+
+.account-empty div {
+    font-size: 55px;
+}
+
+.account-empty h3 {
+    margin: 15px 0 8px;
+}
+
+.account-empty p {
+    color: #777;
+
+    margin-bottom: 25px;
+}
+
+.account-empty .button {
+    display: inline-flex;
+}
