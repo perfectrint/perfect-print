@@ -1,13 +1,13 @@
 /* =========================================================
    PERFECT PRINTS
-   Professional Shopping Cart + Search
+   Shopping Cart + Search
    ========================================================= */
 
 let cart = [];
 
 
 /* =========================================================
-   LOAD SAVED CART
+   LOAD CART
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -17,6 +17,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (savedCart) {
         try {
             cart = JSON.parse(savedCart);
+
+            if (!Array.isArray(cart)) {
+                cart = [];
+            }
+
         } catch (error) {
             cart = [];
         }
@@ -24,7 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     updateCart();
     setupSearch();
-
 });
 
 
@@ -43,7 +47,7 @@ function saveCart() {
 
 
 /* =========================================================
-   ADD PRODUCT TO CART
+   ADD TO CART
    ========================================================= */
 
 function addToCart(productName, price) {
@@ -68,8 +72,70 @@ function addToCart(productName, price) {
 
     saveCart();
     updateCart();
+    showMessage(productName + " added to cart!");
 
-    showCartMessage(productName);
+}
+
+
+/* =========================================================
+   REMOVE ITEM
+   ========================================================= */
+
+function removeFromCart(productName) {
+
+    cart = cart.filter(
+        item => item.name !== productName
+    );
+
+    saveCart();
+    updateCart();
+
+}
+
+
+/* =========================================================
+   CHANGE QUANTITY
+   ========================================================= */
+
+function changeQuantity(productName, change) {
+
+    const product = cart.find(
+        item => item.name === productName
+    );
+
+    if (!product) return;
+
+    product.quantity += change;
+
+    if (product.quantity <= 0) {
+        removeFromCart(productName);
+        return;
+    }
+
+    saveCart();
+    updateCart();
+
+}
+
+
+/* =========================================================
+   CLEAR CART
+   ========================================================= */
+
+function clearCart() {
+
+    if (cart.length === 0) return;
+
+    const confirmed = confirm(
+        "Are you sure you want to empty your cart?"
+    );
+
+    if (!confirmed) return;
+
+    cart = [];
+
+    saveCart();
+    updateCart();
 
 }
 
@@ -84,254 +150,129 @@ function updateCart() {
     const cartItems = document.getElementById("cartItems");
     const cartTotal = document.getElementById("cartTotal");
 
-    if (!cartCount || !cartItems || !cartTotal) {
-        return;
+    /*
+       Calculate total number of products
+    */
+
+    const totalItems = cart.reduce(
+        (total, item) => total + item.quantity,
+        0
+    );
+
+
+    /*
+       Calculate total price
+    */
+
+    const totalPrice = cart.reduce(
+        (total, item) =>
+            total + (item.price * item.quantity),
+        0
+    );
+
+
+    /*
+       Update cart number
+    */
+
+    if (cartCount) {
+        cartCount.textContent = totalItems;
     }
 
 
-    /* ---------- CART ITEM COUNT ---------- */
+    /*
+       Update total
+    */
 
-    let totalItems = 0;
-
-    cart.forEach(item => {
-        totalItems += item.quantity;
-    });
-
-    cartCount.textContent = totalItems;
+    if (cartTotal) {
+        cartTotal.textContent =
+            totalPrice.toFixed(2);
+    }
 
 
-    /* ---------- EMPTY CART ---------- */
+    /*
+       Update cart products
+    */
+
+    if (!cartItems) return;
+
 
     if (cart.length === 0) {
 
         cartItems.innerHTML = `
-            <div style="
-                text-align:center;
-                padding:50px 20px;
-                color:#777;
-            ">
-                <div style="font-size:50px;">🛒</div>
-
-                <h3 style="margin:15px 0;">
-                    Your cart is empty
-                </h3>
-
-                <p>
-                    Add some awesome 3D prints!
-                </p>
+            <div class="empty-cart">
+                <div style="font-size:45px;">🛒</div>
+                <h3>Your cart is empty</h3>
+                <p>Add some awesome 3D prints!</p>
             </div>
         `;
-
-        cartTotal.textContent = "0.00";
 
         return;
     }
 
 
-    /* ---------- BUILD CART ---------- */
+    /*
+       Create cart HTML
+    */
 
-    let total = 0;
-
-    cartItems.innerHTML = "";
-
-
-    cart.forEach((item, index) => {
+    cartItems.innerHTML = cart.map(item => {
 
         const itemTotal =
-            Number(item.price) * Number(item.quantity);
+            item.price * item.quantity;
 
-        total += itemTotal;
+        return `
+            <div class="cart-item">
 
+                <div class="cart-item-info">
 
-        const cartItem = document.createElement("div");
+                    <h3>${item.name}</h3>
 
-        cartItem.style.cssText = `
-            padding:18px 0;
-            border-bottom:1px solid #e5e5e5;
-        `;
-
-
-        cartItem.innerHTML = `
-
-            <div style="
-                display:flex;
-                justify-content:space-between;
-                align-items:flex-start;
-                gap:15px;
-            ">
-
-                <div>
-
-                    <strong style="
-                        font-size:16px;
-                        color:#222;
-                    ">
-                        ${item.name}
-                    </strong>
-
-                    <p style="
-                        margin:5px 0;
-                        color:#777;
-                        font-size:14px;
-                    ">
-                        $${Number(item.price).toFixed(2)} each
+                    <p>
+                        $${item.price.toFixed(2)} each
                     </p>
 
                 </div>
 
 
-                <button
-                    onclick="removeFromCart(${index})"
-                    style="
-                        border:none;
-                        background:none;
-                        color:#ef4444;
-                        font-size:18px;
-                        cursor:pointer;
-                    "
-                    title="Remove item"
-                >
-                    🗑️
-                </button>
-
-            </div>
-
-
-            <div style="
-                display:flex;
-                justify-content:space-between;
-                align-items:center;
-                margin-top:12px;
-            ">
-
-                <div style="
-                    display:flex;
-                    align-items:center;
-                    gap:8px;
-                ">
+                <div class="cart-item-controls">
 
                     <button
-                        class="quantity-btn"
-                        onclick="decreaseQuantity(${index})"
-                    >
+                        onclick="changeQuantity('${item.name}', -1)"
+                        class="quantity-btn">
                         −
                     </button>
 
-
-                    <strong style="
-                        min-width:25px;
-                        text-align:center;
-                    ">
+                    <span class="quantity">
                         ${item.quantity}
-                    </strong>
-
+                    </span>
 
                     <button
-                        class="quantity-btn"
-                        onclick="increaseQuantity(${index})"
-                    >
+                        onclick="changeQuantity('${item.name}', 1)"
+                        class="quantity-btn">
                         +
                     </button>
 
                 </div>
 
 
-                <strong style="
-                    color:#6d28d9;
-                    font-size:17px;
-                ">
-                    $${itemTotal.toFixed(2)}
-                </strong>
+                <div class="cart-item-price">
+
+                    <strong>
+                        $${itemTotal.toFixed(2)}
+                    </strong>
+
+                    <button
+                        onclick="removeFromCart('${item.name}')"
+                        class="remove-btn">
+                        Remove
+                    </button>
+
+                </div>
 
             </div>
-
         `;
 
-
-        cartItems.appendChild(cartItem);
-
-    });
-
-
-    /* ---------- UPDATE TOTAL ---------- */
-
-    cartTotal.textContent = total.toFixed(2);
-
-}
-
-
-/* =========================================================
-   INCREASE QUANTITY
-   ========================================================= */
-
-function increaseQuantity(index) {
-
-    if (!cart[index]) {
-        return;
-    }
-
-    cart[index].quantity++;
-
-    saveCart();
-    updateCart();
-
-}
-
-
-/* =========================================================
-   DECREASE QUANTITY
-   ========================================================= */
-
-function decreaseQuantity(index) {
-
-    if (!cart[index]) {
-        return;
-    }
-
-    cart[index].quantity--;
-
-
-    if (cart[index].quantity <= 0) {
-
-        cart.splice(index, 1);
-
-    }
-
-
-    saveCart();
-    updateCart();
-
-}
-
-
-/* =========================================================
-   REMOVE PRODUCT
-   ========================================================= */
-
-function removeFromCart(index) {
-
-    if (!cart[index]) {
-        return;
-    }
-
-    cart.splice(index, 1);
-
-    saveCart();
-    updateCart();
-
-}
-
-
-/* =========================================================
-   CLEAR CART
-   ========================================================= */
-
-function clearCart() {
-
-    cart = [];
-
-    saveCart();
-    updateCart();
+    }).join("");
 
 }
 
@@ -345,11 +286,11 @@ function openCart() {
     const cartPanel =
         document.getElementById("cartPanel");
 
-    if (cartPanel) {
+    if (!cartPanel) return;
 
-        cartPanel.classList.add("open");
+    updateCart();
 
-    }
+    cartPanel.classList.add("open");
 
 }
 
@@ -363,130 +304,9 @@ function closeCart() {
     const cartPanel =
         document.getElementById("cartPanel");
 
-    if (cartPanel) {
+    if (!cartPanel) return;
 
-        cartPanel.classList.remove("open");
-
-    }
-
-}
-
-
-/* =========================================================
-   SEARCH PRODUCTS
-   ========================================================= */
-
-function setupSearch() {
-
-    const searchInput =
-        document.getElementById("searchInput");
-
-    if (!searchInput) {
-        return;
-    }
-
-
-    searchInput.addEventListener(
-        "input",
-        function () {
-
-            const searchTerm =
-                searchInput.value
-                    .toLowerCase()
-                    .trim();
-
-
-            const products =
-                document.querySelectorAll(".card");
-
-
-            let visibleProducts = 0;
-
-
-            products.forEach(product => {
-
-                const productText =
-                    product.textContent.toLowerCase();
-
-
-                if (
-                    productText.includes(searchTerm)
-                ) {
-
-                    product.style.display = "";
-
-                    visibleProducts++;
-
-                } else {
-
-                    product.style.display = "none";
-
-                }
-
-            });
-
-
-            /* ---------- NO RESULTS ---------- */
-
-            let noResults =
-                document.getElementById("noResults");
-
-
-            if (!noResults) {
-
-                noResults =
-                    document.createElement("div");
-
-                noResults.id = "noResults";
-
-                noResults.style.cssText = `
-                    text-align:center;
-                    padding:40px;
-                    color:#666;
-                    font-size:18px;
-                `;
-
-
-                const cards =
-                    document.querySelector(".cards");
-
-
-                if (cards) {
-
-                    cards.parentNode.insertBefore(
-                        noResults,
-                        cards.nextSibling
-                    );
-
-                }
-
-            }
-
-
-            if (
-                searchTerm !== "" &&
-                visibleProducts === 0
-            ) {
-
-                noResults.innerHTML = `
-                    🔍 No products found.
-                    <br>
-                    <small>
-                        Try searching for dragon,
-                        dinosaur, axolotl or another print.
-                    </small>
-                `;
-
-                noResults.style.display = "block";
-
-            } else {
-
-                noResults.style.display = "none";
-
-            }
-
-        }
-    );
+    cartPanel.classList.remove("open");
 
 }
 
@@ -500,68 +320,147 @@ function checkout() {
     if (cart.length === 0) {
 
         alert(
-            "Your cart is empty! Add a product before checking out."
+            "Your cart is empty. Add a product first!"
         );
 
         return;
-
     }
 
 
-    let total = 0;
+    const total = cart.reduce(
+        (sum, item) =>
+            sum + item.price * item.quantity,
+        0
+    );
 
-    cart.forEach(item => {
 
-        total +=
-            Number(item.price) *
-            Number(item.quantity);
+    const orderList = cart.map(item =>
+        `${item.name} x${item.quantity}`
+    ).join("\n");
 
-    });
 
+    const message =
+        "Perfect Prints Order\n\n" +
+        orderList +
+        "\n\n" +
+        "Total: $" +
+        total.toFixed(2) +
+        " AUD";
+
+
+    /*
+       For now this sends the customer
+       to the contact page with the order
+       information ready to copy.
+    */
 
     alert(
-        "🛍️ Perfect Prints Checkout\n\n" +
-        "Your order total is $" +
-        total.toFixed(2) +
-        " AUD.\n\n" +
-        "Checkout/payment setup can be connected next!"
+        message +
+        "\n\nCheckout is ready! " +
+        "Contact Perfect Prints to complete your order."
     );
 
 }
 
 
 /* =========================================================
-   CART MESSAGE
+   SEARCH
    ========================================================= */
 
-function showCartMessage(productName) {
+function setupSearch() {
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    if (!searchInput) return;
+
+
+    searchInput.addEventListener(
+        "input",
+        function () {
+
+            const searchTerm =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+            const products =
+                document.querySelectorAll(
+                    ".product-card"
+                );
+
+
+            products.forEach(product => {
+
+                const text =
+                    product.textContent
+                        .toLowerCase();
+
+                if (
+                    searchTerm === "" ||
+                    text.includes(searchTerm)
+                ) {
+
+                    product.style.display = "";
+
+                } else {
+
+                    product.style.display = "none";
+
+                }
+
+            });
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+function showMessage(text) {
+
+    const oldMessage =
+        document.querySelector(".perfect-message");
+
+    if (oldMessage) {
+        oldMessage.remove();
+    }
+
 
     const message =
         document.createElement("div");
 
+    message.className =
+        "perfect-message";
 
-    message.textContent =
-        "✅ " + productName + " added to cart!";
-
+    message.textContent = text;
 
     message.style.cssText = `
-        position:fixed;
-        bottom:25px;
-        right:25px;
-        z-index:9999;
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        z-index: 9999;
 
-        padding:14px 20px;
+        padding: 14px 20px;
 
-        background:#171717;
-        color:white;
+        background: #171717;
+        color: white;
 
-        border-radius:12px;
+        border-radius: 12px;
 
-        box-shadow:0 10px 30px rgba(0,0,0,0.25);
+        box-shadow:
+            0 10px 30px
+            rgba(0,0,0,0.25);
 
-        font-weight:600;
+        font-weight: 600;
 
-        animation:perfectPrintsMessage 0.3s ease;
+        transition:
+            opacity 0.4s ease,
+            transform 0.4s ease;
     `;
 
 
@@ -571,7 +470,8 @@ function showCartMessage(productName) {
     setTimeout(() => {
 
         message.style.opacity = "0";
-        message.style.transform = "translateY(10px)";
+        message.style.transform =
+            "translateY(10px)";
 
     }, 1800);
 
@@ -586,7 +486,7 @@ function showCartMessage(productName) {
 
 
 /* =========================================================
-   KEYBOARD SUPPORT
+   ESCAPE KEY
    ========================================================= */
 
 document.addEventListener(
@@ -594,9 +494,7 @@ document.addEventListener(
     function (event) {
 
         if (event.key === "Escape") {
-
             closeCart();
-
         }
 
     }
@@ -630,6 +528,16 @@ document.addEventListener(
         ) {
 
             closeCart();
+
+        }
+
+    }
+);
+
+
+console.log(
+    "🐉 Perfect Prints cart loaded!"
+);
 
         }
 
