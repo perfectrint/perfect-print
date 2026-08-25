@@ -1346,3 +1346,159 @@ document.addEventListener(
 
     }
 );
+/* =========================================================
+   PERFECT PRINTS ACCOUNT SYSTEM
+   ========================================================= */
+
+function loadAccount() {
+
+    const savedAccount =
+        localStorage.getItem("perfectPrintsAccount");
+
+    if (!savedAccount) {
+        return;
+    }
+
+    try {
+
+        const account =
+            JSON.parse(savedAccount);
+
+        const name =
+            document.getElementById("accountName");
+
+        const email =
+            document.getElementById("accountEmail");
+
+        const phone =
+            document.getElementById("accountPhone");
+
+        if (name) {
+            name.value = account.name || "";
+        }
+
+        if (email) {
+            email.value = account.email || "";
+        }
+
+        if (phone) {
+            phone.value = account.phone || "";
+        }
+
+        updateAccountWelcome(account.name);
+
+    } catch (error) {
+
+        console.log("Could not load account.");
+
+    }
+
+}
+
+
+function saveAccount(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("accountName").value.trim();
+
+    const email =
+        document.getElementById("accountEmail").value.trim();
+
+    const phone =
+        document.getElementById("accountPhone").value.trim();
+
+    const account = {
+
+        name: name,
+        email: email,
+        phone: phone
+
+    };
+
+    localStorage.setItem(
+        "perfectPrintsAccount",
+        JSON.stringify(account)
+    );
+
+    updateAccountWelcome(name);
+
+    alert("✅ Your account details have been saved!");
+
+}
+
+
+function updateAccountWelcome(name) {
+
+    const welcome =
+        document.getElementById("accountWelcome");
+
+    if (!welcome) {
+        return;
+    }
+
+    if (name) {
+
+        welcome.textContent =
+            "Welcome, " + name + "! 👋";
+
+    } else {
+
+        welcome.textContent =
+            "Welcome to Perfect Prints!";
+
+    }
+
+}
+
+
+function clearAccount() {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to clear your account details?"
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+    localStorage.removeItem(
+        "perfectPrintsAccount"
+    );
+
+    const form =
+        document.getElementById("accountForm");
+
+    if (form) {
+        form.reset();
+    }
+
+    updateAccountWelcome("");
+
+    alert("Account details cleared.");
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const accountForm =
+            document.getElementById("accountForm");
+
+        if (accountForm) {
+
+            accountForm.addEventListener(
+                "submit",
+                saveAccount
+            );
+
+            loadAccount();
+
+        }
+
+    }
+);
