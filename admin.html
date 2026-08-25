@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Perfect Prints | Admin</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="sale-banner">
+            🛠️ Perfect Prints Admin Dashboard
+        </div>
+
+        <nav>
+
+            <div class="logo">
+                🐉 Perfect Prints
+            </div>
+
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <main class="admin-page">
+
+        <div class="admin-title">
+
+            <div>
+                <h1>🛠️ Admin Dashboard</h1>
+
+                <p>
+                    Manage your Perfect Prints orders.
+                </p>
+            </div>
+
+            <button
+                class="admin-clear-btn"
+                onclick="clearAllOrders()">
+                🗑️ Clear All Orders
+            </button>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <section class="admin-stats">
+
+            <div class="admin-stat">
+
+                <span>📦</span>
+
+                <div>
+                    <h3 id="adminOrderCount">0</h3>
+                    <p>Total Orders</p>
+                </div>
+
+            </div>
+
+
+            <div class="admin-stat">
+
+                <span>💰</span>
+
+                <div>
+                    <h3>
+                        $<span id="adminSales">0.00</span>
+                    </h3>
+
+                    <p>Total Sales</p>
+                </div>
+
+            </div>
+
+
+            <div class="admin-stat">
+
+                <span>🆕</span>
+
+                <div>
+                    <h3 id="adminNewOrders">0</h3>
+                    <p>New Orders</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SEARCH -->
+
+        <section class="admin-tools">
+
+            <input
+                type="text"
+                id="adminSearch"
+                placeholder="🔎 Search orders..."
+            >
+
+        </section>
+
+
+        <!-- ORDERS -->
+
+        <section class="admin-orders">
+
+            <h2>Orders</h2>
+
+            <div id="adminOrdersList">
+
+                <div class="admin-empty">
+                    <div>📦</div>
+
+                    <h3>No orders yet</h3>
+
+                    <p>
+                        Orders will appear here when customers place them.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ORDER DETAILS POPUP -->
+
+    <div
+        id="orderModal"
+        class="admin-modal"
+        style="display:none;"
+    >
+
+        <div class="admin-modal-box">
+
+            <button
+                class="modal-close"
+                onclick="closeOrderModal()">
+                ✖
+            </button>
+
+            <div id="orderDetails"></div>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+
+        <h2>🐉 Perfect Prints</h2>
+
+        <p>
+            Admin Dashboard
+        </p>
+
+        <p>
+            © 2026 Perfect Prints
+        </p>
+
+    </footer>
+
+</body>
+</html>
