@@ -1502,3 +1502,21 @@ document.addEventListener(
 
     }
 );
+    <footer>
+
+        <h2>🐉 Perfect Prints</h2>
+
+        <p>
+            Creating amazing articulated 3D prints with quality,
+            creativity and care.
+        </p>
+
+        <p>
+            © 2026 Perfect Prints. All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
