@@ -187,6 +187,8 @@
 
     <footer>
 
+           <footer>
+
         <h2>🐉 Perfect Prints</h2>
 
         <p>
@@ -197,144 +199,11 @@
         <p>
             © 2026 Perfect Prints. All Rights Reserved.
         </p>
-/* =========================================================
-   PERFECT PRINTS ORDER HISTORY
-   ========================================================= */
 
-function loadAccountOrders() {
-
-    const container =
-        document.getElementById("accountOrders");
-
-    if (!container) {
-        return;
-    }
-
-    const savedOrders =
-        localStorage.getItem("perfectPrintsOrders");
-
-    let orders = [];
-
-    if (savedOrders) {
-
-        try {
-
-            orders = JSON.parse(savedOrders);
-
-            if (!Array.isArray(orders)) {
-                orders = [];
-            }
-
-        } catch (error) {
-
-            orders = [];
-
-        }
-
-    }
-
-    if (orders.length === 0) {
-
-        container.innerHTML = `
-            <div class="account-empty">
-
-                <div>📦</div>
-
-                <h3>No orders yet</h3>
-
-                <p>
-                    Your completed orders will appear here.
-                </p>
-
-                <a
-                    href="products.html"
-                    class="button button-purple"
-                >
-                    🛍️ Start Shopping
-                </a>
-
-            </div>
-        `;
-
-        return;
-    }
-
-    container.innerHTML = orders
-        .slice()
-        .reverse()
-        .map(order => {
-
-            const date = order.date
-                ? new Date(order.date).toLocaleString()
-                : "Unknown date";
-
-            const items = (order.items || [])
-                .map(item => `
-                    <li>
-                        ${item.name}
-                        × ${item.quantity}
-                    </li>
-                `)
-                .join("");
-
-            return `
-                <div class="account-order">
-
-                    <div class="account-order-header">
-
-                        <div>
-                            <h3>
-                                📦 ${order.orderNumber}
-                            </h3>
-
-                            <p>
-                                ${date}
-                            </p>
-                        </div>
-
-                        <strong>
-                            $${Number(order.total || 0).toFixed(2)}
-                        </strong>
-
-                    </div>
-
-                    <div class="account-order-items">
-
-                        <h4>Items</h4>
-
-                        <ul>
-                            ${items}
-                        </ul>
-
-                    </div>
-
-                    <p>
-                        <strong>Status:</strong>
-                        ${order.status || "New"}
-                    </p>
-
-                </div>
-            `;
-
-        })
-        .join("");
-}
-
-
-/* Load Order History */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        loadAccountOrders();
-
-    }
-);
     </footer>
 
-</footer>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
+</html>
