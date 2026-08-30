@@ -38,12 +38,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function saveCart() {
 
-   /* Save order for the admin dashboard */
+    localStorage.setItem(
+        "perfectPrintsCart",
+        JSON.stringify(cart)
+    );
+
+}
+
+}
+
+order.status = "New";
+
+orders.push(order);
+
+localStorage.setItem(
+    "perfectPrintsOrders",
+    JSON.stringify(orders)
+);
+
+}
+/* Save order for Admin Dashboard */
 
 const savedOrders =
-    localStorage.getItem(
-        "perfectPrintsOrders"
-    );
+    localStorage.getItem("perfectPrintsOrders");
 
 let orders = [];
 
@@ -52,6 +69,10 @@ if (savedOrders) {
     try {
 
         orders = JSON.parse(savedOrders);
+
+        if (!Array.isArray(orders)) {
+            orders = [];
+        }
 
     } catch (error) {
 
@@ -69,9 +90,6 @@ localStorage.setItem(
     "perfectPrintsOrders",
     JSON.stringify(orders)
 );
-
-}
-
 
 /* =========================================================
    ADD TO CART
