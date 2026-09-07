@@ -1,613 +1,1667 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Prints | Premium 3D Printing</title>
 
-<title>Perfect Prints | Premium 3D Printed Models</title>
+    <meta
+        name="description"
+        content="Perfect Prints creates premium 3D printed toys, models and custom creations."
+    >
 
-<link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
 
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- SALE BAR -->
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
+
+<div class="background-effects">
+    <div class="glow glow-blue"></div>
+    <div class="glow glow-purple"></div>
+    <div class="grid-background"></div>
+</div>
+
+
+<!-- =========================================================
+     SALE BAR
+========================================================= -->
 
 <div class="sale-bar">
-
-🚚 FREE SHIPPING Australia Wide on Orders Over $75
-
+    <div class="sale-content">
+        <span>🚚</span>
+        <strong>FREE SHIPPING</strong>
+        <span>Australia Wide on Orders Over $75</span>
+    </div>
 </div>
 
-<!-- HEADER -->
 
-<header>
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
-<nav>
+<header class="site-header">
 
-<div class="logo">
+    <div class="nav-shell">
 
-<img src="logo.png" alt="Perfect Prints">
+        <!-- LOGO -->
 
-<h1>Perfect Prints</h1>
+        <a href="index.html" class="logo">
+            <div class="logo-mark">
+                <span>PP</span>
+            </div>
 
-</div>
+            <div class="logo-text">
+                <strong>PERFECT</strong>
+                <span>PRINTS</span>
+            </div>
+        </a>
 
-<div class="search">
 
-<input
-type="text"
-id="searchInput"
-placeholder="Search dragons, dinosaurs, axolotls...">
+        <!-- SEARCH -->
 
-<button>
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
 
-<i class="fa-solid fa-magnifying-glass"></i>
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search prints..."
+                autocomplete="off"
+            >
 
-</button>
+            <kbd>⌘ K</kbd>
+        </div>
 
-</div>
 
-<ul>
+        <!-- NAVIGATION -->
 
-<li><a href="index.html">Home</a></li>
+        <nav class="main-nav">
 
-<li><a href="products.html">Products</a></li>
+            <a href="index.html" class="active">
+                Home
+            </a>
 
-<li><a href="gallery.html">Gallery</a></li>
+            <a href="products.html">
+                Shop
+            </a>
 
-<li><a href="reviews.html">Reviews</a></li>
+            <a href="gallery.html">
+                Gallery
+            </a>
 
-<li><a href="about.html">About</a></li>
+            <a href="about.html">
+                About
+            </a>
 
-<li><a href="contact.html">Contact</a></li>
+            <a href="contact.html">
+                Contact
+            </a>
 
-</ul>
+        </nav>
 
-<div class="header-icons">
 
-<a href="account.html">
+        <!-- HEADER ACTIONS -->
 
-<i class="fa-regular fa-user"></i>
+        <div class="header-actions">
 
-</a>
+            <a href="account.html" class="icon-button" title="Account">
+                <i class="fa-regular fa-user"></i>
+            </a>
 
-<a href="wishlist.html">
+            <a href="wishlist.html" class="icon-button" title="Wishlist">
+                <i class="fa-regular fa-heart"></i>
+                <span class="notification-dot" id="wishlistCount">0</span>
+            </a>
 
-<i class="fa-regular fa-heart"></i>
+            <a href="cart.html" class="cart-button">
+                <i class="fa-solid fa-bag-shopping"></i>
 
-</a>
+                <span>Cart</span>
 
-<a href="cart.html" class="cart">
+                <b id="cartCount">0</b>
+            </a>
 
-<i class="fa-solid fa-cart-shopping"></i>
+            <button class="mobile-menu-button" id="mobileMenuButton">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
-<span id="cartCount">0</span>
+        </div>
 
-</a>
+    </div>
 
-</div>
 
-</nav>
+    <!-- MOBILE MENU -->
+
+    <div class="mobile-menu" id="mobileMenu">
+
+        <a href="index.html">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
+
+        <a href="products.html">
+            <i class="fa-solid fa-cube"></i>
+            Shop
+        </a>
+
+        <a href="gallery.html">
+            <i class="fa-solid fa-images"></i>
+            Gallery
+        </a>
+
+        <a href="about.html">
+            <i class="fa-solid fa-circle-info"></i>
+            About
+        </a>
+
+        <a href="contact.html">
+            <i class="fa-solid fa-envelope"></i>
+            Contact
+        </a>
+
+    </div>
 
 </header>
 
-<!-- HERO -->
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<main>
 
 <section class="hero">
 
-<div class="hero-left">
+    <div class="hero-left reveal">
 
-<h4>
+        <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            CUSTOM 3D PRINTING
+        </div>
 
-⭐ Australia's Premium 3D Printing Store
+        <h1>
+            TURN DIGITAL
+            <span>IDEAS</span>
+            INTO REALITY.
+        </h1>
 
-</h4>
+        <p>
+            Premium 3D printed creations made with precision,
+            creativity and attention to detail.
+        </p>
 
-<h1>
 
-Bring Your Imagination To Life
+        <div class="hero-buttons">
 
-</h1>
+            <a href="products.html" class="primary-button">
+                <span>Explore Prints</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
 
-<p>
+            <a href="contact.html" class="secondary-button">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                Custom Order
+            </a>
 
-Discover professionally printed dragons,
-dinosaurs, axolotls, fidget toys and
-fully custom creations made using premium
-quality filament and precision printers.
+        </div>
 
-</p>
 
-<div class="hero-buttons">
+        <!-- TRUST -->
 
-<a href="shop.html" class="btn">
+        <div class="trust-row">
 
-Shop Now
+            <div class="trust-item">
+                <i class="fa-solid fa-cube"></i>
+                <span>Quality Prints</span>
+            </div>
 
-</a>
+            <div class="trust-item">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Fast Production</span>
+            </div>
 
-<a href="gallery.html" class="btn-outline">
+            <div class="trust-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Made With Care</span>
+            </div>
 
-View Gallery
+        </div>
 
-</a>
+    </div>
 
-</div>
 
-<div class="stats">
+    <!-- HERO VISUAL -->
 
-<div>
+    <div class="hero-right reveal">
 
-<h2>100+</h2>
+        <div class="hero-orbit orbit-one"></div>
+        <div class="hero-orbit orbit-two"></div>
+        <div class="hero-orbit orbit-three"></div>
 
-<p>Orders Completed</p>
+        <div class="hero-product">
 
-</div>
+            <div class="product-glow"></div>
 
-<div>
+            <div class="dragon-placeholder">
+                🐉
+            </div>
 
-<h2>★★★★★</h2>
+            <div class="floating-card card-top">
+                <i class="fa-solid fa-star"></i>
 
-<p>Customer Rating</p>
+                <div>
+                    <strong>Premium</strong>
+                    <span>Quality</span>
+                </div>
+            </div>
 
-</div>
+            <div class="floating-card card-bottom">
+                <i class="fa-solid fa-print"></i>
 
-<div>
+                <div>
+                    <strong>3D Printed</strong>
+                    <span>In Australia</span>
+                </div>
+            </div>
 
-<h2>50+</h2>
+        </div>
 
-<p>Colours Available</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="hero-right">
-
-<img src="hero-dragon.png" alt="Crystal Dragon">
-
-</div>
+    </div>
 
 </section>
 
-<!-- FEATURES -->
 
-<section class="features">
+<!-- =========================================================
+     STATS
+========================================================= -->
 
-<div class="feature">
+<section class="stats-section">
 
-<i class="fa-solid fa-truck-fast"></i>
+    <div class="stats-grid">
 
-<h3>Fast Shipping</h3>
+        <div class="stat">
+            <strong data-number="100">0</strong>
+            <span>+</span>
+            <p>Prints Created</p>
+        </div>
 
-<p>
+        <div class="stat">
+            <strong data-number="25">0</strong>
+            <span>+</span>
+            <p>Unique Designs</p>
+        </div>
 
-Australia-wide shipping
-within days.
+        <div class="stat">
+            <strong data-number="100">0</strong>
+            <span>%</span>
+            <p>Made With Care</p>
+        </div>
 
-</p>
+        <div class="stat">
+            <strong data-number="24">0</strong>
+            <span>/7</span>
+            <p>Ideas Welcome</p>
+        </div>
 
-</div>
-
-<div class="feature">
-
-<i class="fa-solid fa-cubes"></i>
-
-<h3>Premium Filament</h3>
-
-<p>
-
-Only high-quality
-PLA materials.
-
-</p>
-
-</div>
-
-<div class="feature">
-
-<i class="fa-solid fa-palette"></i>
-
-<h3>Custom Colours</h3>
-
-<p>
-
-Choose from
-dozens of colours.
-
-</p>
-
-</div>
-
-<div class="feature">
-
-<i class="fa-solid fa-award"></i>
-
-<h3>High Quality</h3>
-
-<p>
-
-Professionally tuned
-printers.
-
-</p>
-
-</div>
+    </div>
 
 </section>
 
-<!-- FEATURED PRODUCTS -->
 
-<section class="featured">
+<!-- =========================================================
+     FEATURES
+========================================================= -->
 
-<h2>
+<section class="section features-section">
 
-🔥 Featured Products
+    <div class="section-heading reveal">
 
-</h2>
+        <div>
+            <span class="section-label">WHY PERFECT PRINTS</span>
 
-<div class="product-grid">
-    <!-- Product 1 -->
+            <h2>
+                Built to be
+                <span>different.</span>
+            </h2>
+        </div>
 
-<div class="product-card">
+        <p>
+            From small toys to custom creations,
+            every print gets attention to detail.
+        </p>
 
-<div class="badge best">BEST SELLER</div>
+    </div>
 
-<div class="wishlist">
-<i class="fa-regular fa-heart"></i>
-</div>
 
-<img src="dragon.jpg" alt="Crystal Dragon">
+    <div class="feature-grid">
 
-<div class="product-info">
+        <article class="feature-card reveal">
 
-<h3>Crystal Dragon</h3>
+            <div class="feature-icon blue">
+                <i class="fa-solid fa-cube"></i>
+            </div>
 
-<div class="stars">
-★★★★★
-</div>
+            <span>01</span>
 
-<p>
-A premium articulated crystal dragon with smooth flexible movement and stunning colours.
-</p>
+            <h3>Precision Printing</h3>
 
-<h4>$25.00 AUD</h4>
+            <p>
+                Carefully designed and printed models
+                with clean details and strong finishes.
+            </p>
 
-<div class="product-buttons">
+        </article>
 
-<button onclick="addToCart('Crystal Dragon',25)">
-<i class="fa-solid fa-cart-shopping"></i>
-Add to Cart
-</button>
 
-<a href="product.html" class="view-btn">
-View
-</a>
+        <article class="feature-card reveal">
 
-</div>
+            <div class="feature-icon purple">
+                <i class="fa-solid fa-palette"></i>
+            </div>
 
-</div>
+            <span>02</span>
 
-</div>
+            <h3>Your Colours</h3>
 
-<!-- Product 2 -->
+            <p>
+                Choose from different colours to make
+                your print feel completely yours.
+            </p>
 
-<div class="product-card">
+        </article>
 
-<div class="badge new">NEW</div>
 
-<div class="wishlist">
-<i class="fa-regular fa-heart"></i>
-</div>
+        <article class="feature-card reveal">
 
-<img src="dinosaur.jpg" alt="Dinosaur">
+            <div class="feature-icon blue">
+                <i class="fa-solid fa-lightbulb"></i>
+            </div>
 
-<div class="product-info">
+            <span>03</span>
 
-<h3>Articulated Dinosaur</h3>
+            <h3>Custom Ideas</h3>
 
-<div class="stars">
-★★★★★
-</div>
+            <p>
+                Have an idea? Tell us what you want
+                and turn your concept into a real object.
+            </p>
 
-<p>
-Large articulated dinosaur printed in premium PLA with flexible joints.
-</p>
+        </article>
 
-<h4>$15.00 AUD</h4>
 
-<div class="product-buttons">
+        <article class="feature-card reveal">
 
-<button onclick="addToCart('Dinosaur',15)">
-<i class="fa-solid fa-cart-shopping"></i>
-Add to Cart
-</button>
+            <div class="feature-icon purple">
+                <i class="fa-solid fa-heart"></i>
+            </div>
 
-<a href="product.html" class="view-btn">
-View
-</a>
+            <span>04</span>
 
-</div>
+            <h3>Made With Care</h3>
 
-</div>
+            <p>
+                Every creation is checked and prepared
+                before it reaches its new owner.
+            </p>
 
-</div>
+        </article>
 
-<!-- Product 3 -->
-
-<div class="product-card">
-
-<div class="badge sale">SALE</div>
-
-<div class="wishlist">
-<i class="fa-regular fa-heart"></i>
-</div>
-
-<img src="axolotl.jpg" alt="Axolotl">
-
-<div class="product-info">
-
-<h3>Axolotl</h3>
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-Cute articulated axolotl available in multiple colours.
-Perfect as a gift.
-</p>
-
-<h4>$15.00 AUD</h4>
-
-<div class="product-buttons">
-
-<button onclick="addToCart('Axolotl',15)">
-<i class="fa-solid fa-cart-shopping"></i>
-Add to Cart
-</button>
-
-<a href="product.html" class="view-btn">
-View
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Product 4 -->
-
-<div class="product-card">
-
-<div class="badge popular">POPULAR</div>
-
-<div class="wishlist">
-<i class="fa-regular fa-heart"></i>
-</div>
-
-<img src="turtle.jpg" alt="Turtle">
-
-<div class="product-info">
-
-<h3>Turtle</h3>
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-A flexible articulated turtle printed using high-quality filament.
-</p>
-
-<h4>$10.00 AUD</h4>
-
-<div class="product-buttons">
-
-<button onclick="addToCart('Turtle',10)">
-<i class="fa-solid fa-cart-shopping"></i>
-Add to Cart
-</button>
-
-<a href="product.html" class="view-btn">
-View
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Product 5 -->
-
-<div class="product-card">
-
-<div class="wishlist">
-<i class="fa-regular fa-heart"></i>
-</div>
-
-<img src="snake.jpg" alt="Snake">
-
-<div class="product-info">
-
-<h3>Snake</h3>
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-Long articulated snake with smooth realistic movement.
-</p>
-
-<h4>$15.00 AUD</h4>
-
-<div class="product-buttons">
-
-<button onclick="addToCart('Snake',15)">
-<i class="fa-solid fa-cart-shopping"></i>
-Add to Cart
-</button>
-
-<a href="product.html" class="view-btn">
-View
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Product 6 -->
-
-<div class="product-card">
-
-<div class="wishlist">
-<i class="fa-regular fa-heart"></i>
-</div>
-
-<img src="octopus.jpg" alt="Octopus">
-
-<div class="product-info">
-
-<h3>Octopus</h3>
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-Fun articulated octopus that makes a perfect desk toy.
-</p>
-
-<h4>$10.00 AUD</h4>
-
-<div class="product-buttons">
-
-<button onclick="addToCart('Octopus',10)">
-<i class="fa-solid fa-cart-shopping"></i>
-Add to Cart
-</button>
-
-<a href="product.html" class="view-btn">
-View
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Product 7 -->
-
-<div class="product-card">
-
-<div class="badge custom">CUSTOM</div>
-
-<div class="wishlist">
-<i class="fa-regular fa-heart"></i>
-</div>
-
-<img src="custom.jpg" alt="Custom Print">
-
-<div class="product-info">
-
-<h3>Custom Print</h3>
-
-<div class="stars">
-★★★★★
-</div>
-
-<p>
-Upload your own STL file or tell us your idea and we'll print it.
-</p>
-
-<h4>Quote Required</h4>
-
-<div class="product-buttons">
-
-<button onclick="location.href='contact.html'">
-Request Quote
-</button>
-
-<a href="product.html" class="view-btn">
-View
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
-<!-- FEATURED COLLECTION -->
 
-<section class="collection">
+<!-- =========================================================
+     FEATURED PRODUCTS
+========================================================= -->
 
-<h2>
+<section class="section products-section">
 
-✨ Why Choose Perfect Prints?
+    <div class="section-heading reveal">
 
-</h2>
+        <div>
+            <span class="section-label">THE COLLECTION</span>
 
-<p>
+            <h2>
+                Featured
+                <span>prints.</span>
+            </h2>
+        </div>
 
-Every model is printed using premium PLA filament,
-carefully inspected before shipping,
-and packed safely to ensure it arrives in perfect condition.
+        <a href="products.html" class="view-all">
+            View All
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
 
-</p>
+    </div>
 
-<div class="collection-grid">
 
-<div>
+    <div class="product-grid" id="productGrid">
 
-<h3>🎨 50+ Colours</h3>
 
-<p>Choose from silk, rainbow, glow and matte finishes.</p>
+        <!-- PRODUCT 1 -->
 
-</div>
+        <article
+            class="product-card reveal"
+            data-name="Flexi Dragon"
+            data-category="animals"
+        >
 
-<div>
+            <div class="product-image">
 
-<h3>⚡ Fast Printing</h3>
+                <span class="product-badge">
+                    POPULAR
+                </span>
 
-<p>Orders are usually dispatched within 2–4 business days.</p>
+                <button
+                    class="wishlist-button"
+                    data-product="Flexi Dragon"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
 
-</div>
+                <div class="product-emoji">
+                    🐉
+                </div>
 
-<div>
+            </div>
 
-<h3>🖨 Precision Quality</h3>
+            <div class="product-info">
 
-<p>Every print is tuned for smooth movement and strong layer adhesion.</p>
+                <div class="product-category">
+                    FLEXIBLE • DRAGON
+                </div>
 
-</div>
+                <h3>Flexi Dragon</h3>
 
-</div>
+                <div class="rating">
+                    <span>★★★★★</span>
+                    <small>5.0</small>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$15.00</strong>
+
+                    <button
+                        class="add-button"
+                        data-product="Flexi Dragon"
+                        data-price="15"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCT 2 -->
+
+        <article
+            class="product-card reveal"
+            data-name="Mini Dinosaur"
+            data-category="animals"
+        >
+
+            <div class="product-image">
+
+                <span class="product-badge new">
+                    NEW
+                </span>
+
+                <button
+                    class="wishlist-button"
+                    data-product="Mini Dinosaur"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <div class="product-emoji">
+                    🦖
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-category">
+                    FIGURE • DINOSAUR
+                </div>
+
+                <h3>Mini Dinosaur</h3>
+
+                <div class="rating">
+                    <span>★★★★★</span>
+                    <small>5.0</small>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$10.00</strong>
+
+                    <button
+                        class="add-button"
+                        data-product="Mini Dinosaur"
+                        data-price="10"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCT 3 -->
+
+        <article
+            class="product-card reveal"
+            data-name="Cute Axolotl"
+            data-category="animals"
+        >
+
+            <div class="product-image">
+
+                <button
+                    class="wishlist-button"
+                    data-product="Cute Axolotl"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <div class="product-emoji">
+                    🦎
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-category">
+                    FIGURE • ANIMAL
+                </div>
+
+                <h3>Cute Axolotl</h3>
+
+                <div class="rating">
+                    <span>★★★★★</span>
+                    <small>4.9</small>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$12.00</strong>
+
+                    <button
+                        class="add-button"
+                        data-product="Cute Axolotl"
+                        data-price="12"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCT 4 -->
+
+        <article
+            class="product-card reveal"
+            data-name="Flexi Snake"
+            data-category="animals"
+        >
+
+            <div class="product-image">
+
+                <span class="product-badge">
+                    BEST SELLER
+                </span>
+
+                <button
+                    class="wishlist-button"
+                    data-product="Flexi Snake"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <div class="product-emoji">
+                    🐍
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-category">
+                    FLEXIBLE • SNAKE
+                </div>
+
+                <h3>Flexi Snake</h3>
+
+                <div class="rating">
+                    <span>★★★★★</span>
+                    <small>5.0</small>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$13.00</strong>
+
+                    <button
+                        class="add-button"
+                        data-product="Flexi Snake"
+                        data-price="13"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </div>
 
 </section>
-<script src="script.js"></script>
+
+
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+
+<section class="section process-section">
+
+    <div class="section-heading centered reveal">
+
+        <span class="section-label">HOW IT WORKS</span>
+
+        <h2>
+            From idea to
+            <span>reality.</span>
+        </h2>
+
+        <p>
+            Getting your next 3D print is simple.
+        </p>
+
+    </div>
+
+
+    <div class="process">
+
+        <div class="process-line"></div>
+
+
+        <div class="process-step reveal">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <h3>Choose</h3>
+
+            <p>
+                Find a print from our collection.
+            </p>
+
+        </div>
+
+
+        <div class="process-step reveal">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <i class="fa-solid fa-palette"></i>
+
+            <h3>Customize</h3>
+
+            <p>
+                Pick colours or request changes.
+            </p>
+
+        </div>
+
+
+        <div class="process-step reveal">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <i class="fa-solid fa-print"></i>
+
+            <h3>Print</h3>
+
+            <p>
+                Your creation gets printed.
+            </p>
+
+        </div>
+
+
+        <div class="process-step reveal">
+
+            <div class="step-number">
+                04
+            </div>
+
+            <i class="fa-solid fa-box"></i>
+
+            <h3>Deliver</h3>
+
+            <p>
+                Your print gets ready for collection or delivery.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     COLOUR SELECTOR
+========================================================= -->
+
+<section class="section colour-section">
+
+    <div class="colour-content reveal">
+
+        <span class="section-label">
+            MAKE IT YOURS
+        </span>
+
+        <h2>
+            Choose your
+            <span>colour.</span>
+        </h2>
+
+        <p>
+            Different colours can completely change
+            the look of your creation.
+        </p>
+
+
+        <div class="colour-selector">
+
+            <button
+                class="colour active"
+                data-colour="Electric Blue"
+                style="--colour:#2997ff"
+            ></button>
+
+            <button
+                class="colour"
+                data-colour="Purple"
+                style="--colour:#9b5cff"
+            ></button>
+
+            <button
+                class="colour"
+                data-colour="Red"
+                style="--colour:#ff4d6d"
+            ></button>
+
+            <button
+                class="colour"
+                data-colour="Green"
+                style="--colour:#32d583"
+            ></button>
+
+            <button
+                class="colour"
+                data-colour="Yellow"
+                style="--colour:#ffd43b"
+            ></button>
+
+            <button
+                class="colour"
+                data-colour="Black"
+                style="--colour:#111827"
+            ></button>
+
+        </div>
+
+        <strong class="selected-colour" id="selectedColour">
+            Electric Blue
+        </strong>
+
+    </div>
+
+
+    <div class="colour-preview reveal">
+
+        <div class="preview-ring"></div>
+
+        <div
+            class="preview-object"
+            id="previewObject"
+        >
+            🐉
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CUSTOM PRINT
+========================================================= -->
+
+<section class="section custom-section">
+
+    <div class="custom-panel reveal">
+
+        <div class="custom-glow"></div>
+
+        <div class="custom-content">
+
+            <span class="section-label">
+                CUSTOM PRINT LAB
+            </span>
+
+            <h2>
+                Have an idea?
+                <span>Let's print it.</span>
+            </h2>
+
+            <p>
+                Tell us what you want to create.
+                Whether you have a design, an STL file,
+                or just an idea, we can help bring it to life.
+            </p>
+
+            <a href="contact.html" class="primary-button">
+                Start a Custom Order
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <div class="custom-icon">
+
+            <div class="custom-icon-inner">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     REVIEWS
+========================================================= -->
+
+<section class="section reviews-section">
+
+    <div class="section-heading centered reveal">
+
+        <span class="section-label">
+            CUSTOMER REVIEWS
+        </span>
+
+        <h2>
+            Made for people who
+            <span>love cool stuff.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="review-grid">
+
+        <article class="review-card reveal">
+
+            <div class="review-stars">
+                ★★★★★
+            </div>
+
+            <p>
+                “The print turned out awesome and the details
+                were really clean.”
+            </p>
+
+            <div class="review-person">
+                <div class="avatar">A</div>
+
+                <div>
+                    <strong>Alex</strong>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+
+        </article>
+
+
+        <article class="review-card reveal">
+
+            <div class="review-stars">
+                ★★★★★
+            </div>
+
+            <p>
+                “Really cool designs and the custom colour
+                made mine look even better.”
+            </p>
+
+            <div class="review-person">
+                <div class="avatar">J</div>
+
+                <div>
+                    <strong>Jordan</strong>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+
+        </article>
+
+
+        <article class="review-card reveal">
+
+            <div class="review-stars">
+                ★★★★★
+            </div>
+
+            <p>
+                “Perfect Prints made exactly what I wanted.
+                Would definitely order again.”
+            </p>
+
+            <div class="review-person">
+                <div class="avatar">S</div>
+
+                <div>
+                    <strong>Sam</strong>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================= -->
+
+<section class="final-cta reveal">
+
+    <div class="final-cta-glow"></div>
+
+    <span class="section-label">
+        READY?
+    </span>
+
+    <h2>
+        Find your next
+        <span>favourite print.</span>
+    </h2>
+
+    <p>
+        Explore the collection and discover something awesome.
+    </p>
+
+    <a href="products.html" class="primary-button">
+        Shop Perfect Prints
+        <i class="fa-solid fa-arrow-right"></i>
+    </a>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-grid">
+
+
+        <div class="footer-brand">
+
+            <a href="index.html" class="logo">
+
+                <div class="logo-mark">
+                    <span>PP</span>
+                </div>
+
+                <div class="logo-text">
+                    <strong>PERFECT</strong>
+                    <span>PRINTS</span>
+                </div>
+
+            </a>
+
+            <p>
+                Turning digital ideas into physical creations.
+            </p>
+
+
+            <div class="socials">
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+
+                <a href="#" aria-label="Discord">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Shop</h4>
+
+            <a href="products.html">All Prints</a>
+            <a href="products.html">Popular</a>
+            <a href="products.html">New Arrivals</a>
+            <a href="wishlist.html">Wishlist</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Company</h4>
+
+            <a href="about.html">About Us</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+            <a href="reviews.html">Reviews</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Account</h4>
+
+            <a href="account.html">My Account</a>
+            <a href="cart.html">Cart</a>
+            <a href="checkout.html">Checkout</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Perfect Prints. All rights reserved.
+        </span>
+
+        <span>
+            Made with <i class="fa-solid fa-heart"></i> and 3D printing.
+        </span>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     MOBILE BOTTOM NAV
+========================================================= -->
+
+<nav class="mobile-bottom-nav">
+
+    <a href="index.html" class="active">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+    </a>
+
+    <a href="products.html">
+        <i class="fa-solid fa-cube"></i>
+        <span>Shop</span>
+    </a>
+
+    <a href="wishlist.html">
+        <i class="fa-regular fa-heart"></i>
+        <span>Saved</span>
+    </a>
+
+    <a href="cart.html">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>Cart</span>
+    </a>
+
+</nav>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div class="toast" id="toast">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    <div>
+        <strong id="toastTitle">
+            Added to cart
+        </strong>
+
+        <span id="toastMessage">
+            Product added successfully.
+        </span>
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   CART
+========================================================= */
+
+const CART_KEY = "perfectPrintsCart";
+
+function getCart() {
+    try {
+        return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+    } catch {
+        return [];
+    }
+}
+
+function saveCart(cart) {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    updateCartCount();
+}
+
+function updateCartCount() {
+
+    const cart = getCart();
+
+    let count = 0;
+
+    cart.forEach(item => {
+        count += Number(item.quantity || 1);
+    });
+
+    const counter = document.getElementById("cartCount");
+
+    if (counter) {
+        counter.textContent = count;
+    }
+}
+
+function addToCart(product, price) {
+
+    const cart = getCart();
+
+    const existing = cart.find(
+        item => item.name === product
+    );
+
+    if (existing) {
+
+        existing.quantity =
+            Number(existing.quantity || 1) + 1;
+
+    } else {
+
+        cart.push({
+            name: product,
+            price: Number(price),
+            quantity: 1
+        });
+
+    }
+
+    saveCart(cart);
+
+    showToast(
+        "Added to cart",
+        `${product} was added successfully.`
+    );
+}
+
+
+/* =========================================================
+   ADD BUTTONS
+========================================================= */
+
+document.querySelectorAll(".add-button").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const product =
+            button.dataset.product;
+
+        const price =
+            button.dataset.price;
+
+        addToCart(product, price);
+
+        button.innerHTML =
+            '<i class="fa-solid fa-check"></i> Added';
+
+        setTimeout(() => {
+
+            button.innerHTML =
+                '<i class="fa-solid fa-plus"></i> Add';
+
+        }, 1200);
+
+    });
+
+});
+
+
+/* =========================================================
+   WISHLIST
+========================================================= */
+
+function getWishlist() {
+
+    try {
+        return JSON.parse(
+            localStorage.getItem("perfectPrintsWishlist")
+        ) || [];
+
+    } catch {
+        return [];
+    }
+
+}
+
+function saveWishlist(list) {
+
+    localStorage.setItem(
+        "perfectPrintsWishlist",
+        JSON.stringify(list)
+    );
+
+    updateWishlistCount();
+
+}
+
+function updateWishlistCount() {
+
+    const list = getWishlist();
+
+    const counter =
+        document.getElementById("wishlistCount");
+
+    if (counter) {
+        counter.textContent = list.length;
+    }
+
+}
+
+document.querySelectorAll(".wishlist-button").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const product =
+            button.dataset.product;
+
+        let wishlist =
+            getWishlist();
+
+        const exists =
+            wishlist.includes(product);
+
+        if (exists) {
+
+            wishlist =
+                wishlist.filter(item =>
+                    item !== product
+                );
+
+            button.classList.remove("liked");
+
+            button.innerHTML =
+                '<i class="fa-regular fa-heart"></i>';
+
+            showToast(
+                "Removed",
+                `${product} was removed from your wishlist.`
+            );
+
+        } else {
+
+            wishlist.push(product);
+
+            button.classList.add("liked");
+
+            button.innerHTML =
+                '<i class="fa-solid fa-heart"></i>';
+
+            showToast(
+                "Saved",
+                `${product} was added to your wishlist.`
+            );
+
+        }
+
+        saveWishlist(wishlist);
+
+    });
+
+});
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+function showToast(title, message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    document.getElementById("toastTitle")
+        .textContent = title;
+
+    document.getElementById("toastMessage")
+        .textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 2800);
+
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const mobileButton =
+    document.getElementById("mobileMenuButton");
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+mobileButton.addEventListener("click", () => {
+
+    mobileMenu.classList.toggle("open");
+
+    const icon =
+        mobileButton.querySelector("i");
+
+    if (mobileMenu.classList.contains("open")) {
+
+        icon.className =
+            "fa-solid fa-xmark";
+
+    } else {
+
+        icon.className =
+            "fa-solid fa-bars";
+
+    }
+
+});
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+const searchInput =
+    document.getElementById("searchInput");
+
+searchInput.addEventListener("input", () => {
+
+    const query =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+    document.querySelectorAll(".product-card")
+        .forEach(card => {
+
+            const name =
+                card.dataset.name
+                    .toLowerCase();
+
+            card.style.display =
+                name.includes(query)
+                    ? ""
+                    : "none";
+
+        });
+
+});
+
+
+/* =========================================================
+   KEYBOARD SEARCH
+========================================================= */
+
+document.addEventListener("keydown", event => {
+
+    if (
+        (event.ctrlKey || event.metaKey) &&
+        event.key.toLowerCase() === "k"
+    ) {
+
+        event.preventDefault();
+
+        searchInput.focus();
+
+    }
+
+});
+
+
+/* =========================================================
+   COLOUR SELECTOR
+========================================================= */
+
+const colours =
+    document.querySelectorAll(".colour");
+
+const selectedColour =
+    document.getElementById("selectedColour");
+
+const previewObject =
+    document.getElementById("previewObject");
+
+colours.forEach(colour => {
+
+    colour.addEventListener("click", () => {
+
+        colours.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        colour.classList.add("active");
+
+        const name =
+            colour.dataset.colour;
+
+        selectedColour.textContent =
+            name;
+
+        previewObject.style.filter =
+            "drop-shadow(0 0 40px var(--selected))";
+
+        previewObject.style.setProperty(
+            "--selected",
+            getComputedStyle(colour)
+                .getPropertyValue("--colour")
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+document.querySelectorAll(".reveal")
+    .forEach(element =>
+        observer.observe(element)
+    );
+
+
+/* =========================================================
+   STAT COUNTERS
+========================================================= */
+
+const stats =
+    document.querySelectorAll("[data-number]");
+
+const statsObserver =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (!entry.isIntersecting)
+                    return;
+
+                const element =
+                    entry.target;
+
+                const target =
+                    Number(element.dataset.number);
+
+                let current = 0;
+
+                const increment =
+                    Math.max(
+                        1,
+                        Math.ceil(target / 35)
+                    );
+
+                const timer =
+                    setInterval(() => {
+
+                        current += increment;
+
+                        if (current >= target) {
+
+                            current = target;
+
+                            clearInterval(timer);
+
+                        }
+
+                        element.textContent =
+                            current;
+
+                    }, 35);
+
+                statsObserver.unobserve(element);
+
+            });
+
+        },
+        {
+            threshold: 0.7
+        }
+    );
+
+stats.forEach(stat =>
+    statsObserver.observe(stat)
+);
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+updateCartCount();
+updateWishlistCount();
+
+</script>
+
 </body>
 </html>
