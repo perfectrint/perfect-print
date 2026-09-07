@@ -4,11 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Perfect Prints | 3D Printed Toys</title>
+    <title>Perfect Prints | Premium 3D Printing</title>
 
     <meta
         name="description"
-        content="Perfect Prints creates high-quality 3D printed toys, articulated creatures and custom prints."
+        content="Perfect Prints creates premium 3D printed toys, models and custom creations."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
 
     <link rel="stylesheet" href="style.css">
@@ -16,532 +29,1075 @@
 
 <body>
 
-    <!-- Background effects -->
-    <div class="background-glow glow-one"></div>
-    <div class="background-glow glow-two"></div>
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
 
-    <!-- Navigation -->
-    <header class="navbar">
+<div class="background-effects">
+    <div class="glow glow-blue"></div>
+    <div class="glow glow-purple"></div>
+    <div class="grid-background"></div>
+</div>
 
-        <a href="index.html" class="brand">
-            <div class="brand-logo">
-                PP
+
+<!-- =========================================================
+     SALE BAR
+========================================================= -->
+
+<div class="sale-bar">
+    <div class="sale-content">
+        <span>🚚</span>
+        <strong>FREE SHIPPING</strong>
+        <span>Australia Wide on Orders Over $75</span>
+    </div>
+</div>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="site-header">
+
+    <div class="nav-shell">
+
+        <!-- LOGO -->
+
+        <a href="index.html" class="logo">
+            <div class="logo-mark">
+                <span>PP</span>
             </div>
 
-            <div class="brand-text">
-                <strong>Perfect Prints</strong>
-                <span>3D Printed Creations</span>
+            <div class="logo-text">
+                <strong>PERFECT</strong>
+                <span>PRINTS</span>
             </div>
         </a>
 
-        <nav class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="products.html">Shop</a>
-            <a href="gallery.html">Gallery</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
+
+        <!-- SEARCH -->
+
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search prints..."
+                autocomplete="off"
+            >
+
+            <kbd>⌘ K</kbd>
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="main-nav">
+
+            <a href="index.html" class="active">
+                Home
+            </a>
+
+            <a href="products.html">
+                Shop
+            </a>
+
+            <a href="gallery.html">
+                Gallery
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
         </nav>
 
-        <div class="nav-actions">
 
-            <a href="wishlist.html" class="icon-button" aria-label="Wishlist">
-                <svg viewBox="0 0 24 24">
-                    <path d="M20.8 8.7c0 5.5-8.8 10.5-8.8 10.5S3.2 14.2 3.2 8.7A5 5 0 0 1 12 5.5a5 5 0 0 1 8.8 3.2Z"/>
-                </svg>
-                <span class="count wishlist-count">0</span>
+        <!-- HEADER ACTIONS -->
+
+        <div class="header-actions">
+
+            <a href="account.html" class="icon-button" title="Account">
+                <i class="fa-regular fa-user"></i>
             </a>
 
-            <a href="cart.html" class="icon-button" aria-label="Shopping cart">
-                <svg viewBox="0 0 24 24">
-                    <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H6"/>
-                    <circle cx="10" cy="20" r="1"/>
-                    <circle cx="18" cy="20" r="1"/>
-                </svg>
-                <span class="count cart-count">0</span>
+            <a href="wishlist.html" class="icon-button" title="Wishlist">
+                <i class="fa-regular fa-heart"></i>
+                <span class="notification-dot" id="wishlistCount">0</span>
             </a>
 
-            <a href="account.html" class="account-button">
-                Account
+            <a href="cart.html" class="cart-button">
+                <i class="fa-solid fa-bag-shopping"></i>
+
+                <span>Cart</span>
+
+                <b id="cartCount">0</b>
             </a>
+
+            <button class="mobile-menu-button" id="mobileMenuButton">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
         </div>
 
-        <button class="mobile-menu" aria-label="Open menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-    </header>
-
-
-    <!-- Mobile navigation -->
-    <div class="mobile-navigation">
-        <a href="index.html">Home</a>
-        <a href="products.html">Shop</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="wishlist.html">Wishlist</a>
-        <a href="cart.html">Cart</a>
-        <a href="account.html">Account</a>
     </div>
 
 
-    <main>
+    <!-- MOBILE MENU -->
 
-        <!-- Hero -->
-        <section class="hero">
+    <div class="mobile-menu" id="mobileMenu">
 
-            <div class="hero-content">
+        <a href="index.html">
+            <i class="fa-solid fa-house"></i>
+            Home
+        </a>
 
-                <div class="hero-label">
-                    <span class="label-line"></span>
-                    QUALITY 3D PRINTED CREATIONS
-                </div>
+        <a href="products.html">
+            <i class="fa-solid fa-cube"></i>
+            Shop
+        </a>
 
-                <h1>
-                    Bring your ideas
-                    <span>to life.</span>
-                </h1>
+        <a href="gallery.html">
+            <i class="fa-solid fa-images"></i>
+            Gallery
+        </a>
 
-                <p>
-                    Discover articulated creatures, unique desk toys and
-                    custom 3D printed creations made with care at Perfect Prints.
-                </p>
+        <a href="about.html">
+            <i class="fa-solid fa-circle-info"></i>
+            About
+        </a>
 
-                <div class="hero-buttons">
+        <a href="contact.html">
+            <i class="fa-solid fa-envelope"></i>
+            Contact
+        </a>
 
-                    <a href="products.html" class="primary-button">
-                        Explore the Shop
+    </div>
 
-                        <svg viewBox="0 0 24 24">
-                            <path d="M5 12h14M13 6l6 6-6 6"/>
-                        </svg>
-                    </a>
+</header>
 
-                    <a href="contact.html" class="secondary-button">
-                        Request a Custom Print
-                    </a>
 
-                </div>
+<!-- =========================================================
+     HERO
+========================================================= -->
 
-                <div class="hero-stats">
+<main>
 
-                    <div>
-                        <strong>6+</strong>
-                        <span>Products</span>
-                    </div>
+<section class="hero">
 
-                    <div>
-                        <strong>100%</strong>
-                        <span>Made to Order</span>
-                    </div>
+    <div class="hero-left reveal">
 
-                    <div>
-                        <strong>AU</strong>
-                        <span>Based</span>
-                    </div>
+        <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            CUSTOM 3D PRINTING
+        </div>
 
-                </div>
+        <h1>
+            TURN DIGITAL
+            <span>IDEAS</span>
+            INTO REALITY.
+        </h1>
 
-            </div>
+        <p>
+            Premium 3D printed creations made with precision,
+            creativity and attention to detail.
+        </p>
 
 
-            <div class="hero-product">
+        <div class="hero-buttons">
 
-                <div class="product-glow"></div>
-
-                <div class="hero-image-card">
-
-                    <div class="image-top">
-                        <span>FEATURED</span>
-
-                        <a href="products.html" aria-label="View products">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M5 12h14M13 6l6 6-6 6"/>
-                            </svg>
-                        </a>
-                    </div>
-
-                    <img
-                        src="dragon.jpg"
-                        alt="Crystal Dragon 3D print"
-                    >
-
-                    <div class="image-info">
-                        <div>
-                            <span>Featured Print</span>
-                            <h2>Crystal Dragon</h2>
-                        </div>
-
-                        <strong>$25</strong>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- Featured products -->
-        <section class="featured-section">
-
-            <div class="section-heading">
-
-                <div>
-                    <span class="section-label">OUR COLLECTION</span>
-
-                    <h2>
-                        Made to move.
-                        <span>Made to impress.</span>
-                    </h2>
-                </div>
-
-                <a href="products.html" class="view-all">
-                    View all products
-
-                    <svg viewBox="0 0 24 24">
-                        <path d="M5 12h14M13 6l6 6-6 6"/>
-                    </svg>
-                </a>
-
-            </div>
-
-
-            <div class="product-grid">
-
-                <!-- Product -->
-                <article class="product-card">
-
-                    <div class="product-image">
-                        <img src="dragon.jpg" alt="Crystal Dragon">
-
-                        <button
-                            class="wishlist-button"
-                            data-wishlist="crystal-dragon"
-                            aria-label="Add Crystal Dragon to wishlist"
-                        >
-                            <svg viewBox="0 0 24 24">
-                                <path d="M20.8 8.7c0 5.5-8.8 10.5-8.8 10.5S3.2 14.2 3.2 8.7A5 5 0 0 1 12 5.5a5 5 0 0 1 8.8 3.2Z"/>
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div class="product-info">
-
-                        <div>
-                            <span>Articulated</span>
-                            <h3>Crystal Dragon</h3>
-                        </div>
-
-                        <strong>$25</strong>
-
-                    </div>
-
-                    <button
-                        class="add-cart"
-                        data-product="crystal-dragon"
-                    >
-                        Add to Cart
-                    </button>
-
-                </article>
-
-
-                <!-- Product -->
-                <article class="product-card">
-
-                    <div class="product-image">
-                        <img src="dinosaur.jpg" alt="Dinosaur">
-
-                        <button
-                            class="wishlist-button"
-                            data-wishlist="dinosaur"
-                            aria-label="Add Dinosaur to wishlist"
-                        >
-                            <svg viewBox="0 0 24 24">
-                                <path d="M20.8 8.7c0 5.5-8.8 10.5-8.8 10.5S3.2 14.2 3.2 8.7A5 5 0 0 1 12 5.5a5 5 0 0 1 8.8 3.2Z"/>
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div class="product-info">
-
-                        <div>
-                            <span>Articulated</span>
-                            <h3>Dinosaur</h3>
-                        </div>
-
-                        <strong>$15</strong>
-
-                    </div>
-
-                    <button
-                        class="add-cart"
-                        data-product="dinosaur"
-                    >
-                        Add to Cart
-                    </button>
-
-                </article>
-
-
-                <!-- Product -->
-                <article class="product-card">
-
-                    <div class="product-image">
-                        <img src="axolotl.jpg" alt="Axolotl">
-
-                        <button
-                            class="wishlist-button"
-                            data-wishlist="axolotl"
-                            aria-label="Add Axolotl to wishlist"
-                        >
-                            <svg viewBox="0 0 24 24">
-                                <path d="M20.8 8.7c0 5.5-8.8 10.5-8.8 10.5S3.2 14.2 3.2 8.7A5 5 0 0 1 12 5.5a5 5 0 0 1 8.8 3.2Z"/>
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div class="product-info">
-
-                        <div>
-                            <span>Articulated</span>
-                            <h3>Axolotl</h3>
-                        </div>
-
-                        <strong>$15</strong>
-
-                    </div>
-
-                    <button
-                        class="add-cart"
-                        data-product="axolotl"
-                    >
-                        Add to Cart
-                    </button>
-
-                </article>
-
-
-                <!-- Product -->
-                <article class="product-card">
-
-                    <div class="product-image">
-                        <img src="snake.jpg" alt="Snake">
-
-                        <button
-                            class="wishlist-button"
-                            data-wishlist="snake"
-                            aria-label="Add Snake to wishlist"
-                        >
-                            <svg viewBox="0 0 24 24">
-                                <path d="M20.8 8.7c0 5.5-8.8 10.5-8.8 10.5S3.2 14.2 3.2 8.7A5 5 0 0 1 12 5.5a5 5 0 0 1 8.8 3.2Z"/>
-                            </svg>
-                        </button>
-                    </div>
-
-                    <div class="product-info">
-
-                        <div>
-                            <span>Articulated</span>
-                            <h3>Snake</h3>
-                        </div>
-
-                        <strong>$15</strong>
-
-                    </div>
-
-                    <button
-                        class="add-cart"
-                        data-product="snake"
-                    >
-                        Add to Cart
-                    </button>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- Why Perfect Prints -->
-        <section class="why-section">
-
-            <div class="why-content">
-
-                <span class="section-label">WHY PERFECT PRINTS</span>
-
-                <h2>
-                    Small prints.
-                    <span>Big ideas.</span>
-                </h2>
-
-                <p>
-                    Perfect Prints is focused on creating fun, unique and
-                    high-quality 3D printed products. Every print is designed
-                    to be something you can enjoy, display or give to someone else.
-                </p>
-
-                <a href="about.html" class="secondary-button">
-                    Learn About Us
-                </a>
-
-            </div>
-
-
-            <div class="feature-grid">
-
-                <div class="feature-box">
-
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3Z"/>
-                            <path d="M4 7.5L12 12l8-4.5M12 12v9"/>
-                        </svg>
-                    </div>
-
-                    <h3>Quality Prints</h3>
-
-                    <p>
-                        Carefully produced 3D prints with attention to detail.
-                    </p>
-
-                </div>
-
-
-                <div class="feature-box">
-
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 3v18M3 12h18"/>
-                            <path d="M5 5l14 14M19 5L5 19"/>
-                        </svg>
-                    </div>
-
-                    <h3>Unique Designs</h3>
-
-                    <p>
-                        Fun articulated creatures and creative designs.
-                    </p>
-
-                </div>
-
-
-                <div class="feature-box">
-
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M4 4h16v16H4z"/>
-                            <path d="M8 8h8M8 12h8M8 16h5"/>
-                        </svg>
-                    </div>
-
-                    <h3>Custom Prints</h3>
-
-                    <p>
-                        Have an idea? Get in touch and ask about a custom print.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- Custom CTA -->
-        <section class="custom-section">
-
-            <div>
-
-                <span class="section-label">HAVE AN IDEA?</span>
-
-                <h2>
-                    Let's make
-                    <span>something awesome.</span>
-                </h2>
-
-                <p>
-                    Tell us what you want printed and we can discuss your idea.
-                </p>
-
-            </div>
-
-            <a href="contact.html" class="primary-button">
-                Contact Perfect Prints
-
-                <svg viewBox="0 0 24 24">
-                    <path d="M5 12h14M13 6l6 6-6 6"/>
-                </svg>
+            <a href="products.html" class="primary-button">
+                <span>Explore Prints</span>
+                <i class="fa-solid fa-arrow-right"></i>
             </a>
 
-        </section>
+            <a href="contact.html" class="secondary-button">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                Custom Order
+            </a>
 
-    </main>
+        </div>
 
 
-    <!-- Footer -->
-    <footer>
+        <!-- TRUST -->
 
-        <div class="footer-main">
+        <div class="trust-row">
 
-            <div class="footer-brand">
+            <div class="trust-item">
+                <i class="fa-solid fa-cube"></i>
+                <span>Quality Prints</span>
+            </div>
 
-                <div class="brand">
-                    <div class="brand-logo">
-                        PP
-                    </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-bolt"></i>
+                <span>Fast Production</span>
+            </div>
 
-                    <div class="brand-text">
-                        <strong>Perfect Prints</strong>
-                        <span>3D Printed Creations</span>
-                    </div>
+            <div class="trust-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Made With Care</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HERO VISUAL -->
+
+    <div class="hero-right reveal">
+
+        <div class="hero-orbit orbit-one"></div>
+        <div class="hero-orbit orbit-two"></div>
+        <div class="hero-orbit orbit-three"></div>
+
+        <div class="hero-product">
+
+            <div class="product-glow"></div>
+
+            <div class="dragon-placeholder">
+                🐉
+            </div>
+
+            <div class="floating-card card-top">
+                <i class="fa-solid fa-star"></i>
+
+                <div>
+                    <strong>Premium</strong>
+                    <span>Quality</span>
+                </div>
+            </div>
+
+            <div class="floating-card card-bottom">
+                <i class="fa-solid fa-print"></i>
+
+                <div>
+                    <strong>3D Printed</strong>
+                    <span>In Australia</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     STATS
+========================================================= -->
+
+<section class="stats-section">
+
+    <div class="stats-grid">
+
+        <div class="stat">
+            <strong data-number="100">0</strong>
+            <span>+</span>
+            <p>Prints Created</p>
+        </div>
+
+        <div class="stat">
+            <strong data-number="25">0</strong>
+            <span>+</span>
+            <p>Unique Designs</p>
+        </div>
+
+        <div class="stat">
+            <strong data-number="100">0</strong>
+            <span>%</span>
+            <p>Made With Care</p>
+        </div>
+
+        <div class="stat">
+            <strong data-number="24">0</strong>
+            <span>/7</span>
+            <p>Ideas Welcome</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FEATURES
+========================================================= -->
+
+<section class="section features-section">
+
+    <div class="section-heading reveal">
+
+        <div>
+            <span class="section-label">WHY PERFECT PRINTS</span>
+
+            <h2>
+                Built to be
+                <span>different.</span>
+            </h2>
+        </div>
+
+        <p>
+            From small toys to custom creations,
+            every print gets attention to detail.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+        <article class="feature-card reveal">
+
+            <div class="feature-icon blue">
+                <i class="fa-solid fa-cube"></i>
+            </div>
+
+            <span>01</span>
+
+            <h3>Precision Printing</h3>
+
+            <p>
+                Carefully designed and printed models
+                with clean details and strong finishes.
+            </p>
+
+        </article>
+
+
+        <article class="feature-card reveal">
+
+            <div class="feature-icon purple">
+                <i class="fa-solid fa-palette"></i>
+            </div>
+
+            <span>02</span>
+
+            <h3>Your Colours</h3>
+
+            <p>
+                Choose from different colours to make
+                your print feel completely yours.
+            </p>
+
+        </article>
+
+
+        <article class="feature-card reveal">
+
+            <div class="feature-icon blue">
+                <i class="fa-solid fa-lightbulb"></i>
+            </div>
+
+            <span>03</span>
+
+            <h3>Custom Ideas</h3>
+
+            <p>
+                Have an idea? Tell us what you want
+                and turn your concept into a real object.
+            </p>
+
+        </article>
+
+
+        <article class="feature-card reveal">
+
+            <div class="feature-icon purple">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+
+            <span>04</span>
+
+            <h3>Made With Care</h3>
+
+            <p>
+                Every creation is checked and prepared
+                before it reaches its new owner.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FEATURED PRODUCTS
+========================================================= -->
+
+<section class="section products-section">
+
+    <div class="section-heading reveal">
+
+        <div>
+            <span class="section-label">THE COLLECTION</span>
+
+            <h2>
+                Featured
+                <span>prints.</span>
+            </h2>
+        </div>
+
+        <a href="products.html" class="view-all">
+            View All
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+    </div>
+
+
+    <div class="product-grid" id="productGrid">
+
+
+        <!-- PRODUCT 1 -->
+
+        <article
+            class="product-card reveal"
+            data-name="Flexi Dragon"
+            data-category="animals"
+        >
+
+            <div class="product-image">
+
+                <span class="product-badge">
+                    POPULAR
+                </span>
+
+                <button
+                    class="wishlist-button"
+                    data-product="Flexi Dragon"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <div class="product-emoji">
+                    🐉
                 </div>
 
-                <p>
-                    Creating unique 3D printed products
-                    designed to bring ideas to life.
-                </p>
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-category">
+                    FLEXIBLE • DRAGON
+                </div>
+
+                <h3>Flexi Dragon</h3>
+
+                <div class="rating">
+                    <span>★★★★★</span>
+                    <small>5.0</small>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$15.00</strong>
+
+                    <button
+                        class="add-button"
+                        data-product="Flexi Dragon"
+                        data-price="15"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
 
             </div>
 
+        </article>
 
-            <div class="footer-column">
 
-                <h3>Explore</h3>
+        <!-- PRODUCT 2 -->
 
-                <a href="index.html">Home</a>
-                <a href="products.html">Shop</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="about.html">About</a>
+        <article
+            class="product-card reveal"
+            data-name="Mini Dinosaur"
+            data-category="animals"
+        >
+
+            <div class="product-image">
+
+                <span class="product-badge new">
+                    NEW
+                </span>
+
+                <button
+                    class="wishlist-button"
+                    data-product="Mini Dinosaur"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <div class="product-emoji">
+                    🦖
+                </div>
 
             </div>
 
+            <div class="product-info">
 
-            <div class="footer-column">
+                <div class="product-category">
+                    FIGURE • DINOSAUR
+                </div>
 
-                <h3>Support</h3>
+                <h3>Mini Dinosaur</h3>
 
-                <a href="contact.html">Contact</a>
-                <a href="account.html">Account</a>
-                <a href="wishlist.html">Wishlist</a>
-                <a href="cart.html">Cart</a>
+                <div class="rating">
+                    <span>★★★★★</span>
+                    <small>5.0</small>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$10.00</strong>
+
+                    <button
+                        class="add-button"
+                        data-product="Mini Dinosaur"
+                        data-price="10"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
 
             </div>
 
+        </article>
 
-            <div class="footer-column">
 
-                <h3>Perfect Prints</h3>
+        <!-- PRODUCT 3 -->
 
-                <p>3D printed toys and custom creations.</p>
+        <article
+            class="product-card reveal"
+            data-name="Cute Axolotl"
+            data-category="animals"
+        >
 
-                <a href="contact.html" class="footer-contact">
-                    Get in touch
+            <div class="product-image">
+
+                <button
+                    class="wishlist-button"
+                    data-product="Cute Axolotl"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <div class="product-emoji">
+                    🦎
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-category">
+                    FIGURE • ANIMAL
+                </div>
+
+                <h3>Cute Axolotl</h3>
+
+                <div class="rating">
+                    <span>★★★★★</span>
+                    <small>4.9</small>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$12.00</strong>
+
+                    <button
+                        class="add-button"
+                        data-product="Cute Axolotl"
+                        data-price="12"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUCT 4 -->
+
+        <article
+            class="product-card reveal"
+            data-name="Flexi Snake"
+            data-category="animals"
+        >
+
+            <div class="product-image">
+
+                <span class="product-badge">
+                    BEST SELLER
+                </span>
+
+                <button
+                    class="wishlist-button"
+                    data-product="Flexi Snake"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <div class="product-emoji">
+                    🐍
+                </div>
+
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-category">
+                    FLEXIBLE • SNAKE
+                </div>
+
+                <h3>Flexi Snake</h3>
+
+                <div class="rating">
+                    <span>★★★★★</span>
+                    <small>5.0</small>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$13.00</strong>
+
+                    <button
+                        class="add-button"
+                        data-product="Flexi Snake"
+                        data-price="13"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     HOW IT WORKS
+========================================================= -->
+
+<section class="section process-section">
+
+    <div class="section-heading centered reveal">
+
+        <span class="section-label">HOW IT WORKS</span>
+
+        <h2>
+            From idea to
+            <span>reality.</span>
+        </h2>
+
+        <p>
+            Getting your next 3D print is simple.
+        </p>
+
+    </div>
+
+
+    <div class="process">
+
+        <div class="process-line"></div>
+
+
+        <div class="process-step reveal">
+
+            <div class="step-number">
+                01
+            </div>
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <h3>Choose</h3>
+
+            <p>
+                Find a print from our collection.
+            </p>
+
+        </div>
+
+
+        <div class="process-step reveal">
+
+            <div class="step-number">
+                02
+            </div>
+
+            <i class="fa-solid fa-palette"></i>
+
+            <h3>Customize</h3>
+
+            <p>
+                Pick colours or request changes.
+            </p>
+
+        </div>
+
+
+        <div class="process-step reveal">
+
+            <div class="step-number">
+                03
+            </div>
+
+            <i class="fa-solid fa-print"></i>
+
+            <h3>Print</h3>
+
+            <p>
+                Your creation gets printed.
+            </p>
+
+        </div>
+
+
+        <div class="process-step reveal">
+
+            <div class="step-number">
+                04
+            </div>
+
+            <i class="fa-solid fa-box"></i>
+
+            <h3>Deliver</h3>
+
+            <p>
+                Your print gets ready for collection or delivery.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     COLOUR SELECTOR
+========================================================= -->
+
+<section class="section colour-section">
+
+    <div class="colour-content reveal">
+
+        <span class="section-label">
+            MAKE IT YOURS
+        </span>
+
+        <h2>
+            Choose your
+            <span>colour.</span>
+        </h2>
+
+        <p>
+            Different colours can completely change
+            the look of your creation.
+        </p>
+
+
+        <div class="colour-selector">
+
+            <button
+                class="colour active"
+                data-colour="Electric Blue"
+                style="--colour:#2997ff"
+            ></button>
+
+            <button
+                class="colour"
+                data-colour="Purple"
+                style="--colour:#9b5cff"
+            ></button>
+
+            <button
+                class="colour"
+                data-colour="Red"
+                style="--colour:#ff4d6d"
+            ></button>
+
+            <button
+                class="colour"
+                data-colour="Green"
+                style="--colour:#32d583"
+            ></button>
+
+            <button
+                class="colour"
+                data-colour="Yellow"
+                style="--colour:#ffd43b"
+            ></button>
+
+            <button
+                class="colour"
+                data-colour="Black"
+                style="--colour:#111827"
+            ></button>
+
+        </div>
+
+        <strong class="selected-colour" id="selectedColour">
+            Electric Blue
+        </strong>
+
+    </div>
+
+
+    <div class="colour-preview reveal">
+
+        <div class="preview-ring"></div>
+
+        <div
+            class="preview-object"
+            id="previewObject"
+        >
+            🐉
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CUSTOM PRINT
+========================================================= -->
+
+<section class="section custom-section">
+
+    <div class="custom-panel reveal">
+
+        <div class="custom-glow"></div>
+
+        <div class="custom-content">
+
+            <span class="section-label">
+                CUSTOM PRINT LAB
+            </span>
+
+            <h2>
+                Have an idea?
+                <span>Let's print it.</span>
+            </h2>
+
+            <p>
+                Tell us what you want to create.
+                Whether you have a design, an STL file,
+                or just an idea, we can help bring it to life.
+            </p>
+
+            <a href="contact.html" class="primary-button">
+                Start a Custom Order
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <div class="custom-icon">
+
+            <div class="custom-icon-inner">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     REVIEWS
+========================================================= -->
+
+<section class="section reviews-section">
+
+    <div class="section-heading centered reveal">
+
+        <span class="section-label">
+            CUSTOMER REVIEWS
+        </span>
+
+        <h2>
+            Made for people who
+            <span>love cool stuff.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="review-grid">
+
+        <article class="review-card reveal">
+
+            <div class="review-stars">
+                ★★★★★
+            </div>
+
+            <p>
+                “The print turned out awesome and the details
+                were really clean.”
+            </p>
+
+            <div class="review-person">
+                <div class="avatar">A</div>
+
+                <div>
+                    <strong>Alex</strong>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+
+        </article>
+
+
+        <article class="review-card reveal">
+
+            <div class="review-stars">
+                ★★★★★
+            </div>
+
+            <p>
+                “Really cool designs and the custom colour
+                made mine look even better.”
+            </p>
+
+            <div class="review-person">
+                <div class="avatar">J</div>
+
+                <div>
+                    <strong>Jordan</strong>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+
+        </article>
+
+
+        <article class="review-card reveal">
+
+            <div class="review-stars">
+                ★★★★★
+            </div>
+
+            <p>
+                “Perfect Prints made exactly what I wanted.
+                Would definitely order again.”
+            </p>
+
+            <div class="review-person">
+                <div class="avatar">S</div>
+
+                <div>
+                    <strong>Sam</strong>
+                    <span>Verified Customer</span>
+                </div>
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================= -->
+
+<section class="final-cta reveal">
+
+    <div class="final-cta-glow"></div>
+
+    <span class="section-label">
+        READY?
+    </span>
+
+    <h2>
+        Find your next
+        <span>favourite print.</span>
+    </h2>
+
+    <p>
+        Explore the collection and discover something awesome.
+    </p>
+
+    <a href="products.html" class="primary-button">
+        Shop Perfect Prints
+        <i class="fa-solid fa-arrow-right"></i>
+    </a>
+
+</section>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-grid">
+
+
+        <div class="footer-brand">
+
+            <a href="index.html" class="logo">
+
+                <div class="logo-mark">
+                    <span>PP</span>
+                </div>
+
+                <div class="logo-text">
+                    <strong>PERFECT</strong>
+                    <span>PRINTS</span>
+                </div>
+
+            </a>
+
+            <p>
+                Turning digital ideas into physical creations.
+            </p>
+
+
+            <div class="socials">
+
+                <a href="#" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+
+                <a href="#" aria-label="Discord">
+                    <i class="fa-brands fa-discord"></i>
                 </a>
 
             </div>
@@ -549,25 +1105,563 @@
         </div>
 
 
-        <div class="footer-bottom">
+        <div class="footer-column">
 
-            <span>
-                © 2026 Perfect Prints. All rights reserved.
-            </span>
+            <h4>Shop</h4>
 
-            <span>
-                3D printed with care.
-            </span>
+            <a href="products.html">All Prints</a>
+            <a href="products.html">Popular</a>
+            <a href="products.html">New Arrivals</a>
+            <a href="wishlist.html">Wishlist</a>
 
         </div>
 
-    </footer>
+
+        <div class="footer-column">
+
+            <h4>Company</h4>
+
+            <a href="about.html">About Us</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+            <a href="reviews.html">Reviews</a>
+
+        </div>
 
 
-    <div id="toast" class="toast"></div>
+        <div class="footer-column">
+
+            <h4>Account</h4>
+
+            <a href="account.html">My Account</a>
+            <a href="cart.html">Cart</a>
+            <a href="checkout.html">Checkout</a>
+
+        </div>
+
+    </div>
 
 
-    <script src="script.js"></script>
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Perfect Prints. All rights reserved.
+        </span>
+
+        <span>
+            Made with <i class="fa-solid fa-heart"></i> and 3D printing.
+        </span>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     MOBILE BOTTOM NAV
+========================================================= -->
+
+<nav class="mobile-bottom-nav">
+
+    <a href="index.html" class="active">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+    </a>
+
+    <a href="products.html">
+        <i class="fa-solid fa-cube"></i>
+        <span>Shop</span>
+    </a>
+
+    <a href="wishlist.html">
+        <i class="fa-regular fa-heart"></i>
+        <span>Saved</span>
+    </a>
+
+    <a href="cart.html">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>Cart</span>
+    </a>
+
+</nav>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div class="toast" id="toast">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    <div>
+        <strong id="toastTitle">
+            Added to cart
+        </strong>
+
+        <span id="toastMessage">
+            Product added successfully.
+        </span>
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   CART
+========================================================= */
+
+const CART_KEY = "perfectPrintsCart";
+
+function getCart() {
+    try {
+        return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+    } catch {
+        return [];
+    }
+}
+
+function saveCart(cart) {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    updateCartCount();
+}
+
+function updateCartCount() {
+
+    const cart = getCart();
+
+    let count = 0;
+
+    cart.forEach(item => {
+        count += Number(item.quantity || 1);
+    });
+
+    const counter = document.getElementById("cartCount");
+
+    if (counter) {
+        counter.textContent = count;
+    }
+}
+
+function addToCart(product, price) {
+
+    const cart = getCart();
+
+    const existing = cart.find(
+        item => item.name === product
+    );
+
+    if (existing) {
+
+        existing.quantity =
+            Number(existing.quantity || 1) + 1;
+
+    } else {
+
+        cart.push({
+            name: product,
+            price: Number(price),
+            quantity: 1
+        });
+
+    }
+
+    saveCart(cart);
+
+    showToast(
+        "Added to cart",
+        `${product} was added successfully.`
+    );
+}
+
+
+/* =========================================================
+   ADD BUTTONS
+========================================================= */
+
+document.querySelectorAll(".add-button").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const product =
+            button.dataset.product;
+
+        const price =
+            button.dataset.price;
+
+        addToCart(product, price);
+
+        button.innerHTML =
+            '<i class="fa-solid fa-check"></i> Added';
+
+        setTimeout(() => {
+
+            button.innerHTML =
+                '<i class="fa-solid fa-plus"></i> Add';
+
+        }, 1200);
+
+    });
+
+});
+
+
+/* =========================================================
+   WISHLIST
+========================================================= */
+
+function getWishlist() {
+
+    try {
+        return JSON.parse(
+            localStorage.getItem("perfectPrintsWishlist")
+        ) || [];
+
+    } catch {
+        return [];
+    }
+
+}
+
+function saveWishlist(list) {
+
+    localStorage.setItem(
+        "perfectPrintsWishlist",
+        JSON.stringify(list)
+    );
+
+    updateWishlistCount();
+
+}
+
+function updateWishlistCount() {
+
+    const list = getWishlist();
+
+    const counter =
+        document.getElementById("wishlistCount");
+
+    if (counter) {
+        counter.textContent = list.length;
+    }
+
+}
+
+document.querySelectorAll(".wishlist-button").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const product =
+            button.dataset.product;
+
+        let wishlist =
+            getWishlist();
+
+        const exists =
+            wishlist.includes(product);
+
+        if (exists) {
+
+            wishlist =
+                wishlist.filter(item =>
+                    item !== product
+                );
+
+            button.classList.remove("liked");
+
+            button.innerHTML =
+                '<i class="fa-regular fa-heart"></i>';
+
+            showToast(
+                "Removed",
+                `${product} was removed from your wishlist.`
+            );
+
+        } else {
+
+            wishlist.push(product);
+
+            button.classList.add("liked");
+
+            button.innerHTML =
+                '<i class="fa-solid fa-heart"></i>';
+
+            showToast(
+                "Saved",
+                `${product} was added to your wishlist.`
+            );
+
+        }
+
+        saveWishlist(wishlist);
+
+    });
+
+});
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+function showToast(title, message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    document.getElementById("toastTitle")
+        .textContent = title;
+
+    document.getElementById("toastMessage")
+        .textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 2800);
+
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const mobileButton =
+    document.getElementById("mobileMenuButton");
+
+const mobileMenu =
+    document.getElementById("mobileMenu");
+
+mobileButton.addEventListener("click", () => {
+
+    mobileMenu.classList.toggle("open");
+
+    const icon =
+        mobileButton.querySelector("i");
+
+    if (mobileMenu.classList.contains("open")) {
+
+        icon.className =
+            "fa-solid fa-xmark";
+
+    } else {
+
+        icon.className =
+            "fa-solid fa-bars";
+
+    }
+
+});
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+const searchInput =
+    document.getElementById("searchInput");
+
+searchInput.addEventListener("input", () => {
+
+    const query =
+        searchInput.value
+            .toLowerCase()
+            .trim();
+
+    document.querySelectorAll(".product-card")
+        .forEach(card => {
+
+            const name =
+                card.dataset.name
+                    .toLowerCase();
+
+            card.style.display =
+                name.includes(query)
+                    ? ""
+                    : "none";
+
+        });
+
+});
+
+
+/* =========================================================
+   KEYBOARD SEARCH
+========================================================= */
+
+document.addEventListener("keydown", event => {
+
+    if (
+        (event.ctrlKey || event.metaKey) &&
+        event.key.toLowerCase() === "k"
+    ) {
+
+        event.preventDefault();
+
+        searchInput.focus();
+
+    }
+
+});
+
+
+/* =========================================================
+   COLOUR SELECTOR
+========================================================= */
+
+const colours =
+    document.querySelectorAll(".colour");
+
+const selectedColour =
+    document.getElementById("selectedColour");
+
+const previewObject =
+    document.getElementById("previewObject");
+
+colours.forEach(colour => {
+
+    colour.addEventListener("click", () => {
+
+        colours.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        colour.classList.add("active");
+
+        const name =
+            colour.dataset.colour;
+
+        selectedColour.textContent =
+            name;
+
+        previewObject.style.filter =
+            "drop-shadow(0 0 40px var(--selected))";
+
+        previewObject.style.setProperty(
+            "--selected",
+            getComputedStyle(colour)
+                .getPropertyValue("--colour")
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const observer =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                    observer.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+document.querySelectorAll(".reveal")
+    .forEach(element =>
+        observer.observe(element)
+    );
+
+
+/* =========================================================
+   STAT COUNTERS
+========================================================= */
+
+const stats =
+    document.querySelectorAll("[data-number]");
+
+const statsObserver =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (!entry.isIntersecting)
+                    return;
+
+                const element =
+                    entry.target;
+
+                const target =
+                    Number(element.dataset.number);
+
+                let current = 0;
+
+                const increment =
+                    Math.max(
+                        1,
+                        Math.ceil(target / 35)
+                    );
+
+                const timer =
+                    setInterval(() => {
+
+                        current += increment;
+
+                        if (current >= target) {
+
+                            current = target;
+
+                            clearInterval(timer);
+
+                        }
+
+                        element.textContent =
+                            current;
+
+                    }, 35);
+
+                statsObserver.unobserve(element);
+
+            });
+
+        },
+        {
+            threshold: 0.7
+        }
+    );
+
+stats.forEach(stat =>
+    statsObserver.observe(stat)
+);
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+updateCartCount();
+updateWishlistCount();
+
+</script>
 
 </body>
 </html>
