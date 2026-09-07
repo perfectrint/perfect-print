@@ -1,295 +1,1403 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Perfect Prints | Products</title>
+    <title>Shop | Perfect Prints</title>
+    <meta name="description" content="Shop 3D printed creations from Perfect Prints.">
 
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
-
-<div class="sale-banner">
-🚚 FREE SHIPPING on orders over $75 • New Colours Available!
+<div class="background-effects">
+    <div class="glow glow-blue"></div>
+    <div class="glow glow-purple"></div>
+    <div class="grid-background"></div>
 </div>
 
-<nav>
-
-<div class="logo">
-🐉 Perfect Prints
+<!-- SALE BAR -->
+<div class="sale-bar">
+    <div class="sale-content">
+        <span>
+            <i class="fa-solid fa-truck-fast"></i>
+        </span>
+        <strong>FREE SHIPPING</strong>
+        <span>Australia Wide on Orders Over $75</span>
+    </div>
 </div>
 
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="products.html">Products</a></li>
-<li><a href="gallery.html">Gallery</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
+<!-- HEADER -->
+<header class="site-header">
+    <div class="nav-shell">
 
-<button class="cart-btn" onclick="openCart()">
-🛒 Cart
-<span id="cartCount">0</span>
-</button>
+        <a href="index.html" class="logo">
+            <div class="logo-mark">PP</div>
+
+            <div class="logo-text">
+                <span>PERFECT</span>
+                <strong>PRINTS</strong>
+            </div>
+        </a>
+
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search prints..."
+                autocomplete="off"
+            >
+            <kbd>⌘ K</kbd>
+        </div>
+
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="products.html" class="active">Shop</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+
+            <a href="account.html" class="icon-button" aria-label="Account">
+                <i class="fa-regular fa-user"></i>
+            </a>
+
+            <a href="wishlist.html" class="icon-button wishlist-header" aria-label="Wishlist">
+                <i class="fa-regular fa-heart"></i>
+                <span id="wishlistCount" class="notification-dot">0</span>
+            </a>
+
+            <a href="cart.html" class="cart-button">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>Cart</span>
+                <span id="cartCount" class="cart-count">0</span>
+            </a>
+
+            <button
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                aria-label="Open menu"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Home</a>
+        <a href="products.html" class="active">Shop</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="account.html">Account</a>
+        <a href="wishlist.html">Wishlist</a>
+        <a href="cart.html">Cart</a>
+    </div>
+</header>
+
+
+<!-- SHOP HERO -->
+<main>
+
+<section class="shop-hero">
+
+    <div class="shop-hero-content">
+
+        <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            PERFECT PRINTS SHOP
+        </div>
+
+        <h1>
+            FIND YOUR NEXT
+            <span>PERFECT PRINT.</span>
+        </h1>
+
+        <p>
+            Explore our collection of 3D printed creations,
+            made with care and ready for your collection.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- SHOP CONTROLS -->
+<section class="shop-section">
+
+    <div class="shop-toolbar">
+
+        <div class="shop-heading">
+            <span class="section-label">OUR COLLECTION</span>
+            <h2>Explore the prints</h2>
+            <p id="productResultText">Showing all products</p>
+        </div>
+
+        <div class="shop-tools">
+
+            <div class="shop-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                    type="text"
+                    id="shopSearch"
+                    placeholder="Search products..."
+                >
+            </div>
+
+            <select id="sortProducts" class="sort-select">
+                <option value="featured">Featured</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+                <option value="name">Name A-Z</option>
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <!-- FILTERS -->
+    <div class="shop-filters">
+
+        <button class="filter-button active" data-filter="all">
+            All Prints
+        </button>
+
+        <button class="filter-button" data-filter="animals">
+            Animals
+        </button>
+
+        <button class="filter-button" data-filter="flexible">
+            Flexible Prints
+        </button>
+
+        <button class="filter-button" data-filter="figures">
+            Figures
+        </button>
+
+    </div>
+
+
+    <!-- PRODUCTS -->
+    <div class="products-grid" id="productsGrid">
+
+        <!-- DRAGON -->
+        <article
+            class="shop-product-card"
+            data-name="Flexi Dragon"
+            data-category="animals flexible"
+            data-price="15"
+            data-rating="5"
+        >
+
+            <div class="shop-product-image">
+
+                <span class="product-tag">
+                    Popular
+                </span>
+
+                <button
+                    class="shop-wishlist"
+                    data-product="flexi-dragon"
+                    aria-label="Add Flexi Dragon to wishlist"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <img
+                    src="dragon.jpg"
+                    alt="Flexi Dragon 3D print"
+                >
+
+                <div class="image-overlay">
+                    <a href="product.html?id=flexi-dragon">
+                        View Product
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="shop-product-info">
+
+                <div class="product-type">
+                    Flexible Print
+                </div>
+
+                <h3>Flexi Dragon</h3>
+
+                <div class="product-rating">
+                    <span class="stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+
+                    <span>5.0</span>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$15.00</strong>
+
+                    <button
+                        class="shop-add-button"
+                        data-product="flexi-dragon"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- DINOSAUR -->
+        <article
+            class="shop-product-card"
+            data-name="Mini Dinosaur"
+            data-category="animals figures"
+            data-price="10"
+            data-rating="5"
+        >
+
+            <div class="shop-product-image">
+
+                <span class="product-tag">
+                    Best Seller
+                </span>
+
+                <button
+                    class="shop-wishlist"
+                    data-product="mini-dinosaur"
+                    aria-label="Add Mini Dinosaur to wishlist"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <img
+                    src="dinosaur.jpg"
+                    alt="Mini Dinosaur 3D print"
+                >
+
+                <div class="image-overlay">
+                    <a href="product.html?id=mini-dinosaur">
+                        View Product
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="shop-product-info">
+
+                <div class="product-type">
+                    Figure
+                </div>
+
+                <h3>Mini Dinosaur</h3>
+
+                <div class="product-rating">
+                    <span class="stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+
+                    <span>5.0</span>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$10.00</strong>
+
+                    <button
+                        class="shop-add-button"
+                        data-product="mini-dinosaur"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- AXOLOTL -->
+        <article
+            class="shop-product-card"
+            data-name="Cute Axolotl"
+            data-category="animals figures"
+            data-price="12"
+            data-rating="4.9"
+        >
+
+            <div class="shop-product-image">
+
+                <span class="product-tag">
+                    New
+                </span>
+
+                <button
+                    class="shop-wishlist"
+                    data-product="cute-axolotl"
+                    aria-label="Add Cute Axolotl to wishlist"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <img
+                    src="axolotl.jpg"
+                    alt="Cute Axolotl 3D print"
+                >
+
+                <div class="image-overlay">
+                    <a href="product.html?id=cute-axolotl">
+                        View Product
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="shop-product-info">
+
+                <div class="product-type">
+                    Figure
+                </div>
+
+                <h3>Cute Axolotl</h3>
+
+                <div class="product-rating">
+                    <span class="stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+
+                    <span>4.9</span>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$12.00</strong>
+
+                    <button
+                        class="shop-add-button"
+                        data-product="cute-axolotl"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- SNAKE -->
+        <article
+            class="shop-product-card"
+            data-name="Flexi Snake"
+            data-category="animals flexible"
+            data-price="13"
+            data-rating="5"
+        >
+
+            <div class="shop-product-image">
+
+                <button
+                    class="shop-wishlist"
+                    data-product="flexi-snake"
+                    aria-label="Add Flexi Snake to wishlist"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <img
+                    src="snake.jpg"
+                    alt="Flexi Snake 3D print"
+                >
+
+                <div class="image-overlay">
+                    <a href="product.html?id=flexi-snake">
+                        View Product
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="shop-product-info">
+
+                <div class="product-type">
+                    Flexible Print
+                </div>
+
+                <h3>Flexi Snake</h3>
+
+                <div class="product-rating">
+                    <span class="stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+
+                    <span>5.0</span>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$13.00</strong>
+
+                    <button
+                        class="shop-add-button"
+                        data-product="flexi-snake"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- TURTLE -->
+        <article
+            class="shop-product-card"
+            data-name="Turtle"
+            data-category="animals figures"
+            data-price="10"
+            data-rating="5"
+        >
+
+            <div class="shop-product-image">
+
+                <button
+                    class="shop-wishlist"
+                    data-product="turtle"
+                    aria-label="Add Turtle to wishlist"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <img
+                    src="turtle.jpg"
+                    alt="Turtle 3D print"
+                >
+
+                <div class="image-overlay">
+                    <a href="product.html?id=turtle">
+                        View Product
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="shop-product-info">
+
+                <div class="product-type">
+                    Figure
+                </div>
+
+                <h3>Turtle</h3>
+
+                <div class="product-rating">
+                    <span class="stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+
+                    <span>5.0</span>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$10.00</strong>
+
+                    <button
+                        class="shop-add-button"
+                        data-product="turtle"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- OCTOPUS -->
+        <article
+            class="shop-product-card"
+            data-name="Octopus"
+            data-category="animals figures"
+            data-price="10"
+            data-rating="5"
+        >
+
+            <div class="shop-product-image">
+
+                <button
+                    class="shop-wishlist"
+                    data-product="octopus"
+                    aria-label="Add Octopus to wishlist"
+                >
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <img
+                    src="octopus.jpg"
+                    alt="Octopus 3D print"
+                >
+
+                <div class="image-overlay">
+                    <a href="product.html?id=octopus">
+                        View Product
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="shop-product-info">
+
+                <div class="product-type">
+                    Figure
+                </div>
+
+                <h3>Octopus</h3>
+
+                <div class="product-rating">
+                    <span class="stars">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
+
+                    <span>5.0</span>
+                </div>
+
+                <div class="product-bottom">
+
+                    <strong>$10.00</strong>
+
+                    <button
+                        class="shop-add-button"
+                        data-product="octopus"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- CUSTOM -->
+        <article class="shop-product-card custom-product-card">
+
+            <div class="custom-shop-card">
+
+                <div class="custom-icon">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+
+                <span class="product-type">
+                    CUSTOM PRINT
+                </span>
+
+                <h3>Your idea.<br>Printed for real.</h3>
+
+                <p>
+                    Have something specific in mind?
+                    Contact Perfect Prints for a custom quote.
+                </p>
+
+                <a href="contact.html" class="custom-shop-button">
+                    Request a Quote
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <!-- EMPTY SEARCH -->
+    <div class="shop-empty" id="shopEmpty">
+
+        <div class="empty-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+
+        <h3>No prints found</h3>
+
+        <p>
+            Try a different search or category.
+        </p>
+
+        <button id="clearShopSearch">
+            Clear Search
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SHOP CTA -->
+<section class="shop-bottom-cta">
+
+    <div class="shop-bottom-content">
+
+        <div>
+            <span class="section-label">CAN'T FIND WHAT YOU WANT?</span>
+
+            <h2>
+                Let's create something
+                <span>custom.</span>
+            </h2>
+
+            <p>
+                Tell us your idea and we'll see what we can print for you.
+            </p>
+        </div>
+
+        <a href="contact.html" class="primary-button">
+            Start a Custom Order
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+
+    <div class="footer-grid">
+
+        <div class="footer-brand">
+
+            <a href="index.html" class="logo">
+                <div class="logo-mark">PP</div>
+
+                <div class="logo-text">
+                    <span>PERFECT</span>
+                    <strong>PRINTS</strong>
+                </div>
+            </a>
+
+            <p>
+                Turning digital ideas into real,
+                3D printed creations.
+            </p>
+
+        </div>
+
+        <div class="footer-column">
+
+            <h4>Shop</h4>
+
+            <a href="products.html">All Prints</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="wishlist.html">Wishlist</a>
+            <a href="cart.html">Cart</a>
+
+        </div>
+
+        <div class="footer-column">
+
+            <h4>Company</h4>
+
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="account.html">Account</a>
+
+        </div>
+
+        <div class="footer-column">
+
+            <h4>Contact</h4>
+
+            <a href="mailto:perfectprints@outlook.com">
+                perfectprints@outlook.com
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 Perfect Prints. All rights reserved.</span>
+
+        <span>
+            Made with
+            <i class="fa-solid fa-heart"></i>
+            and 3D printing.
+        </span>
+    </div>
+
+</footer>
+
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mobile-bottom-nav">
+
+    <a href="index.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+    </a>
+
+    <a href="products.html" class="active">
+        <i class="fa-solid fa-store"></i>
+        <span>Shop</span>
+    </a>
+
+    <a href="wishlist.html">
+        <i class="fa-regular fa-heart"></i>
+        <span>Wishlist</span>
+    </a>
+
+    <a href="cart.html">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>Cart</span>
+    </a>
+
+    <a href="account.html">
+        <i class="fa-regular fa-user"></i>
+        <span>Account</span>
+    </a>
 
 </nav>
 
-</header>
 
-<section class="hero small-hero">
+<div class="toast" id="toast"></div>
 
-<h1>Our Products</h1>
 
-<p>
-Browse our range of premium articulated 3D prints.
-Every item is printed using high quality filament
-for maximum strength and amazing detail.
-</p>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
-</section>
+    const PRODUCTS = {
+        "flexi-dragon": {
+            id: "flexi-dragon",
+            name: "Flexi Dragon",
+            price: 15,
+            image: "dragon.jpg"
+        },
 
-<section class="products">
+        "mini-dinosaur": {
+            id: "mini-dinosaur",
+            name: "Mini Dinosaur",
+            price: 10,
+            image: "dinosaur.jpg"
+        },
 
-<h2>Popular Products</h2>
+        "cute-axolotl": {
+            id: "cute-axolotl",
+            name: "Cute Axolotl",
+            price: 12,
+            image: "axolotl.jpg"
+        },
 
-<div class="cards">
+        "flexi-snake": {
+            id: "flexi-snake",
+            name: "Flexi Snake",
+            price: 13,
+            image: "snake.jpg"
+        },
 
-<div class="card">
+        "turtle": {
+            id: "turtle",
+            name: "Turtle",
+            price: 10,
+            image: "turtle.jpg"
+        },
 
-<img src="dragon.jpg" alt="Crystal Dragon">
+        "octopus": {
+            id: "octopus",
+            name: "Octopus",
+            price: 10,
+            image: "octopus.jpg"
+        }
+    };
 
-<div class="card-content">
 
-<span class="badge purple">
-🔥 Best Seller
-</span>
+    /* =========================
+       CART
+    ========================= */
 
-<h3>Crystal Dragon</h3>
+    const CART_KEY = "perfectPrintsCart";
 
-<p>
-Premium articulated dragon with flexible joints.
-Available in many colours.
-</p>
+    function getCart() {
+        try {
+            return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+        } catch {
+            return [];
+        }
+    }
 
-<p class="price">$25 AUD</p>
+    function saveCart(cart) {
+        localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
 
-<button onclick="addToCart('Crystal Dragon',25)">
-Add to Cart
-</button>
+    function updateCartCount() {
 
-</div>
+        const cart = getCart();
 
-</div>
+        const count = cart.reduce(
+            (total, item) => total + Number(item.quantity || 1),
+            0
+        );
 
-<div class="card">
+        const element = document.getElementById("cartCount");
 
-<img src="dinosaur.jpg" alt="Dinosaur">
+        if (element) {
+            element.textContent = count;
+        }
+    }
 
-<div class="card-content">
 
-<span class="badge green">
-⭐ Popular
-</span>
+    function addToCart(id) {
 
-<h3>Dinosaur</h3>
+        const product = PRODUCTS[id];
 
-<p>
-Strong articulated dinosaur with realistic movement.
-</p>
+        if (!product) return;
 
-<p class="price">$15 AUD</p>
+        const cart = getCart();
 
-<button onclick="addToCart('Dinosaur',15)">
-Add to Cart
-</button>
+        const existing = cart.find(item => item.id === id);
 
-</div>
+        if (existing) {
+            existing.quantity = Number(existing.quantity || 1) + 1;
+        } else {
+            cart.push({
+                ...product,
+                quantity: 1
+            });
+        }
 
-</div>
+        saveCart(cart);
+        updateCartCount();
 
-<div class="card">
+        showToast(`${product.name} added to cart`);
+    }
 
-<img src="axolotl.jpg" alt="Axolotl">
 
-<div class="card-content">
+    document.querySelectorAll(".shop-add-button").forEach(button => {
 
-<span class="badge pink">
-💖 New
-</span>
+        button.addEventListener("click", () => {
 
-<h3>Axolotl</h3>
+            const id = button.dataset.product;
 
-<p>
-Cute articulated axolotl that moves smoothly.
-</p>
+            addToCart(id);
 
-<p class="price">$15 AUD</p>
+            button.classList.add("added");
 
-<button onclick="addToCart('Axolotl',15)">
-Add to Cart
-</button>
+            setTimeout(() => {
+                button.classList.remove("added");
+            }, 700);
 
-</div>
+        });
 
-</div>
+    });
 
-<div class="card">
 
-<img src="snake.jpg" alt="Snake">
+    /* =========================
+       WISHLIST
+    ========================= */
 
-<div class="card-content">
+    const WISHLIST_KEY = "perfectPrintsWishlist";
 
-<span class="badge lime">
-🐍 Flexible
-</span>
+    function getWishlist() {
 
-<h3>Snake</h3>
+        try {
+            return JSON.parse(
+                localStorage.getItem(WISHLIST_KEY)
+            ) || [];
 
-<p>
-Long articulated snake with realistic movement.
-</p>
+        } catch {
+            return [];
+        }
+    }
 
-<p class="price">$15 AUD</p>
 
-<button onclick="addToCart('Snake',15)">
-Add to Cart
-</button>
+    function saveWishlist(list) {
+        localStorage.setItem(
+            WISHLIST_KEY,
+            JSON.stringify(list)
+        );
+    }
 
-</div>
 
-</div>
+    function updateWishlistCount() {
 
-<div class="card">
+        const count = getWishlist().length;
 
-<img src="turtle.jpg" alt="Turtle">
+        const element =
+            document.getElementById("wishlistCount");
 
-<div class="card-content">
+        if (element) {
+            element.textContent = count;
+        }
+    }
 
-<span class="badge teal">
-🐢 Family Favourite
-</span>
 
-<h3>Turtle</h3>
+    function updateWishlistButtons() {
 
-<p>
-Fun articulated turtle printed in premium filament.
-</p>
+        const wishlist = getWishlist();
 
-<p class="price">$10 AUD</p>
+        document.querySelectorAll(".shop-wishlist").forEach(button => {
 
-<button onclick="addToCart('Turtle',10)">
-Add to Cart
-</button>
+            const id = button.dataset.product;
 
-</div>
+            const icon = button.querySelector("i");
 
-</div>
+            if (wishlist.includes(id)) {
 
-<div class="card">
+                button.classList.add("active");
 
-<img src="octopus.jpg" alt="Octopus">
+                icon.classList.remove("fa-regular");
+                icon.classList.add("fa-solid");
 
-<div class="card-content">
+            } else {
 
-<span class="badge blue">
-🐙 Fidget Toy
-</span>
+                button.classList.remove("active");
 
-<h3>Octopus</h3>
+                icon.classList.remove("fa-solid");
+                icon.classList.add("fa-regular");
 
-<p>
-Perfect desk toy with smooth flexible movement.
-</p>
+            }
 
-<p class="price">$10 AUD</p>
+        });
+    }
 
-<button onclick="addToCart('Octopus',10)">
-Add to Cart
-</button>
 
-</div>
+    document.querySelectorAll(".shop-wishlist").forEach(button => {
 
-</div>
+        button.addEventListener("click", event => {
 
-<div class="card">
+            event.preventDefault();
+            event.stopPropagation();
 
-<img src="custom.jpg" alt="Custom Print">
+            const id = button.dataset.product;
 
-<div class="card-content">
+            let wishlist = getWishlist();
 
-<span class="badge gold">
-✨ Custom Order
-</span>
+            if (wishlist.includes(id)) {
 
-<h3>Custom Prints</h3>
+                wishlist = wishlist.filter(
+                    item => item !== id
+                );
 
-<p>
-Send us your STL or idea and we'll print it.
-</p>
+                showToast("Removed from wishlist");
 
-<p class="price">
-Quote Required
-</p>
+            } else {
 
-<button onclick="location.href='contact.html'">
-Request Quote
-</button>
+                wishlist.push(id);
 
-</div>
+                showToast("Added to wishlist");
+            }
 
-</div>
+            saveWishlist(wishlist);
 
-</div>
+            updateWishlistCount();
+            updateWishlistButtons();
 
-</section>
+        });
 
-<div id="cartPanel" class="cart-panel">
+    });
 
-<div class="cart-header">
 
-<h2>Your Cart</h2>
+    /* =========================
+       SEARCH + FILTERS
+    ========================= */
 
-<button onclick="closeCart()">
-✖
-</button>
+    const cards = [
+        ...document.querySelectorAll(".shop-product-card")
+    ];
 
-</div>
+    const searchInput =
+        document.getElementById("shopSearch");
 
-<div id="cartItems">
+    const mainSearch =
+        document.getElementById("searchInput");
 
-<p>Your cart is empty.</p>
+    const resultText =
+        document.getElementById("productResultText");
 
-</div>
+    const emptyState =
+        document.getElementById("shopEmpty");
 
-<div class="cart-footer">
+    let activeFilter = "all";
 
-<h3>
-Total:
-$
-<span id="cartTotal">0</span>
-</h3>
 
-<button class="checkout-btn">
-Checkout
-</button>
+    function filterProducts() {
 
-</div>
+        const query =
+            (searchInput?.value || "").trim().toLowerCase();
 
-</div>
+        let visible = 0;
 
-<footer>
+        cards.forEach(card => {
 
-<p>
-© 2026 Perfect Prints
-</p>
+            if (card.classList.contains("custom-product-card")) {
+                return;
+            }
 
-</footer>
+            const name =
+                card.dataset.name.toLowerCase();
+
+            const categories =
+                card.dataset.category.toLowerCase();
+
+            const matchesSearch =
+                !query ||
+                name.includes(query);
+
+            const matchesFilter =
+                activeFilter === "all" ||
+                categories.includes(activeFilter);
+
+            const show =
+                matchesSearch &&
+                matchesFilter;
+
+            card.style.display =
+                show ? "" : "none";
+
+            if (show) visible++;
+
+        });
+
+
+        if (resultText) {
+
+            resultText.textContent =
+                visible === 1
+                    ? "Showing 1 product"
+                    : `Showing ${visible} products`;
+
+        }
+
+
+        if (emptyState) {
+
+            emptyState.classList.toggle(
+                "show",
+                visible === 0
+            );
+
+        }
+
+    }
+
+
+    if (searchInput) {
+        searchInput.addEventListener(
+            "input",
+            filterProducts
+        );
+    }
+
+
+    /* HEADER SEARCH */
+
+    if (mainSearch) {
+
+        mainSearch.addEventListener("input", () => {
+
+            if (searchInput) {
+                searchInput.value =
+                    mainSearch.value;
+            }
+
+            filterProducts();
+
+            window.scrollTo({
+                top: document.querySelector(".shop-section").offsetTop - 100,
+                behavior: "smooth"
+            });
+
+        });
+
+    }
+
+
+    /* =========================
+       FILTER BUTTONS
+    ========================= */
+
+    document.querySelectorAll(".filter-button")
+        .forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                document
+                    .querySelectorAll(".filter-button")
+                    .forEach(btn =>
+                        btn.classList.remove("active")
+                    );
+
+                button.classList.add("active");
+
+                activeFilter =
+                    button.dataset.filter;
+
+                filterProducts();
+
+            });
+
+        });
+
+
+    /* =========================
+       SORT
+    ========================= */
+
+    const sortSelect =
+        document.getElementById("sortProducts");
+
+    const grid =
+        document.getElementById("productsGrid");
+
+
+    if (sortSelect && grid) {
+
+        sortSelect.addEventListener("change", () => {
+
+            const productCards =
+                [...grid.querySelectorAll(
+                    ".shop-product-card:not(.custom-product-card)"
+                )];
+
+            const customCard =
+                grid.querySelector(".custom-product-card");
+
+            const value =
+                sortSelect.value;
+
+
+            productCards.sort((a, b) => {
+
+                if (value === "price-low") {
+                    return Number(a.dataset.price) -
+                           Number(b.dataset.price);
+                }
+
+                if (value === "price-high") {
+                    return Number(b.dataset.price) -
+                           Number(a.dataset.price);
+                }
+
+                if (value === "rating") {
+                    return Number(b.dataset.rating) -
+                           Number(a.dataset.rating);
+                }
+
+                if (value === "name") {
+                    return a.dataset.name.localeCompare(
+                        b.dataset.name
+                    );
+                }
+
+                return 0;
+
+            });
+
+
+            productCards.forEach(card =>
+                grid.appendChild(card)
+            );
+
+            if (customCard) {
+                grid.appendChild(customCard);
+            }
+
+        });
+
+    }
+
+
+    /* =========================
+       CLEAR SEARCH
+    ========================= */
+
+    const clearSearch =
+        document.getElementById("clearShopSearch");
+
+    if (clearSearch) {
+
+        clearSearch.addEventListener("click", () => {
+
+            if (searchInput) {
+                searchInput.value = "";
+            }
+
+            if (mainSearch) {
+                mainSearch.value = "";
+            }
+
+            activeFilter = "all";
+
+            document
+                .querySelectorAll(".filter-button")
+                .forEach(button => {
+
+                    button.classList.toggle(
+                        "active",
+                        button.dataset.filter === "all"
+                    );
+
+                });
+
+            filterProducts();
+
+        });
+
+    }
+
+
+    /* =========================
+       KEYBOARD SEARCH
+    ========================= */
+
+    document.addEventListener("keydown", event => {
+
+        if (
+            (event.ctrlKey || event.metaKey) &&
+            event.key.toLowerCase() === "k"
+        ) {
+
+            event.preventDefault();
+
+            if (mainSearch) {
+                mainSearch.focus();
+            }
+
+        }
+
+    });
+
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    const mobileButton =
+        document.getElementById("mobileMenuButton");
+
+    const mobileMenu =
+        document.getElementById("mobileMenu");
+
+
+    if (mobileButton && mobileMenu) {
+
+        mobileButton.addEventListener("click", () => {
+
+            mobileMenu.classList.toggle("open");
+
+            const icon =
+                mobileButton.querySelector("i");
+
+            if (mobileMenu.classList.contains("open")) {
+
+                icon.classList.remove("fa-bars");
+                icon.classList.add("fa-xmark");
+
+            } else {
+
+                icon.classList.remove("fa-xmark");
+                icon.classList.add("fa-bars");
+
+            }
+
+        });
+
+    }
+
+
+    /* =========================
+       TOAST
+    ========================= */
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById("toast");
+
+        if (!toast) return;
+
+        toast.textContent = message;
+
+        toast.classList.add("show");
+
+        setTimeout(() => {
+            toast.classList.remove("show");
+        }, 2200);
+
+    }
+
+
+    /* =========================
+       INIT
+    ========================= */
+
+    updateCartCount();
+    updateWishlistCount();
+    updateWishlistButtons();
+    filterProducts();
+
+});
+</script>
 
 </body>
 </html>
