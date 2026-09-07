@@ -46,7 +46,7 @@
 
 <div class="sale-bar">
     <div class="sale-content">
-        <span>🚚</span>
+        <i class="fa-solid fa-truck-fast"></i>
         <strong>FREE SHIPPING</strong>
         <span>Australia Wide on Orders Over $75</span>
     </div>
@@ -61,8 +61,6 @@
 
     <div class="nav-shell">
 
-        <!-- LOGO -->
-
         <a href="index.html" class="logo">
             <div class="logo-mark">
                 <span>PP</span>
@@ -74,8 +72,6 @@
             </div>
         </a>
 
-
-        <!-- SEARCH -->
 
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -91,34 +87,16 @@
         </div>
 
 
-        <!-- NAVIGATION -->
-
         <nav class="main-nav">
 
-            <a href="index.html" class="active">
-                Home
-            </a>
-
-            <a href="products.html">
-                Shop
-            </a>
-
-            <a href="gallery.html">
-                Gallery
-            </a>
-
-            <a href="about.html">
-                About
-            </a>
-
-            <a href="contact.html">
-                Contact
-            </a>
+            <a href="index.html" class="active">Home</a>
+            <a href="products.html">Shop</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
 
         </nav>
 
-
-        <!-- HEADER ACTIONS -->
 
         <div class="header-actions">
 
@@ -133,13 +111,15 @@
 
             <a href="cart.html" class="cart-button">
                 <i class="fa-solid fa-bag-shopping"></i>
-
                 <span>Cart</span>
-
                 <b id="cartCount">0</b>
             </a>
 
-            <button class="mobile-menu-button" id="mobileMenuButton">
+            <button
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                aria-label="Open menu"
+            >
                 <i class="fa-solid fa-bars"></i>
             </button>
 
@@ -147,8 +127,6 @@
 
     </div>
 
-
-    <!-- MOBILE MENU -->
 
     <div class="mobile-menu" id="mobileMenu">
 
@@ -183,10 +161,14 @@
 
 
 <!-- =========================================================
-     HERO
+     MAIN
 ========================================================= -->
 
 <main>
+
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <section class="hero">
 
@@ -224,8 +206,6 @@
         </div>
 
 
-        <!-- TRUST -->
-
         <div class="trust-row">
 
             <div class="trust-item">
@@ -260,26 +240,36 @@
 
             <div class="product-glow"></div>
 
+            <!-- REAL HERO IMAGE -->
             <div class="dragon-placeholder">
-                🐉
+                <img
+                    src="hero-dragon.png"
+                    alt="3D printed dragon"
+                >
             </div>
 
+
             <div class="floating-card card-top">
+
                 <i class="fa-solid fa-star"></i>
 
                 <div>
                     <strong>Premium</strong>
                     <span>Quality</span>
                 </div>
+
             </div>
 
+
             <div class="floating-card card-bottom">
+
                 <i class="fa-solid fa-print"></i>
 
                 <div>
                     <strong>3D Printed</strong>
                     <span>In Australia</span>
                 </div>
+
             </div>
 
         </div>
@@ -457,7 +447,7 @@
     <div class="product-grid" id="productGrid">
 
 
-        <!-- PRODUCT 1 -->
+        <!-- DRAGON -->
 
         <article
             class="product-card reveal"
@@ -474,15 +464,20 @@
                 <button
                     class="wishlist-button"
                     data-product="Flexi Dragon"
+                    aria-label="Add Flexi Dragon to wishlist"
                 >
                     <i class="fa-regular fa-heart"></i>
                 </button>
 
                 <div class="product-emoji">
-                    🐉
+                    <img
+                        src="dragon.jpg"
+                        alt="Flexi Dragon 3D print"
+                    >
                 </div>
 
             </div>
+
 
             <div class="product-info">
 
@@ -493,7 +488,13 @@
                 <h3>Flexi Dragon</h3>
 
                 <div class="rating">
-                    <span>★★★★★</span>
+                    <span class="star-icons">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
                     <small>5.0</small>
                 </div>
 
@@ -517,7 +518,7 @@
         </article>
 
 
-        <!-- PRODUCT 2 -->
+        <!-- DINOSAUR -->
 
         <article
             class="product-card reveal"
@@ -534,15 +535,20 @@
                 <button
                     class="wishlist-button"
                     data-product="Mini Dinosaur"
+                    aria-label="Add Mini Dinosaur to wishlist"
                 >
                     <i class="fa-regular fa-heart"></i>
                 </button>
 
                 <div class="product-emoji">
-                    🦖
+                    <img
+                        src="dinosaur.jpg"
+                        alt="Mini Dinosaur 3D print"
+                    >
                 </div>
 
             </div>
+
 
             <div class="product-info">
 
@@ -553,7 +559,13 @@
                 <h3>Mini Dinosaur</h3>
 
                 <div class="rating">
-                    <span>★★★★★</span>
+                    <span class="star-icons">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
                     <small>5.0</small>
                 </div>
 
@@ -577,7 +589,7 @@
         </article>
 
 
-        <!-- PRODUCT 3 -->
+        <!-- AXOLOTL -->
 
         <article
             class="product-card reveal"
@@ -590,15 +602,20 @@
                 <button
                     class="wishlist-button"
                     data-product="Cute Axolotl"
+                    aria-label="Add Cute Axolotl to wishlist"
                 >
                     <i class="fa-regular fa-heart"></i>
                 </button>
 
                 <div class="product-emoji">
-                    🦎
+                    <img
+                        src="axolotl.jpg"
+                        alt="Cute Axolotl 3D print"
+                    >
                 </div>
 
             </div>
+
 
             <div class="product-info">
 
@@ -609,7 +626,13 @@
                 <h3>Cute Axolotl</h3>
 
                 <div class="rating">
-                    <span>★★★★★</span>
+                    <span class="star-icons">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
                     <small>4.9</small>
                 </div>
 
@@ -633,7 +656,7 @@
         </article>
 
 
-        <!-- PRODUCT 4 -->
+        <!-- SNAKE -->
 
         <article
             class="product-card reveal"
@@ -650,15 +673,20 @@
                 <button
                     class="wishlist-button"
                     data-product="Flexi Snake"
+                    aria-label="Add Flexi Snake to wishlist"
                 >
                     <i class="fa-regular fa-heart"></i>
                 </button>
 
                 <div class="product-emoji">
-                    🐍
+                    <img
+                        src="snake.jpg"
+                        alt="Flexi Snake 3D print"
+                    >
                 </div>
 
             </div>
+
 
             <div class="product-info">
 
@@ -669,7 +697,13 @@
                 <h3>Flexi Snake</h3>
 
                 <div class="rating">
-                    <span>★★★★★</span>
+                    <span class="star-icons">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </span>
                     <small>5.0</small>
                 </div>
 
@@ -691,7 +725,6 @@
             </div>
 
         </article>
-
 
     </div>
 
@@ -727,9 +760,7 @@
 
         <div class="process-step reveal">
 
-            <div class="step-number">
-                01
-            </div>
+            <div class="step-number">01</div>
 
             <i class="fa-solid fa-magnifying-glass"></i>
 
@@ -744,9 +775,7 @@
 
         <div class="process-step reveal">
 
-            <div class="step-number">
-                02
-            </div>
+            <div class="step-number">02</div>
 
             <i class="fa-solid fa-palette"></i>
 
@@ -761,9 +790,7 @@
 
         <div class="process-step reveal">
 
-            <div class="step-number">
-                03
-            </div>
+            <div class="step-number">03</div>
 
             <i class="fa-solid fa-print"></i>
 
@@ -778,9 +805,7 @@
 
         <div class="process-step reveal">
 
-            <div class="step-number">
-                04
-            </div>
+            <div class="step-number">04</div>
 
             <i class="fa-solid fa-box"></i>
 
@@ -826,41 +851,50 @@
                 class="colour active"
                 data-colour="Electric Blue"
                 style="--colour:#2997ff"
+                aria-label="Electric Blue"
             ></button>
 
             <button
                 class="colour"
                 data-colour="Purple"
                 style="--colour:#9b5cff"
+                aria-label="Purple"
             ></button>
 
             <button
                 class="colour"
                 data-colour="Red"
                 style="--colour:#ff4d6d"
+                aria-label="Red"
             ></button>
 
             <button
                 class="colour"
                 data-colour="Green"
                 style="--colour:#32d583"
+                aria-label="Green"
             ></button>
 
             <button
                 class="colour"
                 data-colour="Yellow"
                 style="--colour:#ffd43b"
+                aria-label="Yellow"
             ></button>
 
             <button
                 class="colour"
                 data-colour="Black"
                 style="--colour:#111827"
+                aria-label="Black"
             ></button>
 
         </div>
 
-        <strong class="selected-colour" id="selectedColour">
+        <strong
+            class="selected-colour"
+            id="selectedColour"
+        >
             Electric Blue
         </strong>
 
@@ -875,7 +909,10 @@
             class="preview-object"
             id="previewObject"
         >
-            🐉
+            <img
+                src="dragon.jpg"
+                alt="Dragon colour preview"
+            >
         </div>
 
     </div>
@@ -956,7 +993,11 @@
         <article class="review-card reveal">
 
             <div class="review-stars">
-                ★★★★★
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
             </div>
 
             <p>
@@ -965,12 +1006,14 @@
             </p>
 
             <div class="review-person">
+
                 <div class="avatar">A</div>
 
                 <div>
                     <strong>Alex</strong>
                     <span>Verified Customer</span>
                 </div>
+
             </div>
 
         </article>
@@ -979,7 +1022,11 @@
         <article class="review-card reveal">
 
             <div class="review-stars">
-                ★★★★★
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
             </div>
 
             <p>
@@ -988,12 +1035,14 @@
             </p>
 
             <div class="review-person">
+
                 <div class="avatar">J</div>
 
                 <div>
                     <strong>Jordan</strong>
                     <span>Verified Customer</span>
                 </div>
+
             </div>
 
         </article>
@@ -1002,7 +1051,11 @@
         <article class="review-card reveal">
 
             <div class="review-stars">
-                ★★★★★
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
             </div>
 
             <p>
@@ -1011,12 +1064,14 @@
             </p>
 
             <div class="review-person">
+
                 <div class="avatar">S</div>
 
                 <div>
                     <strong>Sam</strong>
                     <span>Verified Customer</span>
                 </div>
+
             </div>
 
         </article>
@@ -1064,7 +1119,6 @@
 <footer class="site-footer">
 
     <div class="footer-grid">
-
 
         <div class="footer-brand">
 
@@ -1124,7 +1178,6 @@
             <a href="about.html">About Us</a>
             <a href="gallery.html">Gallery</a>
             <a href="contact.html">Contact</a>
-            <a href="reviews.html">Reviews</a>
 
         </div>
 
@@ -1207,13 +1260,19 @@
 </div>
 
 
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
 <script>
+
+const CART_KEY = "perfectPrintsCart";
+const WISHLIST_KEY = "perfectPrintsWishlist";
+
 
 /* =========================================================
    CART
 ========================================================= */
-
-const CART_KEY = "perfectPrintsCart";
 
 function getCart() {
     try {
@@ -1223,10 +1282,12 @@ function getCart() {
     }
 }
 
+
 function saveCart(cart) {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
     updateCartCount();
 }
+
 
 function updateCartCount() {
 
@@ -1244,6 +1305,7 @@ function updateCartCount() {
         counter.textContent = count;
     }
 }
+
 
 function addToCart(product, price) {
 
@@ -1277,19 +1339,12 @@ function addToCart(product, price) {
 }
 
 
-/* =========================================================
-   ADD BUTTONS
-========================================================= */
-
 document.querySelectorAll(".add-button").forEach(button => {
 
     button.addEventListener("click", () => {
 
-        const product =
-            button.dataset.product;
-
-        const price =
-            button.dataset.price;
+        const product = button.dataset.product;
+        const price = button.dataset.price;
 
         addToCart(product, price);
 
@@ -1316,25 +1371,26 @@ function getWishlist() {
 
     try {
         return JSON.parse(
-            localStorage.getItem("perfectPrintsWishlist")
+            localStorage.getItem(WISHLIST_KEY)
         ) || [];
-
     } catch {
         return [];
     }
 
 }
 
+
 function saveWishlist(list) {
 
     localStorage.setItem(
-        "perfectPrintsWishlist",
+        WISHLIST_KEY,
         JSON.stringify(list)
     );
 
     updateWishlistCount();
 
 }
+
 
 function updateWishlistCount() {
 
@@ -1349,15 +1405,24 @@ function updateWishlistCount() {
 
 }
 
+
 document.querySelectorAll(".wishlist-button").forEach(button => {
+
+    const product = button.dataset.product;
+
+    if (getWishlist().includes(product)) {
+
+        button.classList.add("liked");
+
+        button.innerHTML =
+            '<i class="fa-solid fa-heart"></i>';
+
+    }
+
 
     button.addEventListener("click", () => {
 
-        const product =
-            button.dataset.product;
-
-        let wishlist =
-            getWishlist();
+        let wishlist = getWishlist();
 
         const exists =
             wishlist.includes(product);
@@ -1413,20 +1478,29 @@ function showToast(title, message) {
     const toast =
         document.getElementById("toast");
 
-    document.getElementById("toastTitle")
-        .textContent = title;
+    if (!toast) return;
 
-    document.getElementById("toastMessage")
-        .textContent = message;
+    const titleElement =
+        document.getElementById("toastTitle");
+
+    const messageElement =
+        document.getElementById("toastMessage");
+
+    if (titleElement) {
+        titleElement.textContent = title;
+    }
+
+    if (messageElement) {
+        messageElement.textContent = message;
+    }
 
     toast.classList.add("show");
 
     clearTimeout(toastTimer);
 
-    toastTimer =
-        setTimeout(() => {
-            toast.classList.remove("show");
-        }, 2800);
+    toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2800);
 
 }
 
@@ -1441,26 +1515,33 @@ const mobileButton =
 const mobileMenu =
     document.getElementById("mobileMenu");
 
-mobileButton.addEventListener("click", () => {
+if (mobileButton && mobileMenu) {
 
-    mobileMenu.classList.toggle("open");
+    mobileButton.addEventListener("click", () => {
 
-    const icon =
-        mobileButton.querySelector("i");
+        mobileMenu.classList.toggle("open");
 
-    if (mobileMenu.classList.contains("open")) {
+        const icon =
+            mobileButton.querySelector("i");
 
-        icon.className =
-            "fa-solid fa-xmark";
+        if (
+            icon &&
+            mobileMenu.classList.contains("open")
+        ) {
 
-    } else {
+            icon.className =
+                "fa-solid fa-xmark";
 
-        icon.className =
-            "fa-solid fa-bars";
+        } else if (icon) {
 
-    }
+            icon.className =
+                "fa-solid fa-bars";
 
-});
+        }
+
+    });
+
+}
 
 
 /* =========================================================
@@ -1470,28 +1551,32 @@ mobileButton.addEventListener("click", () => {
 const searchInput =
     document.getElementById("searchInput");
 
-searchInput.addEventListener("input", () => {
+if (searchInput) {
 
-    const query =
-        searchInput.value
-            .toLowerCase()
-            .trim();
+    searchInput.addEventListener("input", () => {
 
-    document.querySelectorAll(".product-card")
-        .forEach(card => {
+        const query =
+            searchInput.value
+                .toLowerCase()
+                .trim();
 
-            const name =
-                card.dataset.name
-                    .toLowerCase();
+        document.querySelectorAll(".product-card")
+            .forEach(card => {
 
-            card.style.display =
-                name.includes(query)
-                    ? ""
-                    : "none";
+                const name =
+                    (card.dataset.name || "")
+                        .toLowerCase();
 
-        });
+                card.style.display =
+                    name.includes(query)
+                        ? ""
+                        : "none";
 
-});
+            });
+
+    });
+
+}
 
 
 /* =========================================================
@@ -1507,7 +1592,9 @@ document.addEventListener("keydown", event => {
 
         event.preventDefault();
 
-        searchInput.focus();
+        if (searchInput) {
+            searchInput.focus();
+        }
 
     }
 
@@ -1527,6 +1614,7 @@ const selectedColour =
 const previewObject =
     document.getElementById("previewObject");
 
+
 colours.forEach(colour => {
 
     colour.addEventListener("click", () => {
@@ -1540,17 +1628,25 @@ colours.forEach(colour => {
         const name =
             colour.dataset.colour;
 
-        selectedColour.textContent =
-            name;
+        if (selectedColour) {
+            selectedColour.textContent = name;
+        }
 
-        previewObject.style.filter =
-            "drop-shadow(0 0 40px var(--selected))";
+        if (previewObject) {
 
-        previewObject.style.setProperty(
-            "--selected",
-            getComputedStyle(colour)
-                .getPropertyValue("--colour")
-        );
+            const selected =
+                getComputedStyle(colour)
+                    .getPropertyValue("--colour");
+
+            previewObject.style.setProperty(
+                "--selected",
+                selected
+            );
+
+            previewObject.style.filter =
+                `drop-shadow(0 0 35px ${selected})`;
+
+        }
 
     });
 
@@ -1561,34 +1657,46 @@ colours.forEach(colour => {
    SCROLL REVEAL
 ========================================================= */
 
-const observer =
-    new IntersectionObserver(
-        entries => {
+const revealElements =
+    document.querySelectorAll(".reveal");
 
-            entries.forEach(entry => {
+if ("IntersectionObserver" in window) {
 
-                if (entry.isIntersecting) {
+    const observer =
+        new IntersectionObserver(
+            entries => {
 
-                    entry.target.classList.add("visible");
+                entries.forEach(entry => {
 
-                    observer.unobserve(
-                        entry.target
-                    );
+                    if (entry.isIntersecting) {
 
-                }
+                        entry.target.classList.add("visible");
 
-            });
+                        observer.unobserve(
+                            entry.target
+                        );
 
-        },
-        {
-            threshold: 0.12
-        }
-    );
+                    }
 
-document.querySelectorAll(".reveal")
-    .forEach(element =>
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+    revealElements.forEach(element =>
         observer.observe(element)
     );
+
+} else {
+
+    revealElements.forEach(element =>
+        element.classList.add("visible")
+    );
+
+}
 
 
 /* =========================================================
@@ -1598,64 +1706,74 @@ document.querySelectorAll(".reveal")
 const stats =
     document.querySelectorAll("[data-number]");
 
-const statsObserver =
-    new IntersectionObserver(
-        entries => {
+if ("IntersectionObserver" in window) {
 
-            entries.forEach(entry => {
+    const statsObserver =
+        new IntersectionObserver(
+            entries => {
 
-                if (!entry.isIntersecting)
-                    return;
+                entries.forEach(entry => {
 
-                const element =
-                    entry.target;
+                    if (!entry.isIntersecting)
+                        return;
 
-                const target =
-                    Number(element.dataset.number);
+                    const element =
+                        entry.target;
 
-                let current = 0;
+                    const target =
+                        Number(element.dataset.number);
 
-                const increment =
-                    Math.max(
-                        1,
-                        Math.ceil(target / 35)
-                    );
+                    let current = 0;
 
-                const timer =
-                    setInterval(() => {
+                    const increment =
+                        Math.max(
+                            1,
+                            Math.ceil(target / 35)
+                        );
 
-                        current += increment;
+                    const timer =
+                        setInterval(() => {
 
-                        if (current >= target) {
+                            current += increment;
 
-                            current = target;
+                            if (current >= target) {
 
-                            clearInterval(timer);
+                                current = target;
 
-                        }
+                                clearInterval(timer);
 
-                        element.textContent =
-                            current;
+                            }
 
-                    }, 35);
+                            element.textContent =
+                                current;
 
-                statsObserver.unobserve(element);
+                        }, 35);
 
-            });
+                    statsObserver.unobserve(element);
 
-        },
-        {
-            threshold: 0.7
-        }
+                });
+
+            },
+            {
+                threshold: 0.7
+            }
+        );
+
+    stats.forEach(stat =>
+        statsObserver.observe(stat)
     );
 
-stats.forEach(stat =>
-    statsObserver.observe(stat)
-);
+} else {
+
+    stats.forEach(stat => {
+        stat.textContent = stat.dataset.number;
+    });
+
+}
 
 
 /* =========================================================
-   INIT
+   INITIALISE
 ========================================================= */
 
 updateCartCount();
