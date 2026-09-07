@@ -1,289 +1,338 @@
 /* =========================================================
    PERFECT PRINTS
-   Shopping Cart + Search
+   Main Website JavaScript
    ========================================================= */
 
-let cart = [];
-
-
-/* =========================================================
-   LOAD CART
-   ========================================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    const savedCart = localStorage.getItem("perfectPrintsCart");
-
-    if (savedCart) {
-        try {
-            cart = JSON.parse(savedCart);
-
-            if (!Array.isArray(cart)) {
-                cart = [];
-            }
-
-        } catch (error) {
-            cart = [];
-        }
+const PRODUCTS = [
+    {
+        id: "crystal-dragon",
+        name: "Crystal Dragon",
+        price: 25,
+        image: "dragon.jpg",
+        category: "Articulated",
+        description: "A premium articulated dragon with flexible movement."
+    },
+    {
+        id: "dinosaur",
+        name: "Dinosaur",
+        price: 15,
+        image: "dinosaur.jpg",
+        category: "Articulated",
+        description: "A fun articulated dinosaur with smooth movement."
+    },
+    {
+        id: "axolotl",
+        name: "Axolotl",
+        price: 15,
+        image: "axolotl.jpg",
+        category: "Articulated",
+        description: "A colourful articulated axolotl design."
+    },
+    {
+        id: "snake",
+        name: "Snake",
+        price: 15,
+        image: "snake.jpg",
+        category: "Articulated",
+        description: "A flexible articulated snake."
+    },
+    {
+        id: "turtle",
+        name: "Turtle",
+        price: 10,
+        image: "turtle.jpg",
+        category: "Articulated",
+        description: "A fun articulated turtle."
+    },
+    {
+        id: "octopus",
+        name: "Octopus",
+        price: 10,
+        image: "octopus.jpg",
+        category: "Desk Toy",
+        description: "A flexible octopus desk toy."
+    },
+    {
+        id: "custom-print",
+        name: "Custom Prints",
+        price: 0,
+        image: "custom.jpg",
+        category: "Custom",
+        description: "Have an idea or model? Ask Perfect Prints about a custom print."
     }
+];
 
-    updateCart();
-    setupSearch();
-});
+const CART_KEY = "perfectPrintsCart";
+const WISHLIST_KEY = "perfectPrintsWishlist";
+const ACCOUNT_KEY = "perfectPrintsAccount";
+const ORDERS_KEY = "perfectPrintsOrders";
 
 
 /* =========================================================
-   SAVE CART
+   STORAGE HELPERS
    ========================================================= */
 
-function saveCart() {
-
-    localStorage.setItem(
-        "perfectPrintsCart",
-        JSON.stringify(cart)
-    );
-
-}
-
-}
-
-order.status = "New";
-
-orders.push(order);
-
-localStorage.setItem(
-    "perfectPrintsOrders",
-    JSON.stringify(orders)
-);
-
-}
-/* Save order for Admin Dashboard */
-
-const savedOrders =
-    localStorage.getItem("perfectPrintsOrders");
-
-let orders = [];
-
-if (savedOrders) {
-
+function readStorage(key, fallback) {
     try {
+        const value = localStorage.getItem(key);
 
-        orders = JSON.parse(savedOrders);
-
-        if (!Array.isArray(orders)) {
-            orders = [];
+        if (!value) {
+            return fallback;
         }
+
+        const parsed = JSON.parse(value);
+
+        return parsed ?? fallback;
 
     } catch (error) {
-
-        orders = [];
-
+        return fallback;
     }
-
 }
 
-order.status = "New";
 
-orders.push(order);
+function writeStorage(key, value) {
+    localStorage.setItem(
+        key,
+        JSON.stringify(value)
+    );
+}
 
-localStorage.setItem(
-    "perfectPrintsOrders",
-    JSON.stringify(orders)
-);
 
 /* =========================================================
-   ADD TO CART
+   PRODUCTS
    ========================================================= */
 
-function addToCart(productName, price) {
+function getProduct(id) {
+    return PRODUCTS.find(
+        product => product.id === id
+    );
+}
 
-    const existingProduct = cart.find(
-        item => item.name === productName
+
+/* =========================================================
+   CART
+   ========================================================= */
+
+let cart = readStorage(CART_KEY, []);
+
+if (!Array.isArray(cart)) {
+    cart = [];
+}
+
+
+function saveCart() {
+    writeStorage(CART_KEY, cart);
+    updateHeaderCounts();
+}
+
+
+function getCartCount() {
+    return cart.reduce(
+        (total, item) =>
+            total + Number(item.quantity || 0),
+        0
+    );
+}
+
+
+function getCartTotal() {
+    return cart.reduce(
+        (total, item) =>
+            total +
+            Number(item.price || 0) *
+            Number(item.quantity || 0),
+        0
+    );
+}
+
+
+function addToCart(productId, quantity = 1) {
+
+    const product = getProduct(productId);
+
+    if (!product) {
+        return;
+    }
+
+    if (product.price <= 0) {
+        window.location.href = "contact.html";
+        return;
+    }
+
+    const existing = cart.find(
+        item => item.id === productId
     );
 
-    if (existingProduct) {
+    if (existing) {
 
-        existingProduct.quantity++;
+        existing.quantity += Number(quantity);
 
     } else {
 
         cart.push({
-            name: productName,
-            price: Number(price),
-            quantity: 1
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: Number(quantity)
         });
 
     }
 
     saveCart();
     updateCart();
-    showMessage(productName + " added to cart!");
 
+    showMessage(
+        product.name + " added to your cart."
+    );
 }
 
 
-/* =========================================================
-   REMOVE ITEM
-   ========================================================= */
-
-function removeFromCart(productName) {
+function removeFromCart(productId) {
 
     cart = cart.filter(
-        item => item.name !== productName
+        item => item.id !== productId
     );
 
     saveCart();
     updateCart();
 
+    showMessage("Item removed from your cart.");
 }
 
 
-/* =========================================================
-   CHANGE QUANTITY
-   ========================================================= */
+function changeQuantity(productId, change) {
 
-function changeQuantity(productName, change) {
-
-    const product = cart.find(
-        item => item.name === productName
+    const item = cart.find(
+        item => item.id === productId
     );
 
-    if (!product) return;
+    if (!item) {
+        return;
+    }
 
-    product.quantity += change;
+    item.quantity += Number(change);
 
-    if (product.quantity <= 0) {
-        removeFromCart(productName);
+    if (item.quantity <= 0) {
+        removeFromCart(productId);
         return;
     }
 
     saveCart();
     updateCart();
-
 }
 
 
-/* =========================================================
-   CLEAR CART
-   ========================================================= */
-
 function clearCart() {
 
-    if (cart.length === 0) return;
+    if (cart.length === 0) {
+        return;
+    }
 
     const confirmed = confirm(
         "Are you sure you want to empty your cart?"
     );
 
-    if (!confirmed) return;
+    if (!confirmed) {
+        return;
+    }
 
     cart = [];
 
     saveCart();
     updateCart();
 
+    showMessage("Your cart has been emptied.");
 }
 
 
 /* =========================================================
-   UPDATE CART
+   CART DISPLAY
    ========================================================= */
 
 function updateCart() {
 
-    const cartCount = document.getElementById("cartCount");
-    const cartItems = document.getElementById("cartItems");
-    const cartTotal = document.getElementById("cartTotal");
+    updateHeaderCounts();
 
-    /*
-       Calculate total number of products
-    */
+    const cartItems =
+        document.getElementById("cartItems");
 
-    const totalItems = cart.reduce(
-        (total, item) => total + item.quantity,
-        0
-    );
-
-
-    /*
-       Calculate total price
-    */
-
-    const totalPrice = cart.reduce(
-        (total, item) =>
-            total + (item.price * item.quantity),
-        0
-    );
-
-
-    /*
-       Update cart number
-    */
-
-    if (cartCount) {
-        cartCount.textContent = totalItems;
-    }
-
-
-    /*
-       Update total
-    */
+    const cartTotal =
+        document.getElementById("cartTotal");
 
     if (cartTotal) {
         cartTotal.textContent =
-            totalPrice.toFixed(2);
+            getCartTotal().toFixed(2);
     }
 
-
-    /*
-       Update cart products
-    */
-
-    if (!cartItems) return;
-
+    if (!cartItems) {
+        return;
+    }
 
     if (cart.length === 0) {
 
         cartItems.innerHTML = `
             <div class="empty-cart">
-                <div style="font-size:45px;">🛒</div>
+                <div class="empty-cart-icon">
+                    <svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        width="42"
+                        height="42">
+                        <path d="M3 3h2l2.4 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.5L21 7H6"/>
+                        <circle cx="10" cy="20" r="1"/>
+                        <circle cx="18" cy="20" r="1"/>
+                    </svg>
+                </div>
+
                 <h3>Your cart is empty</h3>
-                <p>Add some awesome 3D prints!</p>
+
+                <p>
+                    Add some Perfect Prints creations to get started.
+                </p>
             </div>
         `;
 
         return;
     }
 
-
-    /*
-       Create cart HTML
-    */
-
     cartItems.innerHTML = cart.map(item => {
 
         const itemTotal =
-            item.price * item.quantity;
+            Number(item.price) *
+            Number(item.quantity);
 
         return `
             <div class="cart-item">
 
+                <div class="cart-item-image">
+                    <img
+                        src="${item.image || "logo.png"}"
+                        alt="${escapeHTML(item.name)}"
+                    >
+                </div>
+
                 <div class="cart-item-info">
 
-                    <h3>${item.name}</h3>
+                    <h3>
+                        ${escapeHTML(item.name)}
+                    </h3>
 
                     <p>
-                        $${item.price.toFixed(2)} each
+                        $${Number(item.price).toFixed(2)} each
                     </p>
 
                 </div>
 
-
                 <div class="cart-item-controls">
 
                     <button
-                        onclick="changeQuantity('${item.name}', -1)"
-                        class="quantity-btn">
+                        type="button"
+                        class="quantity-btn"
+                        data-cart-action="decrease"
+                        data-id="${item.id}"
+                        aria-label="Decrease quantity"
+                    >
                         −
                     </button>
 
@@ -292,13 +341,16 @@ function updateCart() {
                     </span>
 
                     <button
-                        onclick="changeQuantity('${item.name}', 1)"
-                        class="quantity-btn">
+                        type="button"
+                        class="quantity-btn"
+                        data-cart-action="increase"
+                        data-id="${item.id}"
+                        aria-label="Increase quantity"
+                    >
                         +
                     </button>
 
                 </div>
-
 
                 <div class="cart-item-price">
 
@@ -307,8 +359,11 @@ function updateCart() {
                     </strong>
 
                     <button
-                        onclick="removeFromCart('${item.name}')"
-                        class="remove-btn">
+                        type="button"
+                        class="remove-btn"
+                        data-cart-action="remove"
+                        data-id="${item.id}"
+                    >
                         Remove
                     </button>
 
@@ -318,97 +373,475 @@ function updateCart() {
         `;
 
     }).join("");
-
 }
 
 
 /* =========================================================
-   OPEN CART
+   CART PANEL
    ========================================================= */
 
 function openCart() {
 
-    const cartPanel =
+    const panel =
         document.getElementById("cartPanel");
 
-    if (!cartPanel) return;
+    if (!panel) {
+        return;
+    }
 
     updateCart();
 
-    cartPanel.classList.add("open");
-
+    panel.classList.add("open");
 }
 
-
-/* =========================================================
-   CLOSE CART
-   ========================================================= */
 
 function closeCart() {
 
-    const cartPanel =
+    const panel =
         document.getElementById("cartPanel");
 
-    if (!cartPanel) return;
+    if (!panel) {
+        return;
+    }
 
-    cartPanel.classList.remove("open");
-
+    panel.classList.remove("open");
 }
 
-
-/* =========================================================
-   CHECKOUT
-   ========================================================= */
 
 function checkout() {
 
     if (cart.length === 0) {
 
-        alert(
-            "Your cart is empty. Add a product first!"
+        showMessage(
+            "Your cart is empty."
         );
 
         return;
     }
 
-    window.location.href = "checkout.html";
-
+    window.location.href =
+        "checkout.html";
 }
 
 
-    const total = cart.reduce(
-        (sum, item) =>
-            sum + item.price * item.quantity,
-        0
+/* =========================================================
+   CART BUTTON EVENTS
+   ========================================================= */
+
+function setupCartEvents() {
+
+    document.addEventListener(
+        "click",
+        function(event) {
+
+            const actionButton =
+                event.target.closest(
+                    "[data-cart-action]"
+                );
+
+            if (actionButton) {
+
+                const id =
+                    actionButton.dataset.id;
+
+                const action =
+                    actionButton.dataset.cartAction;
+
+                if (action === "increase") {
+                    changeQuantity(id, 1);
+                }
+
+                if (action === "decrease") {
+                    changeQuantity(id, -1);
+                }
+
+                if (action === "remove") {
+                    removeFromCart(id);
+                }
+
+                return;
+            }
+
+            const cartButton =
+                event.target.closest(".cart-btn");
+
+            if (cartButton) {
+                openCart();
+            }
+
+            const closeButton =
+                event.target.closest(".cart-close");
+
+            if (closeButton) {
+                closeCart();
+            }
+
+            const checkoutButton =
+                event.target.closest(
+                    "[data-checkout]"
+                );
+
+            if (checkoutButton) {
+                checkout();
+            }
+
+            const clearButton =
+                event.target.closest(
+                    "[data-clear-cart]"
+                );
+
+            if (clearButton) {
+                clearCart();
+            }
+        }
     );
 
+    document.addEventListener(
+        "keydown",
+        function(event) {
 
-    const orderList = cart.map(item =>
-        `${item.name} x${item.quantity}`
-    ).join("\n");
+            if (event.key === "Escape") {
+                closeCart();
+            }
 
-
-    const message =
-        "Perfect Prints Order\n\n" +
-        orderList +
-        "\n\n" +
-        "Total: $" +
-        total.toFixed(2) +
-        " AUD";
+        }
+    );
+}
 
 
-    /*
-       For now this sends the customer
-       to the contact page with the order
-       information ready to copy.
-    */
+/* =========================================================
+   HEADER COUNTS
+   ========================================================= */
 
-    alert(
-        message +
-        "\n\nCheckout is ready! " +
-        "Contact Perfect Prints to complete your order."
+function updateHeaderCounts() {
+
+    const cartCount =
+        document.getElementById("cartCount");
+
+    if (cartCount) {
+        cartCount.textContent =
+            getCartCount();
+    }
+
+
+    const wishlist =
+        readStorage(WISHLIST_KEY, []);
+
+    const wishlistCount =
+        document.getElementById(
+            "wishlistCount"
+        );
+
+    if (wishlistCount) {
+
+        wishlistCount.textContent =
+            Array.isArray(wishlist)
+                ? wishlist.length
+                : 0;
+    }
+}
+
+
+/* =========================================================
+   WISHLIST
+   ========================================================= */
+
+function getWishlist() {
+
+    const wishlist =
+        readStorage(
+            WISHLIST_KEY,
+            []
+        );
+
+    return Array.isArray(wishlist)
+        ? wishlist
+        : [];
+}
+
+
+function saveWishlist(wishlist) {
+
+    writeStorage(
+        WISHLIST_KEY,
+        wishlist
     );
 
+    updateHeaderCounts();
+}
+
+
+function isInWishlist(productId) {
+
+    return getWishlist()
+        .includes(productId);
+}
+
+
+function toggleWishlist(productId) {
+
+    const product =
+        getProduct(productId);
+
+    if (!product) {
+        return;
+    }
+
+    let wishlist =
+        getWishlist();
+
+    if (wishlist.includes(productId)) {
+
+        wishlist =
+            wishlist.filter(
+                id => id !== productId
+            );
+
+        showMessage(
+            product.name +
+            " removed from your wishlist."
+        );
+
+    } else {
+
+        wishlist.push(productId);
+
+        showMessage(
+            product.name +
+            " added to your wishlist."
+        );
+    }
+
+    saveWishlist(wishlist);
+
+    renderWishlist();
+    renderProducts();
+}
+
+
+/* =========================================================
+   WISHLIST DISPLAY
+   ========================================================= */
+
+function renderWishlist() {
+
+    const container =
+        document.getElementById(
+            "wishlistItems"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    const wishlist =
+        getWishlist();
+
+    const products =
+        wishlist
+            .map(id => getProduct(id))
+            .filter(Boolean);
+
+    if (products.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty-state">
+
+                <div class="empty-state-icon">
+                    <svg viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        width="44"
+                        height="44">
+                        <path d="M20.8 8.8c0 5.4-8.8 10.2-8.8 10.2S3.2 14.2 3.2 8.8A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.7Z"/>
+                    </svg>
+                </div>
+
+                <h2>Your wishlist is empty</h2>
+
+                <p>
+                    Save products here so you can find them later.
+                </p>
+
+                <a href="products.html" class="btn btn-primary">
+                    Browse Shop
+                </a>
+
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML =
+        products.map(createProductCard).join("");
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+   ========================================================= */
+
+function createProductCard(product) {
+
+    const wished =
+        isInWishlist(product.id);
+
+    const price =
+        product.price > 0
+            ? `$${product.price.toFixed(2)}`
+            : "Quote required";
+
+    return `
+        <article
+            class="product-card"
+            data-product-id="${product.id}"
+        >
+
+            <div class="product-image">
+
+                <img
+                    src="${product.image}"
+                    alt="${escapeHTML(product.name)}"
+                    loading="lazy"
+                >
+
+                <button
+                    type="button"
+                    class="wishlist-toggle ${wished ? "active" : ""}"
+                    data-wishlist-id="${product.id}"
+                    aria-label="${
+                        wished
+                            ? "Remove from wishlist"
+                            : "Add to wishlist"
+                    }"
+                >
+                    <svg viewBox="0 0 24 24"
+                        fill="${wished ? "currentColor" : "none"}"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                        width="20"
+                        height="20">
+                        <path d="M20.8 8.8c0 5.4-8.8 10.2-8.8 10.2S3.2 14.2 3.2 8.8A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.7Z"/>
+                    </svg>
+                </button>
+
+            </div>
+
+            <div class="product-content">
+
+                <span class="product-category">
+                    ${escapeHTML(product.category)}
+                </span>
+
+                <h3>
+                    ${escapeHTML(product.name)}
+                </h3>
+
+                <p>
+                    ${escapeHTML(product.description)}
+                </p>
+
+                <div class="product-bottom">
+
+                    <strong class="product-price">
+                        ${price}
+                    </strong>
+
+                    ${
+                        product.price > 0
+                        ? `
+                            <button
+                                type="button"
+                                class="product-add-btn"
+                                data-add-product="${product.id}"
+                            >
+                                Add to Cart
+                            </button>
+                        `
+                        : `
+                            <a
+                                href="contact.html"
+                                class="product-add-btn"
+                            >
+                                Request Quote
+                            </a>
+                        `
+                    }
+
+                </div>
+
+            </div>
+
+        </article>
+    `;
+}
+
+
+/* =========================================================
+   PRODUCT LIST
+   ========================================================= */
+
+function renderProducts() {
+
+    const container =
+        document.getElementById(
+            "productsGrid"
+        );
+
+    if (!container) {
+        return;
+    }
+
+    container.innerHTML =
+        PRODUCTS
+            .map(createProductCard)
+            .join("");
+}
+
+
+/* =========================================================
+   PRODUCT BUTTON EVENTS
+   ========================================================= */
+
+function setupProductEvents() {
+
+    document.addEventListener(
+        "click",
+        function(event) {
+
+            const addButton =
+                event.target.closest(
+                    "[data-add-product]"
+                );
+
+            if (addButton) {
+
+                addToCart(
+                    addButton.dataset.addProduct
+                );
+
+                return;
+            }
+
+
+            const wishlistButton =
+                event.target.closest(
+                    "[data-wishlist-id]"
+                );
+
+            if (wishlistButton) {
+
+                toggleWishlist(
+                    wishlistButton.dataset.wishlistId
+                );
+
+                return;
+            }
+
+        }
+    );
 }
 
 
@@ -419,286 +852,159 @@ function checkout() {
 function setupSearch() {
 
     const searchInput =
-        document.getElementById("searchInput");
+        document.getElementById(
+            "searchInput"
+        );
 
-    if (!searchInput) return;
-
+    if (!searchInput) {
+        return;
+    }
 
     searchInput.addEventListener(
         "input",
-        function () {
+        function() {
 
             const searchTerm =
                 searchInput.value
                     .toLowerCase()
                     .trim();
 
-            const products =
+            const cards =
                 document.querySelectorAll(
                     ".product-card"
                 );
 
-
-            products.forEach(product => {
+            cards.forEach(card => {
 
                 const text =
-                    product.textContent
+                    card.textContent
                         .toLowerCase();
 
-                if (
-                    searchTerm === "" ||
+                card.style.display =
+                    !searchTerm ||
                     text.includes(searchTerm)
-                ) {
-
-                    product.style.display = "";
-
-                } else {
-
-                    product.style.display = "none";
-
-                }
+                        ? ""
+                        : "none";
 
             });
 
         }
     );
-
 }
 
 
 /* =========================================================
-   MESSAGE
-   ========================================================= */
-
-function showMessage(text) {
-
-    const oldMessage =
-        document.querySelector(".perfect-message");
-
-    if (oldMessage) {
-        oldMessage.remove();
-    }
-
-
-    const message =
-        document.createElement("div");
-
-    message.className =
-        "perfect-message";
-
-    message.textContent = text;
-
-    message.style.cssText = `
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        z-index: 9999;
-
-        padding: 14px 20px;
-
-        background: #171717;
-        color: white;
-
-        border-radius: 12px;
-
-        box-shadow:
-            0 10px 30px
-            rgba(0,0,0,0.25);
-
-        font-weight: 600;
-
-        transition:
-            opacity 0.4s ease,
-            transform 0.4s ease;
-    `;
-
-
-    document.body.appendChild(message);
-
-
-    setTimeout(() => {
-
-        message.style.opacity = "0";
-        message.style.transform =
-            "translateY(10px)";
-
-    }, 1800);
-
-
-    setTimeout(() => {
-
-        message.remove();
-
-    }, 2200);
-
-}
-
-
-/* =========================================================
-   ESCAPE KEY
-   ========================================================= */
-
-document.addEventListener(
-    "keydown",
-    function (event) {
-
-        if (event.key === "Escape") {
-            closeCart();
-        }
-
-    }
-);
-
-
-/* =========================================================
-   CLICK OUTSIDE CART
-   ========================================================= */
-
-document.addEventListener(
-    "click",
-    function (event) {
-
-        const cartPanel =
-            document.getElementById("cartPanel");
-
-        const cartButton =
-            document.querySelector(".cart-btn");
-
-
-        if (!cartPanel || !cartButton) {
-            return;
-        }
-
-
-        if (
-            cartPanel.classList.contains("open") &&
-            !cartPanel.contains(event.target) &&
-            !cartButton.contains(event.target)
-        ) {
-
-            closeCart();
-
-        }
-
-    }
-);
-
-
-console.log(
-    "🐉 Perfect Prints cart loaded!"
-);
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   PERFECT PRINTS READY
-   ========================================================= */
-
-console.log(
-    "🐉 Perfect Prints website JavaScript loaded successfully!"
-);
-/* =========================================================
-   CHECKOUT PAGE
+   CHECKOUT
    ========================================================= */
 
 function loadCheckout() {
 
     const checkoutItems =
-        document.getElementById("checkoutItems");
+        document.getElementById(
+            "checkoutItems"
+        );
 
     const checkoutTotal =
-        document.getElementById("checkoutTotal");
+        document.getElementById(
+            "checkoutTotal"
+        );
 
-    if (!checkoutItems || !checkoutTotal) {
+    if (!checkoutItems) {
         return;
     }
-
 
     if (cart.length === 0) {
 
         checkoutItems.innerHTML = `
-            <div class="empty-cart">
-                <h3>Your cart is empty.</h3>
+            <div class="empty-state">
+
+                <h2>Your cart is empty</h2>
 
                 <p>
-                    Add some products before checking out.
+                    Add products before checking out.
                 </p>
 
-                <a href="products.html">
-                    Browse Products
+                <a
+                    href="products.html"
+                    class="btn btn-primary"
+                >
+                    Browse Shop
                 </a>
+
             </div>
         `;
 
-        checkoutTotal.textContent = "0.00";
+        if (checkoutTotal) {
+            checkoutTotal.textContent =
+                "0.00";
+        }
 
         return;
     }
 
+    checkoutItems.innerHTML =
+        cart.map(item => {
 
-    let total = 0;
+            const total =
+                item.price *
+                item.quantity;
 
+            return `
+                <div class="checkout-item">
 
-    checkoutItems.innerHTML = cart.map(item => {
+                    <div class="checkout-item-image">
+                        <img
+                            src="${item.image || "logo.png"}"
+                            alt="${escapeHTML(item.name)}"
+                        >
+                    </div>
 
-        const itemTotal =
-            item.price * item.quantity;
+                    <div class="checkout-item-info">
 
-        total += itemTotal;
+                        <strong>
+                            ${escapeHTML(item.name)}
+                        </strong>
 
-        return `
-            <div class="checkout-item">
+                        <p>
+                            Quantity: ${item.quantity}
+                        </p>
 
-                <div>
+                    </div>
+
                     <strong>
-                        ${item.name}
+                        $${total.toFixed(2)}
                     </strong>
 
-                    <p>
-                        Quantity: ${item.quantity}
-                    </p>
                 </div>
+            `;
 
-                <strong>
-                    $${itemTotal.toFixed(2)}
-                </strong>
+        }).join("");
 
-            </div>
-        `;
+    if (checkoutTotal) {
 
-    }).join("");
+        checkoutTotal.textContent =
+            getCartTotal().toFixed(2);
 
-
-    checkoutTotal.textContent =
-        total.toFixed(2);
-
+    }
 }
 
-
-/* =========================================================
-   PLACE ORDER
-   ========================================================= */
 
 function setupCheckoutForm() {
 
     const form =
-        document.getElementById("checkoutForm");
+        document.getElementById(
+            "checkoutForm"
+        );
 
     if (!form) {
         return;
     }
-
 
     form.addEventListener(
         "submit",
         function(event) {
 
             event.preventDefault();
-
 
             if (cart.length === 0) {
 
@@ -709,32 +1015,57 @@ function setupCheckoutForm() {
                 return;
             }
 
-
-            const name =
+            const nameField =
                 document.getElementById(
                     "customerName"
-                ).value.trim();
+                );
 
-
-            const email =
+            const emailField =
                 document.getElementById(
                     "customerEmail"
-                ).value.trim();
+                );
+
+            const phoneField =
+                document.getElementById(
+                    "customerPhone"
+                );
+
+            const addressField =
+                document.getElementById(
+                    "customerAddress"
+                );
+
+
+            const name =
+                nameField
+                    ? nameField.value.trim()
+                    : "";
+
+            const email =
+                emailField
+                    ? emailField.value.trim()
+                    : "";
+
+            const phone =
+                phoneField
+                    ? phoneField.value.trim()
+                    : "";
+
+            const address =
+                addressField
+                    ? addressField.value.trim()
+                    : "";
 
 
             if (!name || !email) {
 
                 alert(
-                    "Please fill in your details."
+                    "Please enter your name and email."
                 );
 
                 return;
             }
 
-
-            /*
-               Save order information locally.
-            */
 
             const order = {
 
@@ -742,19 +1073,28 @@ function setupCheckoutForm() {
                     "PP-" +
                     Date.now(),
 
-                customer: name,
+                customer:
+                    name,
 
-                email: email,
+                email:
+                    email,
 
-                items: cart,
+                phone:
+                    phone,
 
-                total: cart.reduce(
-                    (sum, item) =>
-                        sum +
-                        item.price *
-                        item.quantity,
-                    0
-                ),
+                address:
+                    address,
+
+                items:
+                    cart.map(item => ({
+                        ...item
+                    })),
+
+                total:
+                    getCartTotal(),
+
+                status:
+                    "New",
 
                 date:
                     new Date().toISOString()
@@ -762,25 +1102,35 @@ function setupCheckoutForm() {
             };
 
 
+            const orders =
+                readStorage(
+                    ORDERS_KEY,
+                    []
+                );
+
+            const safeOrders =
+                Array.isArray(orders)
+                    ? orders
+                    : [];
+
+            safeOrders.push(order);
+
+            writeStorage(
+                ORDERS_KEY,
+                safeOrders
+            );
+
             localStorage.setItem(
                 "perfectPrintsLastOrder",
                 JSON.stringify(order)
             );
 
 
-            /*
-               Empty cart after order.
-            */
-
             cart = [];
 
             saveCart();
             updateCart();
 
-
-            /*
-               Show confirmation.
-            */
 
             const success =
                 document.getElementById(
@@ -792,135 +1142,288 @@ function setupCheckoutForm() {
                 success.style.display =
                     "flex";
 
+            } else {
+
+                alert(
+                    "Your order has been placed successfully. Your order number is " +
+                    order.orderNumber +
+                    "."
+                );
+
             }
+
+            form.reset();
+
+            loadCheckout();
 
         }
     );
-
 }
 
 
 /* =========================================================
-   START CHECKOUT
+   ACCOUNT
    ========================================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
+function loadAccount() {
 
-        loadCheckout();
-        setupCheckoutForm();
+    const account =
+        readStorage(
+            ACCOUNT_KEY,
+            {}
+        );
 
+    const name =
+        document.getElementById(
+            "accountName"
+        );
+
+    const email =
+        document.getElementById(
+            "accountEmail"
+        );
+
+    const phone =
+        document.getElementById(
+            "accountPhone"
+        );
+
+    if (name) {
+        name.value =
+            account.name || "";
     }
-);
+
+    if (email) {
+        email.value =
+            account.email || "";
+    }
+
+    if (phone) {
+        phone.value =
+            account.phone || "";
+    }
+
+    updateAccountWelcome(
+        account.name || ""
+    );
+}
+
+
+function saveAccount(event) {
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById(
+            "accountName"
+        );
+
+    const email =
+        document.getElementById(
+            "accountEmail"
+        );
+
+    const phone =
+        document.getElementById(
+            "accountPhone"
+        );
+
+
+    const account = {
+
+        name:
+            name
+                ? name.value.trim()
+                : "",
+
+        email:
+            email
+                ? email.value.trim()
+                : "",
+
+        phone:
+            phone
+                ? phone.value.trim()
+                : ""
+
+    };
+
+
+    writeStorage(
+        ACCOUNT_KEY,
+        account
+    );
+
+    updateAccountWelcome(
+        account.name
+    );
+
+    showMessage(
+        "Your account details have been saved."
+    );
+}
+
+
+function updateAccountWelcome(name) {
+
+    const welcome =
+        document.getElementById(
+            "accountWelcome"
+        );
+
+    if (!welcome) {
+        return;
+    }
+
+    welcome.textContent =
+        name
+            ? "Welcome, " + name
+            : "Welcome to Perfect Prints";
+}
+
+
+function clearAccount() {
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to clear your account details?"
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+    localStorage.removeItem(
+        ACCOUNT_KEY
+    );
+
+    const form =
+        document.getElementById(
+            "accountForm"
+        );
+
+    if (form) {
+        form.reset();
+    }
+
+    updateAccountWelcome("");
+
+    showMessage(
+        "Your account details have been cleared."
+    );
+}
+
+
+function setupAccount() {
+
+    const form =
+        document.getElementById(
+            "accountForm"
+        );
+
+    if (!form) {
+        return;
+    }
+
+    form.addEventListener(
+        "submit",
+        saveAccount
+    );
+
+    loadAccount();
+}
+
+
 /* =========================================================
-   PERFECT PRINTS ADMIN SYSTEM
+   ADMIN SYSTEM
    ========================================================= */
 
 let adminOrders = [];
 
 
-/* =========================================================
-   LOAD ORDERS
-   ========================================================= */
-
 function loadAdminOrders() {
 
-    const savedOrders =
-        localStorage.getItem("perfectPrintsOrders");
+    adminOrders =
+        readStorage(
+            ORDERS_KEY,
+            []
+        );
 
-    if (savedOrders) {
-
-        try {
-
-            adminOrders =
-                JSON.parse(savedOrders);
-
-            if (!Array.isArray(adminOrders)) {
-                adminOrders = [];
-            }
-
-        } catch (error) {
-
-            adminOrders = [];
-
-        }
-
-    } else {
-
+    if (!Array.isArray(adminOrders)) {
         adminOrders = [];
-
     }
 
     displayAdminOrders();
-
 }
 
-
-/* =========================================================
-   SAVE ORDERS
-   ========================================================= */
 
 function saveAdminOrders() {
 
-    localStorage.setItem(
-        "perfectPrintsOrders",
-        JSON.stringify(adminOrders)
+    writeStorage(
+        ORDERS_KEY,
+        adminOrders
     );
-
 }
 
-
-/* =========================================================
-   DISPLAY ORDERS
-   ========================================================= */
 
 function displayAdminOrders() {
 
     const container =
-        document.getElementById("adminOrdersList");
+        document.getElementById(
+            "adminOrdersList"
+        );
 
-    if (!container) return;
-
+    if (!container) {
+        return;
+    }
 
     const searchInput =
-        document.getElementById("adminSearch");
-
+        document.getElementById(
+            "adminSearch"
+        );
 
     const search =
         searchInput
-            ? searchInput.value.toLowerCase().trim()
+            ? searchInput.value
+                .toLowerCase()
+                .trim()
             : "";
 
 
-    const filteredOrders =
+    const filtered =
         adminOrders.filter(order => {
 
             const text =
                 (
-                    order.orderNumber +
-                    " " +
-                    order.customer +
-                    " " +
-                    order.email
-                ).toLowerCase();
+                    order.orderNumber ||
+                    ""
+                ) +
+                " " +
+                (
+                    order.customer ||
+                    ""
+                ) +
+                " " +
+                (
+                    order.email ||
+                    ""
+                );
 
-            return text.includes(search);
-
+            return text
+                .toLowerCase()
+                .includes(search);
         });
 
 
-    if (filteredOrders.length === 0) {
+    if (filtered.length === 0) {
 
         container.innerHTML = `
             <div class="admin-empty">
 
-                <div>📦</div>
-
                 <h3>No orders found</h3>
 
                 <p>
-                    There are no orders matching your search.
+                    There are currently no matching orders.
                 </p>
 
             </div>
@@ -933,16 +1436,16 @@ function displayAdminOrders() {
 
 
     container.innerHTML =
-        filteredOrders.map(order => {
+        filtered.map(order => {
 
             const status =
                 order.status || "New";
 
-
             const date =
                 order.date
-                    ? new Date(order.date)
-                        .toLocaleString()
+                    ? new Date(
+                        order.date
+                    ).toLocaleString()
                     : "Unknown";
 
 
@@ -954,15 +1457,21 @@ function displayAdminOrders() {
                         <div>
 
                             <h3>
-                                ${order.orderNumber}
+                                ${escapeHTML(
+                                    order.orderNumber || "Order"
+                                )}
                             </h3>
 
                             <p>
-                                👤 ${order.customer}
+                                ${escapeHTML(
+                                    order.customer || "Unknown customer"
+                                )}
                             </p>
 
                             <p>
-                                📧 ${order.email}
+                                ${escapeHTML(
+                                    order.email || ""
+                                )}
                             </p>
 
                             <small>
@@ -975,60 +1484,53 @@ function displayAdminOrders() {
                         <div class="admin-order-right">
 
                             <strong>
-                                $${Number(order.total || 0).toFixed(2)}
+                                $${Number(
+                                    order.total || 0
+                                ).toFixed(2)}
                             </strong>
 
 
                             <select
-                                onchange="changeOrderStatus(
-                                    '${order.orderNumber}',
-                                    this.value
-                                )"
+                                data-status-order="${escapeHTML(
+                                    order.orderNumber
+                                )}"
                             >
 
-                                <option
-                                    ${status === "New" ? "selected" : ""}
-                                >
-                                    New
-                                </option>
-
-                                <option
-                                    ${status === "Processing" ? "selected" : ""}
-                                >
-                                    Processing
-                                </option>
-
-                                <option
-                                    ${status === "Shipped" ? "selected" : ""}
-                                >
-                                    Shipped
-                                </option>
-
-                                <option
-                                    ${status === "Completed" ? "selected" : ""}
-                                >
-                                    Completed
-                                </option>
+                                ${[
+                                    "New",
+                                    "Processing",
+                                    "Shipped",
+                                    "Completed"
+                                ].map(option => `
+                                    <option
+                                        value="${option}"
+                                        ${status === option ? "selected" : ""}
+                                    >
+                                        ${option}
+                                    </option>
+                                `).join("")}
 
                             </select>
 
 
                             <button
-                                onclick="viewOrder(
-                                    '${order.orderNumber}'
-                                )"
+                                type="button"
+                                data-view-order="${escapeHTML(
+                                    order.orderNumber
+                                )}"
                             >
-                                👀 View
+                                View
                             </button>
 
 
                             <button
+                                type="button"
                                 class="admin-delete-btn"
-                                onclick="deleteOrder(
-                                    '${order.orderNumber}'
-                                )"
+                                data-delete-order="${escapeHTML(
+                                    order.orderNumber
+                                )}"
                             >
-                                🗑️
+                                Delete
                             </button>
 
                         </div>
@@ -1042,13 +1544,8 @@ function displayAdminOrders() {
 
 
     updateAdminStats();
-
 }
 
-
-/* =========================================================
-   ADMIN STATISTICS
-   ========================================================= */
 
 function updateAdminStats() {
 
@@ -1078,7 +1575,7 @@ function updateAdminStats() {
 
     if (sales) {
 
-        const totalSales =
+        const total =
             adminOrders.reduce(
                 (sum, order) =>
                     sum +
@@ -1087,8 +1584,7 @@ function updateAdminStats() {
             );
 
         sales.textContent =
-            totalSales.toFixed(2);
-
+            total.toFixed(2);
     }
 
 
@@ -1103,15 +1599,9 @@ function updateAdminStats() {
 
         newOrders.textContent =
             count;
-
     }
-
 }
 
-
-/* =========================================================
-   CHANGE ORDER STATUS
-   ========================================================= */
 
 function changeOrderStatus(
     orderNumber,
@@ -1120,142 +1610,165 @@ function changeOrderStatus(
 
     const order =
         adminOrders.find(
-            order =>
-                order.orderNumber === orderNumber
+            item =>
+                item.orderNumber ===
+                orderNumber
         );
 
+    if (!order) {
+        return;
+    }
 
-    if (!order) return;
-
-
-    order.status = newStatus;
+    order.status =
+        newStatus;
 
     saveAdminOrders();
-
     displayAdminOrders();
 
+    showMessage(
+        "Order status updated."
+    );
 }
 
-
-/* =========================================================
-   VIEW ORDER
-   ========================================================= */
 
 function viewOrder(orderNumber) {
 
     const order =
         adminOrders.find(
-            order =>
-                order.orderNumber === orderNumber
+            item =>
+                item.orderNumber ===
+                orderNumber
         );
 
-
-    if (!order) return;
-
+    if (!order) {
+        return;
+    }
 
     const details =
         document.getElementById(
             "orderDetails"
         );
 
-
-    if (!details) return;
-
-
-    const items =
-        (order.items || []).map(item => {
-
-            return `
-                <div class="admin-detail-item">
-
-                    <span>
-                        ${item.name}
-                        × ${item.quantity}
-                    </span>
-
-                    <strong>
-                        $${(
-                            item.price *
-                            item.quantity
-                        ).toFixed(2)}
-                    </strong>
-
-                </div>
-            `;
-
-        }).join("");
-
-
-    details.innerHTML = `
-
-        <h2>
-            📦 Order ${order.orderNumber}
-        </h2>
-
-        <hr>
-
-        <h3>Customer</h3>
-
-        <p>
-            👤 ${order.customer}
-        </p>
-
-        <p>
-            📧 ${order.email}
-        </p>
-
-
-        <h3>Items</h3>
-
-        ${items}
-
-
-        <div class="admin-detail-total">
-
-            <strong>Total</strong>
-
-            <strong>
-                $${Number(order.total || 0).toFixed(2)}
-            </strong>
-
-        </div>
-
-
-        <h3>Status</h3>
-
-        <p>
-            ${order.status || "New"}
-        </p>
-
-
-        <button
-            class="modal-action-btn"
-            onclick="closeOrderModal()"
-        >
-            Close
-        </button>
-
-    `;
-
-
     const modal =
         document.getElementById(
             "orderModal"
         );
 
-
-    if (modal) {
-
-        modal.style.display = "flex";
-
+    if (!details || !modal) {
+        return;
     }
 
+
+    const items =
+        (order.items || [])
+            .map(item => {
+
+                const total =
+                    Number(item.price || 0) *
+                    Number(item.quantity || 0);
+
+                return `
+                    <div class="admin-detail-item">
+
+                        <span>
+                            ${escapeHTML(
+                                item.name
+                            )}
+                            × ${item.quantity}
+                        </span>
+
+                        <strong>
+                            $${total.toFixed(2)}
+                        </strong>
+
+                    </div>
+                `;
+
+            }).join("");
+
+
+    details.innerHTML = `
+
+        <h2>
+            Order ${escapeHTML(
+                order.orderNumber || ""
+            )}
+        </h2>
+
+        <hr>
+
+        <h3>
+            Customer
+        </h3>
+
+        <p>
+            ${escapeHTML(
+                order.customer || ""
+            )}
+        </p>
+
+        <p>
+            ${escapeHTML(
+                order.email || ""
+            )}
+        </p>
+
+        ${
+            order.phone
+                ? `<p>${escapeHTML(order.phone)}</p>`
+                : ""
+        }
+
+        ${
+            order.address
+                ? `<p>${escapeHTML(order.address)}</p>`
+                : ""
+        }
+
+        <h3>
+            Items
+        </h3>
+
+        ${items}
+
+        <div class="admin-detail-total">
+
+            <strong>
+                Total
+            </strong>
+
+            <strong>
+                $${Number(
+                    order.total || 0
+                ).toFixed(2)}
+            </strong>
+
+        </div>
+
+        <h3>
+            Status
+        </h3>
+
+        <p>
+            ${escapeHTML(
+                order.status || "New"
+            )}
+        </p>
+
+        <button
+            type="button"
+            class="modal-action-btn"
+            onclick="closeOrderModal()"
+        >
+            Close
+        </button>
+    `;
+
+
+    modal.style.display =
+        "flex";
 }
 
-
-/* =========================================================
-   CLOSE ORDER MODAL
-   ========================================================= */
 
 function closeOrderModal() {
 
@@ -1264,19 +1777,12 @@ function closeOrderModal() {
             "orderModal"
         );
 
-
     if (modal) {
-
-        modal.style.display = "none";
-
+        modal.style.display =
+            "none";
     }
-
 }
 
-
-/* =========================================================
-   DELETE ORDER
-   ========================================================= */
 
 function deleteOrder(orderNumber) {
 
@@ -1285,256 +1791,330 @@ function deleteOrder(orderNumber) {
             "Delete this order permanently?"
         );
 
-
-    if (!confirmed) return;
-
+    if (!confirmed) {
+        return;
+    }
 
     adminOrders =
         adminOrders.filter(
             order =>
-                order.orderNumber !== orderNumber
+                order.orderNumber !==
+                orderNumber
         );
 
-
     saveAdminOrders();
-
     displayAdminOrders();
 
+    showMessage(
+        "Order deleted."
+    );
 }
 
-
-/* =========================================================
-   CLEAR ALL ORDERS
-   ========================================================= */
 
 function clearAllOrders() {
 
     if (adminOrders.length === 0) {
 
-        alert("There are no orders to clear.");
-
-        return;
-
-    }
-
-
-    const confirmed =
-        confirm(
-            "WARNING: This will delete ALL orders. Continue?"
+        showMessage(
+            "There are no orders to clear."
         );
 
-
-    if (!confirmed) return;
-
-
-    adminOrders = [];
-
-    saveAdminOrders();
-
-    displayAdminOrders();
-
-}
-
-
-/* =========================================================
-   ADMIN SEARCH
-   ========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-
-        const search =
-            document.getElementById(
-                "adminSearch"
-            );
-
-
-        if (search) {
-
-            search.addEventListener(
-                "input",
-                displayAdminOrders
-            );
-
-        }
-
-
-        loadAdminOrders();
-
-    }
-);
-/* =========================================================
-   PERFECT PRINTS ACCOUNT SYSTEM
-   ========================================================= */
-
-function loadAccount() {
-
-    const savedAccount =
-        localStorage.getItem("perfectPrintsAccount");
-
-    if (!savedAccount) {
         return;
     }
-
-    try {
-
-        const account =
-            JSON.parse(savedAccount);
-
-        const name =
-            document.getElementById("accountName");
-
-        const email =
-            document.getElementById("accountEmail");
-
-        const phone =
-            document.getElementById("accountPhone");
-
-        if (name) {
-            name.value = account.name || "";
-        }
-
-        if (email) {
-            email.value = account.email || "";
-        }
-
-        if (phone) {
-            phone.value = account.phone || "";
-        }
-
-        updateAccountWelcome(account.name);
-
-    } catch (error) {
-
-        console.log("Could not load account.");
-
-    }
-
-}
-
-
-function saveAccount(event) {
-
-    event.preventDefault();
-
-    const name =
-        document.getElementById("accountName").value.trim();
-
-    const email =
-        document.getElementById("accountEmail").value.trim();
-
-    const phone =
-        document.getElementById("accountPhone").value.trim();
-
-    const account = {
-
-        name: name,
-        email: email,
-        phone: phone
-
-    };
-
-    localStorage.setItem(
-        "perfectPrintsAccount",
-        JSON.stringify(account)
-    );
-
-    updateAccountWelcome(name);
-
-    alert("✅ Your account details have been saved!");
-
-}
-
-
-function updateAccountWelcome(name) {
-
-    const welcome =
-        document.getElementById("accountWelcome");
-
-    if (!welcome) {
-        return;
-    }
-
-    if (name) {
-
-        welcome.textContent =
-            "Welcome, " + name + "! 👋";
-
-    } else {
-
-        welcome.textContent =
-            "Welcome to Perfect Prints!";
-
-    }
-
-}
-
-
-function clearAccount() {
 
     const confirmed =
         confirm(
-            "Are you sure you want to clear your account details?"
+            "This will delete all orders. Continue?"
         );
 
     if (!confirmed) {
         return;
     }
 
-    localStorage.removeItem(
-        "perfectPrintsAccount"
+    adminOrders = [];
+
+    saveAdminOrders();
+    displayAdminOrders();
+
+    showMessage(
+        "All orders have been cleared."
     );
-
-    const form =
-        document.getElementById("accountForm");
-
-    if (form) {
-        form.reset();
-    }
-
-    updateAccountWelcome("");
-
-    alert("Account details cleared.");
-
 }
 
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+function setupAdmin() {
 
-        const accountForm =
-            document.getElementById("accountForm");
+    const search =
+        document.getElementById(
+            "adminSearch"
+        );
 
-        if (accountForm) {
+    if (search) {
 
-            accountForm.addEventListener(
-                "submit",
-                saveAccount
+        search.addEventListener(
+            "input",
+            displayAdminOrders
+        );
+    }
+
+
+    document.addEventListener(
+        "change",
+        function(event) {
+
+            const select =
+                event.target.closest(
+                    "[data-status-order]"
+                );
+
+            if (!select) {
+                return;
+            }
+
+            changeOrderStatus(
+                select.dataset.statusOrder,
+                select.value
+            );
+        }
+    );
+
+
+    document.addEventListener(
+        "click",
+        function(event) {
+
+            const viewButton =
+                event.target.closest(
+                    "[data-view-order]"
+                );
+
+            if (viewButton) {
+
+                viewOrder(
+                    viewButton.dataset.viewOrder
+                );
+
+                return;
+            }
+
+
+            const deleteButton =
+                event.target.closest(
+                    "[data-delete-order]"
+                );
+
+            if (deleteButton) {
+
+                deleteOrder(
+                    deleteButton.dataset.deleteOrder
+                );
+
+                return;
+            }
+
+        }
+    );
+
+
+    loadAdminOrders();
+}
+
+
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
+
+function setupMobileMenu() {
+
+    const toggle =
+        document.querySelector(
+            ".mobile-menu-toggle"
+        );
+
+    const menu =
+        document.querySelector(
+            ".mobile-nav"
+        );
+
+    if (!toggle || !menu) {
+        return;
+    }
+
+    toggle.addEventListener(
+        "click",
+        function() {
+
+            menu.classList.toggle(
+                "open"
             );
 
-            loadAccount();
+        }
+    );
+}
 
+
+/* =========================================================
+   TOAST MESSAGE
+   ========================================================= */
+
+function showMessage(text) {
+
+    const old =
+        document.querySelector(
+            ".perfect-message"
+        );
+
+    if (old) {
+        old.remove();
+    }
+
+
+    const message =
+        document.createElement(
+            "div"
+        );
+
+    message.className =
+        "perfect-message";
+
+    message.textContent =
+        text;
+
+
+    message.style.cssText = `
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        z-index: 9999;
+        padding: 14px 20px;
+        background: #10162a;
+        color: #f5f7ff;
+        border: 1px solid rgba(94,126,255,0.35);
+        border-radius: 12px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+        font-weight: 600;
+        opacity: 1;
+        transform: translateY(0);
+        transition:
+            opacity 0.35s ease,
+            transform 0.35s ease;
+    `;
+
+
+    document.body.appendChild(
+        message
+    );
+
+
+    setTimeout(
+        function() {
+
+            message.style.opacity =
+                "0";
+
+            message.style.transform =
+                "translateY(10px)";
+
+        },
+        1800
+    );
+
+
+    setTimeout(
+        function() {
+
+            if (message.parentNode) {
+                message.remove();
+            }
+
+        },
+        2200
+    );
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+
+/* =========================================================
+   CLOSE CART WHEN CLICKING OUTSIDE
+   ========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        const panel =
+            document.getElementById(
+                "cartPanel"
+            );
+
+        const button =
+            event.target.closest(
+                ".cart-btn"
+            );
+
+        if (
+            !panel ||
+            !panel.classList.contains("open")
+        ) {
+            return;
+        }
+
+        if (
+            !panel.contains(event.target) &&
+            !button
+        ) {
+            closeCart();
         }
 
     }
 );
-    <footer>
 
-        <h2>🐉 Perfect Prints</h2>
 
-        <p>
-            Creating amazing articulated 3D prints with quality,
-            creativity and care.
-        </p>
+/* =========================================================
+   START WEBSITE
+   ========================================================= */
 
-        <p>
-            © 2026 Perfect Prints. All Rights Reserved.
-        </p>
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
 
-    </footer>
+        updateCart();
 
-    <script src="script.js"></script>
+        updateHeaderCounts();
 
-</body>
+        setupCartEvents();
+
+        setupProductEvents();
+
+        setupSearch();
+
+        setupMobileMenu();
+
+        renderProducts();
+
+        renderWishlist();
+
+        loadCheckout();
+
+        setupCheckoutForm();
+
+        setupAccount();
+
+        setupAdmin();
+
+    }
+);
