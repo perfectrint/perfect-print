@@ -1,254 +1,1424 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Perfect Prints | Checkout</title>
+  <title>Checkout | Perfect Prints</title>
 
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(39,169,255,.10), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(140,77,255,.10), transparent 30%),
+        #050711;
+      color: #f4f7ff;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font-family: inherit;
+    }
+
+    .checkout-page {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+      padding-bottom: 70px;
+    }
+
+    /* HEADER */
+
+    .checkout-header {
+      height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(117,151,255,.14);
+    }
+
+    .checkout-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .checkout-logo img {
+      width: 43px;
+      height: 43px;
+      object-fit: contain;
+    }
+
+    .checkout-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #9ba7c2;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .checkout-nav a {
+      transition: .2s;
+    }
+
+    .checkout-nav a:hover,
+    .checkout-nav .active {
+      color: #64c7ff;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 9px;
+    }
+
+    .header-action {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(13,18,37,.65);
+      border: 1px solid rgba(117,151,255,.16);
+      color: #cbd5ef;
+      transition: .2s;
+    }
+
+    .header-action:hover {
+      color: #64c7ff;
+      border-color: rgba(77,180,255,.55);
+    }
+
+    /* HERO */
+
+    .checkout-hero {
+      padding: 60px 0 38px;
+    }
+
+    .eyebrow {
+      color: #64c7ff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .checkout-hero h1 {
+      margin: 0;
+      font-size: clamp(38px, 5vw, 58px);
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .checkout-hero p {
+      margin: 18px 0 0;
+      color: #9ba7c2;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* LAYOUT */
+
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .glass {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(15,21,43,.92),
+          rgba(8,11,24,.78)
+        );
+      border: 1px solid rgba(117,151,255,.16);
+      border-radius: 24px;
+      box-shadow: 0 24px 70px rgba(0,0,0,.30);
+    }
+
+    /* FORM */
+
+    .checkout-form {
+      padding: 30px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 23px;
+    }
+
+    .section-number {
+      width: 31px;
+      height: 31px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: rgba(39,169,255,.10);
+      border: 1px solid rgba(39,169,255,.18);
+      color: #64c7ff;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 19px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 17px;
+    }
+
+    .form-group {
+      margin-bottom: 17px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #cbd5ef;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      border: 1px solid rgba(117,151,255,.16);
+      border-radius: 12px;
+      background: rgba(5,7,17,.70);
+      color: #f4f7ff;
+      outline: none;
+      padding: 13px 14px;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    .form-group input,
+    .form-group select {
+      height: 48px;
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: rgba(77,180,255,.65);
+      box-shadow: 0 0 0 3px rgba(39,169,255,.07);
+    }
+
+    .form-group select option {
+      background: #080b18;
+    }
+
+    .required {
+      color: #64c7ff;
+    }
+
+    /* PAYMENT */
+
+    .payment-note {
+      margin-top: 5px;
+      padding: 15px;
+      border-radius: 13px;
+      background: rgba(140,77,255,.055);
+      border: 1px solid rgba(140,77,255,.15);
+      color: #9ba7c2;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .payment-note strong {
+      color: #b478ff;
+    }
+
+    .place-order-btn {
+      width: 100%;
+      height: 53px;
+      margin-top: 24px;
+      border: 0;
+      border-radius: 13px;
+      background: linear-gradient(135deg,#27a9ff,#8c4dff);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: 0 12px 35px rgba(39,169,255,.14);
+      transition: .2s;
+    }
+
+    .place-order-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(39,169,255,.22);
+    }
+
+    /* SUMMARY */
+
+    .order-summary {
+      padding: 27px;
+      position: sticky;
+      top: 20px;
+    }
+
+    .order-summary h2 {
+      margin: 0 0 22px;
+      font-size: 21px;
+    }
+
+    .summary-product {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(117,151,255,.09);
+    }
+
+    .summary-product-image {
+      width: 58px;
+      height: 58px;
+      flex: 0 0 58px;
+      border-radius: 13px;
+      background: rgba(39,169,255,.06);
+      border: 1px solid rgba(117,151,255,.11);
+      padding: 6px;
+    }
+
+    .summary-product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .summary-product-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .summary-product-info strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .summary-product-info span {
+      color: #7f8ba5;
+      font-size: 11px;
+    }
+
+    .summary-product-price {
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      color: #9ba7c2;
+      font-size: 13px;
+    }
+
+    .summary-row strong {
+      color: #f4f7ff;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(117,151,255,.12);
+      margin: 13px 0;
+    }
+
+    .free {
+      color: #59f39b !important;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 8px;
+    }
+
+    .summary-total span {
+      color: #9ba7c2;
+      font-size: 13px;
+    }
+
+    .summary-total strong {
+      font-size: 26px;
+    }
+
+    .shipping-box {
+      margin-top: 19px;
+      padding: 14px;
+      border-radius: 13px;
+      background: rgba(39,169,255,.055);
+      border: 1px solid rgba(39,169,255,.13);
+      color: #8e9ab5;
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .shipping-box strong {
+      color: #64c7ff;
+    }
+
+    /* SUCCESS */
+
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 75px 30px;
+    }
+
+    .success-icon {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 25px;
+      display: grid;
+      place-items: center;
+      border-radius: 24px;
+      background: rgba(89,243,155,.08);
+      border: 1px solid rgba(89,243,155,.20);
+      color: #59f39b;
+      font-size: 31px;
+    }
+
+    .success-screen h2 {
+      margin: 0 0 12px;
+      font-size: 30px;
+    }
+
+    .success-screen p {
+      max-width: 580px;
+      margin: 0 auto;
+      color: #8e9ab5;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .order-number {
+      display: inline-block;
+      margin: 22px 0;
+      padding: 12px 17px;
+      border-radius: 11px;
+      background: rgba(39,169,255,.07);
+      border: 1px solid rgba(39,169,255,.15);
+      color: #64c7ff;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .success-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .success-btn {
+      padding: 13px 18px;
+      border-radius: 11px;
+      background: linear-gradient(135deg,#27a9ff,#8c4dff);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .success-btn.secondary {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(117,151,255,.15);
+    }
+
+    /* EMPTY */
+
+    .empty-cart {
+      display: none;
+      text-align: center;
+      padding: 75px 25px;
+    }
+
+    .empty-cart i {
+      font-size: 35px;
+      color: #64c7ff;
+      margin-bottom: 20px;
+    }
+
+    .empty-cart h2 {
+      margin: 0 0 10px;
+    }
+
+    .empty-cart p {
+      color: #8e9ab5;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    /* FOOTER */
+
+    .checkout-footer {
+      text-align: center;
+      color: #68738e;
+      font-size: 12px;
+      padding-top: 50px;
+    }
+
+    .checkout-footer a {
+      color: #8e9ab5;
+    }
+
+    @media(max-width:900px) {
+
+      .checkout-nav {
+        display: none;
+      }
+
+      .checkout-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .order-summary {
+        position: static;
+      }
+
+      .checkout-page {
+        width: min(100% - 26px, 700px);
+      }
+    }
+
+    @media(max-width:600px) {
+
+      .checkout-header {
+        height: 72px;
+      }
+
+      .checkout-logo span {
+        display: none;
+      }
+
+      .header-actions .header-action:first-child {
+        display: none;
+      }
+
+      .checkout-hero {
+        padding: 45px 0 30px;
+      }
+
+      .checkout-form,
+      .order-summary {
+        padding: 21px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <header>
+<div class="checkout-page">
 
-        <div class="sale-banner">
-            🚚 FREE SHIPPING on orders over $75
-        </div>
+  <!-- HEADER -->
 
-        <nav>
+  <header class="checkout-header">
 
-            <div class="logo">
-                🐉 Perfect Prints
-            </div>
+    <a href="index.html" class="checkout-logo">
+      <img src="logo.png" alt="Perfect Prints">
+      <span>PERFECT PRINTS</span>
+    </a>
 
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+    <nav class="checkout-nav">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="account.html">Account</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="cart.html">Cart</a>
+      <a href="checkout.html" class="active">Checkout</a>
+    </nav>
 
-            <button class="cart-btn" onclick="openCart()">
-                🛒 Cart
-                <span id="cartCount">0</span>
-            </button>
+    <div class="header-actions">
 
-        </nav>
+      <a href="cart.html" class="header-action" title="Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+      </a>
 
-    </header>
+      <a href="account.html" class="header-action" title="Account">
+        <i class="fa-regular fa-user"></i>
+      </a>
 
+    </div>
 
-    <main class="checkout-page">
-
-        <section class="checkout-header">
-
-            <h1>Checkout</h1>
-
-            <p>
-                Complete your details to place your Perfect Prints order.
-            </p>
-
-        </section>
+  </header>
 
 
-        <div class="checkout-layout">
+  <!-- HERO -->
+
+  <section class="checkout-hero">
+
+    <div class="eyebrow">Secure Order</div>
+
+    <h1>Checkout.</h1>
+
+    <p>
+      Enter your details below and place your Perfect Prints order.
+    </p>
+
+  </section>
 
 
-            <!-- ORDER SUMMARY -->
+  <!-- CHECKOUT -->
 
-            <section class="checkout-card">
+  <section id="checkoutLayout" class="checkout-layout">
 
-                <h2>🛒 Your Order</h2>
+    <!-- FORM -->
 
-                <div id="checkoutItems">
-                    Loading cart...
-                </div>
+    <div class="glass checkout-form">
 
-                <div class="checkout-total">
+      <form id="checkoutForm">
 
-                    <span>Total</span>
+        <!-- CUSTOMER -->
 
-                    <strong>
-                        $<span id="checkoutTotal">0.00</span> AUD
-                    </strong>
+        <div class="section-title">
 
-                </div>
+          <div class="section-number">01</div>
 
-            </section>
-
-
-            <!-- CUSTOMER DETAILS -->
-
-            <section class="checkout-card">
-
-                <h2>📦 Your Details</h2>
-
-                <form id="checkoutForm">
-
-                    <label for="customerName">
-                        Full Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="customerName"
-                        placeholder="Your full name"
-                        required
-                    >
-
-
-                    <label for="customerEmail">
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="customerEmail"
-                        placeholder="your@email.com"
-                        required
-                    >
-
-
-                    <label for="address">
-                        Address
-                    </label>
-
-                    <input
-                        type="text"
-                        id="address"
-                        placeholder="Street address"
-                        required
-                    >
-
-
-                    <label for="suburb">
-                        Suburb
-                    </label>
-
-                    <input
-                        type="text"
-                        id="suburb"
-                        placeholder="Suburb"
-                        required
-                    >
-
-
-                    <label for="state">
-                        State
-                    </label>
-
-                    <select id="state" required>
-
-                        <option value="">
-                            Select state
-                        </option>
-
-                        <option>VIC</option>
-                        <option>NSW</option>
-                        <option>QLD</option>
-                        <option>SA</option>
-                        <option>WA</option>
-                        <option>TAS</option>
-                        <option>NT</option>
-                        <option>ACT</option>
-
-                    </select>
-
-
-                    <label for="postcode">
-                        Postcode
-                    </label>
-
-                    <input
-                        type="text"
-                        id="postcode"
-                        placeholder="Postcode"
-                        maxlength="4"
-                        required
-                    >
-
-
-                    <label for="notes">
-                        Order Notes
-                    </label>
-
-                    <textarea
-                        id="notes"
-                        placeholder="Anything you'd like us to know?"
-                        rows="4"
-                    ></textarea>
-
-
-                    <button
-                        type="submit"
-                        class="checkout-submit"
-                    >
-                        ✅ Place Order
-                    </button>
-
-                </form>
-
-            </section>
+          <h2>Customer details</h2>
 
         </div>
 
-    </main>
+
+        <div class="form-grid">
+
+          <div class="form-group">
+
+            <label>
+              First name <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="firstName"
+              required
+              placeholder="First name"
+            >
+
+          </div>
 
 
-    <!-- SUCCESS MESSAGE -->
+          <div class="form-group">
 
-    <div
-        id="orderSuccess"
-        class="order-success"
-        style="display:none;"
-    >
+            <label>
+              Last name <span class="required">*</span>
+            </label>
 
-        <div class="success-box">
+            <input
+              type="text"
+              id="lastName"
+              required
+              placeholder="Last name"
+            >
 
-            <div class="success-icon">
-                🎉
-            </div>
+          </div>
 
-            <h2>Order Received!</h2>
 
-            <p>
-                Thanks for ordering from Perfect Prints.
-            </p>
+          <div class="form-group full">
 
-            <p>
-                We'll contact you with the next steps.
-            </p>
+            <label>
+              Email <span class="required">*</span>
+            </label>
 
-            <button onclick="location.href='index.html'">
-                Back to Home
-            </button>
+            <input
+              type="email"
+              id="email"
+              required
+              placeholder="you@example.com"
+            >
+
+          </div>
 
         </div>
+
+
+        <!-- SHIPPING -->
+
+        <div class="section-title" style="margin-top:27px;">
+
+          <div class="section-number">02</div>
+
+          <h2>Shipping details</h2>
+
+        </div>
+
+
+        <div class="form-grid">
+
+          <div class="form-group full">
+
+            <label>
+              Address <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="address"
+              required
+              placeholder="Street address"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Suburb <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="suburb"
+              required
+              placeholder="Suburb"
+            >
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              State <span class="required">*</span>
+            </label>
+
+            <select id="state" required>
+
+              <option value="">Select state</option>
+
+              <option>VIC</option>
+              <option>NSW</option>
+              <option>QLD</option>
+              <option>SA</option>
+              <option>WA</option>
+              <option>TAS</option>
+              <option>NT</option>
+              <option>ACT</option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Postcode <span class="required">*</span>
+            </label>
+
+            <input
+              type="text"
+              id="postcode"
+              inputmode="numeric"
+              maxlength="4"
+              required
+              placeholder="Postcode"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- PAYMENT -->
+
+        <div class="section-title" style="margin-top:27px;">
+
+          <div class="section-number">03</div>
+
+          <h2>Payment</h2>
+
+        </div>
+
+
+        <div class="payment-note">
+
+          <strong>Payment setup</strong><br>
+
+          This Perfect Prints checkout currently records your order
+          for processing. No real card details are collected on this page.
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="place-order-btn"
+        >
+          Place Order
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+      </form>
 
     </div>
 
 
-    <footer>
+    <!-- SUMMARY -->
 
-        <h2>🐉 Perfect Prints</h2>
+    <aside class="glass order-summary">
 
-        <p>
-            Designed with passion.
-            Printed with precision.
-            Delivered with care.
-        </p>
+      <h2>Your order</h2>
 
-        <p>
-            © 2026 Perfect Prints
-        </p>
+      <div id="summaryProducts"></div>
 
-    </footer>
 
+      <div class="divider"></div>
+
+
+      <div class="summary-row">
+
+        <span>Subtotal</span>
+
+        <strong id="summarySubtotal">
+          $0.00
+        </strong>
+
+      </div>
+
+
+      <div class="summary-row">
+
+        <span>Shipping</span>
+
+        <strong id="summaryShipping">
+          $0.00
+        </strong>
+
+      </div>
+
+
+      <div class="divider"></div>
+
+
+      <div class="summary-total">
+
+        <span>Total</span>
+
+        <strong id="summaryTotal">
+          $0.00
+        </strong>
+
+      </div>
+
+
+      <div class="shipping-box" id="shippingBox">
+        Orders over <strong>$75</strong> receive
+        FREE SHIPPING Australia Wide.
+      </div>
+
+    </aside>
+
+  </section>
+
+
+  <!-- EMPTY CART -->
+
+  <section class="glass empty-cart" id="emptyCart">
+
+    <i class="fa-solid fa-bag-shopping"></i>
+
+    <h2>Your cart is empty</h2>
+
+    <p>
+      Add some Perfect Prints before checking out.
+    </p>
+
+    <a
+      href="products.html"
+      class="success-btn"
+    >
+      Browse Products
+    </a>
+
+  </section>
+
+
+  <!-- SUCCESS -->
+
+  <section class="glass success-screen" id="successScreen">
+
+    <div class="success-icon">
+      <i class="fa-solid fa-check"></i>
+    </div>
+
+    <h2>Order received.</h2>
+
+    <p>
+      Thanks for ordering from Perfect Prints.
+      Your order has been saved and is ready for processing.
+    </p>
+
+    <div class="order-number" id="successOrderNumber">
+      Order PP-0001
+    </div>
+
+    <div class="success-buttons">
+
+      <a
+        href="products.html"
+        class="success-btn"
+      >
+        Continue Shopping
+      </a>
+
+      <a
+        href="account.html"
+        class="success-btn secondary"
+      >
+        View Account
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <footer class="checkout-footer">
+
+    <p>
+      © 2026 Perfect Prints · Premium Australian 3D Printing
+    </p>
+
+    <p>
+      <a href="index.html">Home</a>
+      ·
+      <a href="products.html">Products</a>
+      ·
+      <a href="contact.html">Contact</a>
+    </p>
+
+  </footer>
+
+</div>
+
+
+<script>
+
+  const CART_KEY = "perfectPrintsCart";
+  const ORDERS_KEY = "perfectPrintsOrders";
+  const ACCOUNT_KEY = "perfectPrintsAccount";
+  const LAST_ORDER_KEY = "perfectPrintsLastOrder";
+
+  const SHIPPING_COST = 7.95;
+  const FREE_SHIPPING_LIMIT = 75;
+
+
+  const PRODUCTS = {
+
+    "flexi-dragon": {
+      id: "flexi-dragon",
+      name: "Flexi Dragon",
+      price: 15,
+      image: "dragon.jpg"
+    },
+
+    "mini-dinosaur": {
+      id: "mini-dinosaur",
+      name: "Mini Dinosaur",
+      price: 10,
+      image: "dinosaur.jpg"
+    },
+
+    "cute-axolotl": {
+      id: "cute-axolotl",
+      name: "Cute Axolotl",
+      price: 12,
+      image: "axolotl.jpg"
+    },
+
+    "flexi-snake": {
+      id: "flexi-snake",
+      name: "Flexi Snake",
+      price: 13,
+      image: "snake.jpg"
+    },
+
+    "turtle": {
+      id: "turtle",
+      name: "Turtle",
+      price: 10,
+      image: "turtle.jpg"
+    },
+
+    "octopus": {
+      id: "octopus",
+      name: "Octopus",
+      price: 10,
+      image: "octopus.jpg"
+    }
+
+  };
+
+
+  function getCart() {
+
+    try {
+
+      const data =
+        JSON.parse(localStorage.getItem(CART_KEY));
+
+      return Array.isArray(data) ? data : [];
+
+    } catch {
+
+      return [];
+
+    }
+
+  }
+
+
+  function normaliseCart() {
+
+    const raw = getCart();
+    const cart = [];
+
+    raw.forEach(item => {
+
+      const id =
+        typeof item === "string"
+          ? item
+          : item.id;
+
+      const product =
+        PRODUCTS[id];
+
+      if (!product) return;
+
+      const quantity =
+        typeof item === "object"
+          ? Number(item.quantity || 1)
+          : 1;
+
+      const existing =
+        cart.find(x => x.id === id);
+
+      if (existing) {
+
+        existing.quantity += Math.max(1, quantity);
+
+      } else {
+
+        cart.push({
+          id: id,
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          quantity: Math.max(1, quantity)
+        });
+
+      }
+
+    });
+
+    return cart;
+
+  }
+
+
+  function calculateCart(cart) {
+
+    let subtotal = 0;
+    let itemCount = 0;
+
+    cart.forEach(item => {
+
+      subtotal +=
+        item.price * item.quantity;
+
+      itemCount +=
+        item.quantity;
+
+    });
+
+
+    const shipping =
+      subtotal >= FREE_SHIPPING_LIMIT
+        ? 0
+        : subtotal > 0
+          ? SHIPPING_COST
+          : 0;
+
+
+    return {
+      subtotal,
+      shipping,
+      total: subtotal + shipping,
+      itemCount
+    };
+
+  }
+
+
+  function renderSummary() {
+
+    const cart =
+      normaliseCart();
+
+    if (!cart.length) {
+
+      document.getElementById("checkoutLayout").style.display =
+        "none";
+
+      document.getElementById("emptyCart").style.display =
+        "block";
+
+      return;
+
+    }
+
+
+    const totals =
+      calculateCart(cart);
+
+
+    document.getElementById("summaryProducts").innerHTML =
+      cart.map(item => {
+
+        const lineTotal =
+          item.price * item.quantity;
+
+        return `
+
+          <div class="summary-product">
+
+            <div class="summary-product-image">
+
+              <img
+                src="${item.image}"
+                alt="${item.name}"
+              >
+
+            </div>
+
+            <div class="summary-product-info">
+
+              <strong>
+                ${item.name}
+              </strong>
+
+              <span>
+                Quantity: ${item.quantity}
+              </span>
+
+            </div>
+
+            <div class="summary-product-price">
+              $${lineTotal.toFixed(2)}
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("");
+
+
+    document.getElementById("summarySubtotal").textContent =
+      "$" + totals.subtotal.toFixed(2);
+
+
+    document.getElementById("summaryShipping").textContent =
+      totals.shipping === 0
+        ? "FREE"
+        : "$" + totals.shipping.toFixed(2);
+
+
+    document.getElementById("summaryShipping").className =
+      totals.shipping === 0
+        ? "free"
+        : "";
+
+
+    document.getElementById("summaryTotal").textContent =
+      "$" + totals.total.toFixed(2);
+
+
+    const shippingBox =
+      document.getElementById("shippingBox");
+
+
+    if (totals.subtotal >= FREE_SHIPPING_LIMIT) {
+
+      shippingBox.innerHTML =
+        "<strong>Free shipping unlocked.</strong><br>Your order qualifies for FREE SHIPPING Australia Wide.";
+
+    } else {
+
+      const remaining =
+        FREE_SHIPPING_LIMIT - totals.subtotal;
+
+      shippingBox.innerHTML =
+        "Add <strong>$" +
+        remaining.toFixed(2) +
+        "</strong> more to qualify for FREE SHIPPING Australia Wide.";
+
+    }
+
+  }
+
+
+  function getOrders() {
+
+    try {
+
+      const orders =
+        JSON.parse(localStorage.getItem(ORDERS_KEY));
+
+      return Array.isArray(orders)
+        ? orders
+        : [];
+
+    } catch {
+
+      return [];
+
+    }
+
+  }
+
+
+  function generateOrderNumber() {
+
+    const orders =
+      getOrders();
+
+    return "PP-" +
+      String(orders.length + 1).padStart(4, "0");
+
+  }
+
+
+  function saveAccountIfNeeded(customer) {
+
+    const existing =
+      localStorage.getItem(ACCOUNT_KEY);
+
+    if (existing) return;
+
+    const account = {
+
+      name:
+        customer.firstName +
+        " " +
+        customer.lastName,
+
+      email:
+        customer.email,
+
+      createdAt:
+        new Date().toISOString()
+
+    };
+
+    localStorage.setItem(
+      ACCOUNT_KEY,
+      JSON.stringify(account)
+    );
+
+  }
+
+
+  document
+    .getElementById("checkoutForm")
+    .addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+
+      const cart =
+        normaliseCart();
+
+      if (!cart.length) {
+        return;
+      }
+
+
+      const customer = {
+
+        firstName:
+          document.getElementById("firstName").value.trim(),
+
+        lastName:
+          document.getElementById("lastName").value.trim(),
+
+        email:
+          document.getElementById("email").value.trim(),
+
+        address:
+          document.getElementById("address").value.trim(),
+
+        suburb:
+          document.getElementById("suburb").value.trim(),
+
+        state:
+          document.getElementById("state").value,
+
+        postcode:
+          document.getElementById("postcode").value.trim()
+
+      };
+
+
+      const totals =
+        calculateCart(cart);
+
+
+      const orderNumber =
+        generateOrderNumber();
+
+
+      const order = {
+
+        id: orderNumber,
+
+        orderNumber: orderNumber,
+
+        customer: customer,
+
+        items: cart.map(item => ({
+
+          id: item.id,
+
+          name: item.name,
+
+          price: item.price,
+
+          quantity: item.quantity
+
+        })),
+
+        subtotal:
+          Number(totals.subtotal.toFixed(2)),
+
+        shipping:
+          Number(totals.shipping.toFixed(2)),
+
+        total:
+          Number(totals.total.toFixed(2)),
+
+        status: "New",
+
+        createdAt:
+          new Date().toISOString()
+
+      };
+
+
+      const orders =
+        getOrders();
+
+      orders.push(order);
+
+
+      localStorage.setItem(
+        ORDERS_KEY,
+        JSON.stringify(orders)
+      );
+
+
+      localStorage.setItem(
+        LAST_ORDER_KEY,
+        JSON.stringify(order)
+      );
+
+
+      saveAccountIfNeeded(customer);
+
+
+      /* CLEAR CART */
+
+      localStorage.removeItem(CART_KEY);
+
+
+      /* SHOW SUCCESS */
+
+      document.getElementById("checkoutLayout").style.display =
+        "none";
+
+      document.getElementById("emptyCart").style.display =
+        "none";
+
+      document.getElementById("successScreen").style.display =
+        "block";
+
+
+      document.getElementById("successOrderNumber").textContent =
+        "Order " + orderNumber;
+
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    });
+
+
+  renderSummary();
+
+</script>
 
 </body>
 </html>
