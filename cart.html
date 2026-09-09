@@ -1,151 +1,1148 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart | Perfect Prints</title>
 
-    <title>Cart | Perfect Prints</title>
+  <link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(39,169,255,.10), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(140,77,255,.10), transparent 30%),
+        #050711;
+      color: #f4f7ff;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font-family: inherit;
+    }
+
+    .cart-page {
+      width: min(1200px, calc(100% - 40px));
+      margin: auto;
+      padding-bottom: 70px;
+    }
+
+    /* HEADER */
+
+    .cart-header {
+      height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(117,151,255,.14);
+    }
+
+    .cart-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .cart-logo img {
+      width: 43px;
+      height: 43px;
+      object-fit: contain;
+    }
+
+    .cart-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #9ba7c2;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .cart-nav a {
+      transition: .2s;
+    }
+
+    .cart-nav a:hover,
+    .cart-nav .active {
+      color: #64c7ff;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 9px;
+    }
+
+    .header-action {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(13,18,37,.65);
+      border: 1px solid rgba(117,151,255,.16);
+      color: #cbd5ef;
+      transition: .2s;
+    }
+
+    .header-action:hover {
+      color: #64c7ff;
+      border-color: rgba(77,180,255,.55);
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+
+    .cart-hero {
+      padding: 65px 0 38px;
+    }
+
+    .eyebrow {
+      color: #64c7ff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .cart-hero h1 {
+      margin: 0;
+      font-size: clamp(38px, 5vw, 60px);
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .cart-hero p {
+      color: #9ba7c2;
+      max-width: 650px;
+      line-height: 1.7;
+      font-size: 15px;
+      margin: 18px 0 0;
+    }
+
+    /* LAYOUT */
+
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1.5fr .7fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .glass {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(15,21,43,.92),
+          rgba(8,11,24,.78)
+        );
+      border: 1px solid rgba(117,151,255,.16);
+      border-radius: 24px;
+      box-shadow: 0 24px 70px rgba(0,0,0,.30);
+    }
+
+    /* CART ITEMS */
+
+    .cart-items {
+      padding: 10px 28px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 115px 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(117,151,255,.10);
+    }
+
+    .cart-item:last-child {
+      border-bottom: 0;
+    }
+
+    .cart-item-image {
+      width: 115px;
+      height: 115px;
+      border-radius: 18px;
+      background:
+        radial-gradient(
+          circle,
+          rgba(39,169,255,.10),
+          transparent 70%
+        );
+      border: 1px solid rgba(117,151,255,.10);
+      display: grid;
+      place-items: center;
+      padding: 10px;
+    }
+
+    .cart-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .item-category {
+      color: #64c7ff;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      margin-bottom: 7px;
+    }
+
+    .item-name {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .item-price {
+      color: #9ba7c2;
+      margin-top: 7px;
+      font-size: 13px;
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-top: 16px;
+      width: fit-content;
+      border: 1px solid rgba(117,151,255,.16);
+      border-radius: 11px;
+      overflow: hidden;
+    }
+
+    .quantity-control button {
+      width: 35px;
+      height: 35px;
+      border: 0;
+      background: rgba(5,7,17,.55);
+      color: #cbd5ef;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .quantity-control button:hover {
+      background: rgba(39,169,255,.12);
+      color: #64c7ff;
+    }
+
+    .quantity-value {
+      min-width: 38px;
+      text-align: center;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .item-right {
+      text-align: right;
+      min-width: 115px;
+    }
+
+    .item-total {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .remove-btn {
+      margin-top: 12px;
+      border: 0;
+      background: none;
+      color: #7d88a2;
+      cursor: pointer;
+      font-size: 12px;
+      transition: .2s;
+    }
+
+    .remove-btn:hover {
+      color: #ff8585;
+    }
+
+    /* SUMMARY */
+
+    .summary {
+      padding: 27px;
+      position: sticky;
+      top: 20px;
+    }
+
+    .summary h2 {
+      margin: 0 0 25px;
+      font-size: 21px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 11px 0;
+      color: #9ba7c2;
+      font-size: 14px;
+    }
+
+    .summary-row strong {
+      color: #f4f7ff;
+    }
+
+    .summary-divider {
+      height: 1px;
+      background: rgba(117,151,255,.12);
+      margin: 12px 0;
+    }
+
+    .shipping-free {
+      color: #59f39b !important;
+      font-weight: 700;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0 22px;
+    }
+
+    .summary-total span {
+      color: #9ba7c2;
+      font-size: 14px;
+    }
+
+    .summary-total strong {
+      font-size: 27px;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      height: 52px;
+      border: 0;
+      border-radius: 13px;
+      background: linear-gradient(135deg,#27a9ff,#8c4dff);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s;
+      box-shadow: 0 12px 35px rgba(39,169,255,.14);
+    }
+
+    .checkout-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(39,169,255,.22);
+    }
+
+    .continue-btn {
+      width: 100%;
+      height: 47px;
+      margin-top: 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(117,151,255,.16);
+      background: rgba(255,255,255,.03);
+      color: #b9c3d9;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .continue-btn:hover {
+      border-color: rgba(77,180,255,.40);
+      color: #64c7ff;
+    }
+
+    /* SHIPPING MESSAGE */
+
+    .shipping-message {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 13px;
+      background: rgba(39,169,255,.055);
+      border: 1px solid rgba(39,169,255,.13);
+      color: #9ba7c2;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .shipping-message strong {
+      color: #64c7ff;
+    }
+
+    /* EMPTY */
+
+    .empty-state {
+      display: none;
+      padding: 85px 25px;
+      text-align: center;
+    }
+
+    .empty-icon {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 23px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      background: rgba(39,169,255,.08);
+      border: 1px solid rgba(39,169,255,.18);
+      color: #64c7ff;
+      font-size: 27px;
+    }
+
+    .empty-state h2 {
+      margin: 0 0 10px;
+      font-size: 27px;
+    }
+
+    .empty-state p {
+      color: #8e9ab5;
+      max-width: 500px;
+      margin: 0 auto 25px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .shop-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 13px 19px;
+      border-radius: 12px;
+      background: linear-gradient(135deg,#27a9ff,#8c4dff);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    /* FOOTER */
+
+    .cart-footer {
+      text-align: center;
+      color: #68738e;
+      font-size: 12px;
+      padding-top: 55px;
+    }
+
+    .cart-footer a {
+      color: #8e9ab5;
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      z-index: 100;
+      padding: 14px 18px;
+      border-radius: 13px;
+      background: rgba(13,18,37,.97);
+      border: 1px solid rgba(77,180,255,.35);
+      color: #fff;
+      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: .3s;
+      font-size: 13px;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media(max-width:900px) {
+
+      .cart-nav {
+        display: none;
+      }
+
+      .cart-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        position: static;
+      }
+
+      .cart-page {
+        width: min(100% - 26px, 700px);
+      }
+    }
+
+    @media(max-width:600px) {
+
+      .cart-header {
+        height: 72px;
+      }
+
+      .cart-logo span {
+        display: none;
+      }
+
+      .header-actions .header-action:first-child {
+        display: none;
+      }
+
+      .cart-hero {
+        padding: 45px 0 30px;
+      }
+
+      .cart-items {
+        padding: 5px 18px;
+      }
+
+      .cart-item {
+        grid-template-columns: 85px 1fr;
+        gap: 14px;
+      }
+
+      .cart-item-image {
+        width: 85px;
+        height: 85px;
+      }
+
+      .item-right {
+        grid-column: 2;
+        text-align: left;
+      }
+
+      .item-total {
+        margin-top: 5px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="sale-banner">
-        🚚 FREE SHIPPING Australia Wide on Orders Over $75
+<div class="cart-page">
+
+  <!-- HEADER -->
+
+  <header class="cart-header">
+
+    <a href="index.html" class="cart-logo">
+      <img src="logo.png" alt="Perfect Prints">
+      <span>PERFECT PRINTS</span>
+    </a>
+
+    <nav class="cart-nav">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="account.html">Account</a>
+      <a href="wishlist.html">Wishlist</a>
+      <a href="cart.html" class="active">Cart</a>
+    </nav>
+
+    <div class="header-actions">
+
+      <a href="wishlist.html" class="header-action" title="Wishlist">
+        <i class="fa-regular fa-heart"></i>
+      </a>
+
+      <a href="account.html" class="header-action" title="Account">
+        <i class="fa-regular fa-user"></i>
+      </a>
+
     </div>
 
-    <header>
+  </header>
 
-        <nav>
 
-            <div class="logo">
-                🐉 Perfect Prints
+  <!-- HERO -->
+
+  <section class="cart-hero">
+
+    <div class="eyebrow">Your Order</div>
+
+    <h1>Your cart.</h1>
+
+    <p>
+      Review your Perfect Prints, adjust quantities and continue to checkout when you're ready.
+    </p>
+
+  </section>
+
+
+  <!-- CART -->
+
+  <section class="cart-layout" id="cartLayout">
+
+    <div class="glass cart-items" id="cartItems">
+    </div>
+
+
+    <aside class="glass summary">
+
+      <h2>Order summary</h2>
+
+      <div class="summary-row">
+        <span>Items</span>
+        <strong id="itemCount">0</strong>
+      </div>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <strong id="subtotal">$0.00</strong>
+      </div>
+
+      <div class="summary-row">
+        <span>Shipping</span>
+        <strong id="shipping">$7.95</strong>
+      </div>
+
+      <div class="summary-divider"></div>
+
+      <div class="summary-total">
+        <span>Total</span>
+        <strong id="total">$0.00</strong>
+      </div>
+
+      <button class="checkout-btn" onclick="goCheckout()">
+        Proceed to Checkout
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+      <button
+        class="continue-btn"
+        onclick="location.href='products.html'"
+      >
+        Continue Shopping
+      </button>
+
+      <div class="shipping-message" id="shippingMessage">
+        Add more products to qualify for
+        <strong>FREE SHIPPING Australia Wide</strong>
+        on orders over $75.
+      </div>
+
+    </aside>
+
+  </section>
+
+
+  <!-- EMPTY CART -->
+
+  <section class="glass empty-state" id="emptyState">
+
+    <div class="empty-icon">
+      <i class="fa-solid fa-bag-shopping"></i>
+    </div>
+
+    <h2>Your cart is empty</h2>
+
+    <p>
+      You haven't added any Perfect Prints yet. Check out the products and find something you like.
+    </p>
+
+    <a href="products.html" class="shop-btn">
+      Browse Products
+      <i class="fa-solid fa-arrow-right"></i>
+    </a>
+
+  </section>
+
+
+  <footer class="cart-footer">
+
+    <p>
+      © 2026 Perfect Prints · Premium Australian 3D Printing
+    </p>
+
+    <p>
+      <a href="index.html">Home</a>
+      ·
+      <a href="products.html">Products</a>
+      ·
+      <a href="contact.html">Contact</a>
+    </p>
+
+  </footer>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+  const CART_KEY = "perfectPrintsCart";
+
+  const SHIPPING_COST = 7.95;
+
+  const FREE_SHIPPING_LIMIT = 75;
+
+
+  const PRODUCTS = {
+
+    "flexi-dragon": {
+      id: "flexi-dragon",
+      name: "Flexi Dragon",
+      price: 15,
+      category: "Animals",
+      image: "dragon.jpg"
+    },
+
+    "mini-dinosaur": {
+      id: "mini-dinosaur",
+      name: "Mini Dinosaur",
+      price: 10,
+      category: "Animals",
+      image: "dinosaur.jpg"
+    },
+
+    "cute-axolotl": {
+      id: "cute-axolotl",
+      name: "Cute Axolotl",
+      price: 12,
+      category: "Animals",
+      image: "axolotl.jpg"
+    },
+
+    "flexi-snake": {
+      id: "flexi-snake",
+      name: "Flexi Snake",
+      price: 13,
+      category: "Animals",
+      image: "snake.jpg"
+    },
+
+    "turtle": {
+      id: "turtle",
+      name: "Turtle",
+      price: 10,
+      category: "Animals",
+      image: "turtle.jpg"
+    },
+
+    "octopus": {
+      id: "octopus",
+      name: "Octopus",
+      price: 10,
+      category: "Animals",
+      image: "octopus.jpg"
+    }
+
+  };
+
+
+  function getCart() {
+
+    try {
+
+      const data =
+        JSON.parse(localStorage.getItem(CART_KEY));
+
+      return Array.isArray(data) ? data : [];
+
+    } catch {
+
+      return [];
+
+    }
+
+  }
+
+
+  function saveCart(cart) {
+
+    localStorage.setItem(
+      CART_KEY,
+      JSON.stringify(cart)
+    );
+
+  }
+
+
+  function showToast(message) {
+
+    const toast =
+      document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2400);
+
+  }
+
+
+  function getProduct(item) {
+
+    if (!item) return null;
+
+    const id =
+      typeof item === "string"
+        ? item
+        : item.id;
+
+    return PRODUCTS[id] || null;
+
+  }
+
+
+  function normaliseCart() {
+
+    const rawCart = getCart();
+
+    const result = [];
+
+    rawCart.forEach(item => {
+
+      const product = getProduct(item);
+
+      if (!product) return;
+
+      const quantity =
+        typeof item === "object"
+          ? Number(item.quantity || 1)
+          : 1;
+
+      const existing =
+        result.find(x => x.id === product.id);
+
+      if (existing) {
+
+        existing.quantity += Math.max(1, quantity);
+
+      } else {
+
+        result.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          category: product.category,
+          quantity: Math.max(1, quantity)
+        });
+
+      }
+
+    });
+
+    return result;
+
+  }
+
+
+  function renderCart() {
+
+    const cart = normaliseCart();
+
+    const cartItems =
+      document.getElementById("cartItems");
+
+    const cartLayout =
+      document.getElementById("cartLayout");
+
+    const emptyState =
+      document.getElementById("emptyState");
+
+
+    if (!cart.length) {
+
+      cartLayout.style.display = "none";
+
+      emptyState.style.display = "block";
+
+      updateSummary([]);
+
+      return;
+
+    }
+
+
+    cartLayout.style.display = "grid";
+
+    emptyState.style.display = "none";
+
+
+    cartItems.innerHTML =
+      cart.map(item => {
+
+        const product =
+          PRODUCTS[item.id];
+
+        const lineTotal =
+          product.price * item.quantity;
+
+
+        return `
+
+          <article class="cart-item">
+
+            <div class="cart-item-image">
+
+              <img
+                src="${product.image}"
+                alt="${product.name}"
+              >
+
             </div>
 
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Shop</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
 
-            <div class="header-icons">
+            <div>
 
-                <a href="account.html">👤</a>
+              <div class="item-category">
+                ${product.category}
+              </div>
 
-                <a href="wishlist.html">❤️</a>
+              <h2 class="item-name">
+                ${product.name}
+              </h2>
 
-                <a href="cart.html">
-                    🛒
-                    <span id="cartCount">0</span>
-                </a>
-
-            </div>
-
-        </nav>
-
-    </header>
+              <div class="item-price">
+                $${product.price.toFixed(2)} each
+              </div>
 
 
-    <main class="account-page">
+              <div class="quantity-control">
 
-        <section>
+                <button
+                  onclick="changeQuantity('${item.id}', -1)"
+                  aria-label="Decrease quantity"
+                >
+                  <i class="fa-solid fa-minus"></i>
+                </button>
 
-            <div class="section-heading">
-
-                <h2>🛒 Your Shopping Cart</h2>
-
-                <p>
-                    Review your Perfect Prints items before checkout.
-                </p>
-
-            </div>
-
-
-            <div class="account-card">
-
-                <div id="cartItems">
-
-                    <div class="account-empty">
-
-                        <div>🛒</div>
-
-                        <h3>Your cart is empty</h3>
-
-                        <p>
-                            Add some awesome 3D prints to your cart!
-                        </p>
-
-                        <a
-                            href="shop.html"
-                            class="button button-purple"
-                        >
-                            🛍️ Start Shopping
-                        </a>
-
-                    </div>
-
+                <div class="quantity-value">
+                  ${item.quantity}
                 </div>
 
+                <button
+                  onclick="changeQuantity('${item.id}', 1)"
+                  aria-label="Increase quantity"
+                >
+                  <i class="fa-solid fa-plus"></i>
+                </button>
 
-                <div id="cartTotalSection" style="display: none;">
-
-                    <hr>
-
-                    <h2>
-                        Total:
-                        $<span id="cartTotal">0.00</span>
-                    </h2>
-
-                    <button
-                        class="checkout-btn"
-                        onclick="checkout()"
-                    >
-                        💳 Checkout
-                    </button>
-
-                    <button
-                        class="account-delete-btn"
-                        onclick="clearCart()"
-                    >
-                        🗑️ Clear Cart
-                    </button>
-
-                </div>
+              </div>
 
             </div>
 
-        </section>
 
-    </main>
+            <div class="item-right">
+
+              <div class="item-total">
+                $${lineTotal.toFixed(2)}
+              </div>
+
+              <button
+                class="remove-btn"
+                onclick="removeItem('${item.id}')"
+              >
+                <i class="fa-regular fa-trash-can"></i>
+                Remove
+              </button>
+
+            </div>
+
+          </article>
+
+        `;
+
+      }).join("");
 
 
-    <footer>
+    updateSummary(cart);
 
-        <h2>🐉 Perfect Prints</h2>
-
-        <p>
-            Creating amazing articulated 3D prints with quality,
-            creativity and care.
-        </p>
-
-        <p>
-            © 2026 Perfect Prints. All Rights Reserved.
-        </p>
-
-    </footer>
+  }
 
 
-    <script src="script.js"></script>
+  function updateSummary(cart) {
+
+    let subtotal = 0;
+
+    let itemCount = 0;
+
+
+    cart.forEach(item => {
+
+      subtotal +=
+        Number(item.price) *
+        Number(item.quantity);
+
+      itemCount +=
+        Number(item.quantity);
+
+    });
+
+
+    const shipping =
+      subtotal >= FREE_SHIPPING_LIMIT
+        ? 0
+        : subtotal > 0
+          ? SHIPPING_COST
+          : 0;
+
+
+    const total =
+      subtotal + shipping;
+
+
+    document.getElementById("itemCount").textContent =
+      itemCount;
+
+    document.getElementById("subtotal").textContent =
+      "$" + subtotal.toFixed(2);
+
+    document.getElementById("shipping").textContent =
+      shipping === 0
+        ? "FREE"
+        : "$" + shipping.toFixed(2);
+
+    document.getElementById("total").textContent =
+      "$" + total.toFixed(2);
+
+
+    const shippingElement =
+      document.getElementById("shipping");
+
+    shippingElement.className =
+      shipping === 0
+        ? "shipping-free"
+        : "";
+
+
+    const message =
+      document.getElementById("shippingMessage");
+
+
+    if (subtotal >= FREE_SHIPPING_LIMIT) {
+
+      message.innerHTML = `
+        <strong>Free shipping unlocked.</strong>
+        Your order qualifies for FREE SHIPPING Australia Wide.
+      `;
+
+    } else if (subtotal > 0) {
+
+      const remaining =
+        FREE_SHIPPING_LIMIT - subtotal;
+
+      message.innerHTML = `
+        Add <strong>$${remaining.toFixed(2)}</strong> more
+        to qualify for FREE SHIPPING Australia Wide.
+      `;
+
+    } else {
+
+      message.innerHTML = `
+        Add more products to qualify for
+        <strong>FREE SHIPPING Australia Wide</strong>
+        on orders over $75.
+      `;
+
+    }
+
+  }
+
+
+  function changeQuantity(id, change) {
+
+    const cart =
+      normaliseCart();
+
+    const item =
+      cart.find(x => x.id === id);
+
+    if (!item) return;
+
+
+    item.quantity += change;
+
+
+    if (item.quantity <= 0) {
+
+      const updated =
+        cart.filter(x => x.id !== id);
+
+      saveCart(updated);
+
+      showToast("Item removed");
+
+    } else {
+
+      saveCart(cart);
+
+    }
+
+
+    renderCart();
+
+  }
+
+
+  function removeItem(id) {
+
+    const cart =
+      normaliseCart()
+        .filter(item => item.id !== id);
+
+    saveCart(cart);
+
+    renderCart();
+
+    showToast("Item removed from cart");
+
+  }
+
+
+  function goCheckout() {
+
+    const cart =
+      normaliseCart();
+
+    if (!cart.length) {
+
+      showToast("Your cart is empty");
+
+      return;
+
+    }
+
+    saveCart(cart);
+
+    window.location.href =
+      "checkout.html";
+
+  }
+
+
+  renderCart();
+
+</script>
 
 </body>
-
 </html>
-```
