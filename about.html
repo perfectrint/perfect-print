@@ -1,349 +1,1440 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Perfect Prints</title>
 
-<title>Perfect Prints | About Us</title>
+  <link rel="stylesheet" href="style.css">
 
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+
+    /* =========================================================
+       PERFECT PRINTS — ABOUT PAGE
+       ========================================================= */
+
+    .about-page {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(39,169,255,.08), transparent 30%),
+        radial-gradient(circle at 88% 18%, rgba(140,77,255,.09), transparent 30%),
+        #050711;
+      color: #f4f7ff;
+      overflow: hidden;
+    }
+
+    /* HEADER */
+
+    .about-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 76px;
+
+      border-bottom: 1px solid rgba(117,151,255,.15);
+
+      background: rgba(5,7,17,.82);
+      backdrop-filter: blur(20px);
+    }
+
+    .about-header-inner {
+      max-width: 1280px;
+      height: 100%;
+      margin: auto;
+      padding: 0 28px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .about-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      color: #fff;
+      text-decoration: none;
+
+      font-size: 20px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .about-logo img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+
+      filter: drop-shadow(0 0 14px rgba(39,169,255,.35));
+    }
+
+    .about-nav {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .about-nav a {
+      padding: 10px 14px;
+
+      border-radius: 10px;
+
+      color: #9ba7c2;
+      text-decoration: none;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      transition: .25s ease;
+    }
+
+    .about-nav a:hover {
+      color: #fff;
+      background: rgba(39,169,255,.08);
+    }
+
+    .about-nav a.active {
+      color: #fff;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(39,169,255,.15),
+          rgba(140,77,255,.12)
+        );
+
+      box-shadow:
+        inset 0 0 0 1px rgba(117,151,255,.14);
+    }
+
+    .about-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .about-action {
+      width: 42px;
+      height: 42px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid rgba(117,151,255,.15);
+      border-radius: 12px;
+
+      background: rgba(13,18,37,.6);
+
+      color: #9ba7c2;
+      text-decoration: none;
+
+      transition: .25s ease;
+    }
+
+    .about-action:hover {
+      color: #fff;
+      border-color: rgba(39,169,255,.45);
+
+      box-shadow: 0 0 22px rgba(39,169,255,.12);
+
+      transform: translateY(-1px);
+    }
+
+    /* CONTAINER */
+
+    .about-container {
+      max-width: 1280px;
+      margin: auto;
+      padding: 0 28px;
+    }
+
+    /* HERO */
+
+    .about-hero {
+      min-height: 590px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+
+      gap: 60px;
+
+      padding: 85px 0 75px;
+    }
+
+    .about-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+
+      padding: 8px 13px;
+
+      border: 1px solid rgba(39,169,255,.2);
+      border-radius: 999px;
+
+      background: rgba(39,169,255,.06);
+
+      color: #64c7ff;
+
+      font-size: 11px;
+      font-weight: 800;
+
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .about-eyebrow i {
+      font-size: 10px;
+    }
+
+    .about-hero h1 {
+      max-width: 650px;
+
+      margin: 22px 0 20px;
+
+      font-size: clamp(48px, 6vw, 76px);
+      line-height: .98;
+
+      letter-spacing: -3px;
+      font-weight: 800;
+
+      background:
+        linear-gradient(
+          110deg,
+          #fff 15%,
+          #64c7ff 53%,
+          #b478ff 90%
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+    }
+
+    .about-hero-text {
+      max-width: 590px;
+
+      color: #9ba7c2;
+
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .about-hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+
+      margin-top: 30px;
+    }
+
+    .about-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+
+      padding: 13px 18px;
+
+      border: 1px solid rgba(39,169,255,.3);
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(39,169,255,.15),
+          rgba(140,77,255,.12)
+        );
+
+      color: #fff;
+      text-decoration: none;
+
+      font-size: 13px;
+      font-weight: 800;
+
+      transition: .25s ease;
+    }
+
+    .about-button:hover {
+      border-color: rgba(39,169,255,.6);
+      box-shadow: 0 0 30px rgba(39,169,255,.12);
+      transform: translateY(-2px);
+    }
+
+    .about-button.secondary {
+      background: rgba(255,255,255,.025);
+      border-color: rgba(117,151,255,.15);
+      color: #aeb9cf;
+    }
+
+    .about-button.secondary:hover {
+      color: #fff;
+    }
+
+    /* HERO VISUAL */
+
+    .about-hero-visual {
+      position: relative;
+
+      min-height: 490px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid rgba(117,151,255,.14);
+      border-radius: 28px;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(39,169,255,.12),
+          transparent 55%
+        ),
+        rgba(13,18,37,.5);
+
+      box-shadow:
+        0 30px 90px rgba(0,0,0,.3),
+        inset 0 1px rgba(255,255,255,.025);
+
+      overflow: hidden;
+    }
+
+    .about-hero-visual::before {
+      content: "";
+
+      position: absolute;
+
+      width: 340px;
+      height: 340px;
+
+      border-radius: 50%;
+
+      background: rgba(39,169,255,.13);
+
+      filter: blur(80px);
+    }
+
+    .about-hero-visual::after {
+      content: "";
+
+      position: absolute;
+
+      width: 250px;
+      height: 250px;
+
+      right: -100px;
+      bottom: -100px;
+
+      border-radius: 50%;
+
+      background: rgba(140,77,255,.14);
+
+      filter: blur(70px);
+    }
+
+    .about-hero-visual img {
+      position: relative;
+      z-index: 2;
+
+      width: 82%;
+      height: 410px;
+
+      object-fit: contain;
+
+      filter:
+        drop-shadow(0 30px 35px rgba(0,0,0,.5))
+        drop-shadow(0 0 35px rgba(39,169,255,.16));
+
+      transition: .5s ease;
+    }
+
+    .about-hero-visual:hover img {
+      transform: scale(1.035) translateY(-6px);
+    }
+
+    .visual-label {
+      position: absolute;
+      z-index: 4;
+
+      left: 22px;
+      top: 22px;
+
+      padding: 9px 12px;
+
+      border: 1px solid rgba(117,151,255,.15);
+      border-radius: 10px;
+
+      background: rgba(5,7,17,.65);
+      backdrop-filter: blur(10px);
+
+      color: #9ba7c2;
+
+      font-size: 10px;
+      font-weight: 800;
+
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    /* SECTION TITLES */
+
+    .about-section {
+      padding: 80px 0;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading span {
+      color: #64c7ff;
+
+      font-size: 11px;
+      font-weight: 800;
+
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: 10px 0 12px;
+
+      font-size: clamp(34px, 4vw, 48px);
+      line-height: 1.05;
+
+      letter-spacing: -1.5px;
+    }
+
+    .section-heading p {
+      margin: 0;
+
+      color: #9ba7c2;
+
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    /* STORY */
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .story-card {
+      padding: 34px;
+
+      border: 1px solid rgba(117,151,255,.13);
+      border-radius: 22px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(13,18,37,.85),
+          rgba(9,13,28,.65)
+        );
+
+      box-shadow:
+        0 18px 50px rgba(0,0,0,.16);
+
+      transition: .3s ease;
+    }
+
+    .story-card:hover {
+      transform: translateY(-4px);
+
+      border-color: rgba(39,169,255,.3);
+
+      box-shadow:
+        0 22px 60px rgba(0,0,0,.25),
+        0 0 30px rgba(39,169,255,.05);
+    }
+
+    .story-icon {
+      width: 48px;
+      height: 48px;
+
+      display: grid;
+      place-items: center;
+
+      margin-bottom: 22px;
+
+      border: 1px solid rgba(39,169,255,.2);
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(39,169,255,.12),
+          rgba(140,77,255,.1)
+        );
+
+      color: #64c7ff;
+
+      font-size: 18px;
+    }
+
+    .story-card h3 {
+      margin: 0 0 10px;
+
+      font-size: 21px;
+    }
+
+    .story-card p {
+      margin: 0;
+
+      color: #8f9bb5;
+
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    /* VALUES */
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .value-card {
+      position: relative;
+
+      padding: 32px;
+
+      min-height: 225px;
+
+      border: 1px solid rgba(117,151,255,.13);
+      border-radius: 21px;
+
+      background: rgba(13,18,37,.65);
+
+      overflow: hidden;
+
+      transition: .3s ease;
+    }
+
+    .value-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 130px;
+      height: 130px;
+
+      right: -60px;
+      top: -60px;
+
+      border-radius: 50%;
+
+      background: rgba(39,169,255,.08);
+      filter: blur(25px);
+    }
+
+    .value-card:hover {
+      transform: translateY(-4px);
+
+      border-color: rgba(39,169,255,.3);
+    }
+
+    .value-number {
+      color: #5f6d89;
+
+      font-size: 12px;
+      font-weight: 800;
+
+      letter-spacing: 1px;
+    }
+
+    .value-card h3 {
+      margin: 25px 0 10px;
+
+      font-size: 21px;
+    }
+
+    .value-card p {
+      margin: 0;
+
+      color: #8f9bb5;
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    /* PROCESS */
+
+    .process {
+      position: relative;
+    }
+
+    .process-line {
+      position: absolute;
+
+      left: 12.5%;
+      right: 12.5%;
+      top: 57px;
+
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(39,169,255,.05),
+          rgba(39,169,255,.35),
+          rgba(140,77,255,.35),
+          rgba(140,77,255,.05)
+        );
+    }
+
+    .process-grid {
+      position: relative;
+      z-index: 2;
+
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .process-step {
+      text-align: center;
+    }
+
+    .process-number {
+      width: 58px;
+      height: 58px;
+
+      display: grid;
+      place-items: center;
+
+      margin: 0 auto 20px;
+
+      border: 1px solid rgba(117,151,255,.2);
+      border-radius: 17px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0d1225,
+          #11152b
+        );
+
+      box-shadow:
+        0 0 25px rgba(39,169,255,.07);
+
+      color: #64c7ff;
+
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .process-step h3 {
+      margin: 0 0 8px;
+
+      font-size: 17px;
+    }
+
+    .process-step p {
+      max-width: 210px;
+      margin: auto;
+
+      color: #7f8ba6;
+
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* STATS */
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+
+      padding: 22px;
+
+      border: 1px solid rgba(117,151,255,.14);
+      border-radius: 22px;
+
+      background: rgba(13,18,37,.55);
+    }
+
+    .about-stat {
+      padding: 18px;
+
+      text-align: center;
+
+      border-right: 1px solid rgba(117,151,255,.1);
+    }
+
+    .about-stat:last-child {
+      border-right: 0;
+    }
+
+    .about-stat strong {
+      display: block;
+
+      font-size: 30px;
+      letter-spacing: -1px;
+
+      background:
+        linear-gradient(
+          110deg,
+          #64c7ff,
+          #b478ff
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+    }
+
+    .about-stat span {
+      display: block;
+
+      margin-top: 5px;
+
+      color: #7f8ba6;
+
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* CTA */
+
+    .about-cta {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+
+      margin: 80px 0;
+
+      padding: 55px;
+
+      overflow: hidden;
+
+      border: 1px solid rgba(117,151,255,.16);
+      border-radius: 26px;
+
+      background:
+        linear-gradient(
+          110deg,
+          rgba(39,169,255,.07),
+          rgba(140,77,255,.09)
+        );
+    }
+
+    .about-cta::before {
+      content: "";
+
+      position: absolute;
+
+      width: 300px;
+      height: 300px;
+
+      right: 15%;
+      top: -200px;
+
+      border-radius: 50%;
+
+      background: rgba(140,77,255,.12);
+      filter: blur(70px);
+    }
+
+    .about-cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-cta h2 {
+      margin: 0 0 10px;
+
+      font-size: 35px;
+      letter-spacing: -1px;
+    }
+
+    .about-cta p {
+      max-width: 600px;
+
+      margin: 0;
+
+      color: #9ba7c2;
+
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .about-cta .about-button {
+      position: relative;
+      z-index: 2;
+
+      white-space: nowrap;
+    }
+
+    /* FOOTER */
+
+    .about-footer {
+      margin-top: 30px;
+
+      padding: 50px 0 35px;
+
+      border-top: 1px solid rgba(117,151,255,.12);
+
+      background: rgba(3,5,12,.5);
+    }
+
+    .about-footer-inner {
+      max-width: 1280px;
+      margin: auto;
+      padding: 0 28px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .about-footer-brand {
+      color: #71809f;
+      font-size: 12px;
+    }
+
+    .about-footer-brand strong {
+      color: #fff;
+    }
+
+    .about-footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .about-footer-links a {
+      color: #71809f;
+      text-decoration: none;
+      font-size: 12px;
+
+      transition: .2s ease;
+    }
+
+    .about-footer-links a:hover {
+      color: #64c7ff;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 900px) {
+
+      .about-nav {
+        display: none;
+      }
+
+      .about-header-inner {
+        padding: 0 18px;
+      }
+
+      .about-container {
+        padding: 0 18px;
+      }
+
+      .about-hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+
+        padding: 65px 0;
+      }
+
+      .about-hero-visual {
+        min-height: 420px;
+      }
+
+      .story-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
+      }
+
+      .process-line {
+        display: none;
+      }
+
+      .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-stat:nth-child(2) {
+        border-right: 0;
+      }
+
+      .about-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px;
+      }
+
+    }
+
+    @media (max-width: 600px) {
+
+      .about-actions .about-action:first-child {
+        display: none;
+      }
+
+      .about-hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .about-hero-visual {
+        min-height: 330px;
+      }
+
+      .about-hero-visual img {
+        height: 270px;
+      }
+
+      .about-section {
+        padding: 60px 0;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-stats {
+        grid-template-columns: 1fr 1fr;
+        padding: 12px;
+      }
+
+      .about-stat {
+        border-right: 0;
+        border-bottom: 1px solid rgba(117,151,255,.1);
+      }
+
+      .about-stat:nth-child(3),
+      .about-stat:nth-child(4) {
+        border-bottom: 0;
+      }
+
+      .about-stat strong {
+        font-size: 25px;
+      }
+
+      .about-cta {
+        padding: 30px 25px;
+      }
+
+      .about-cta h2 {
+        font-size: 29px;
+      }
+
+      .about-footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+    }
+
+  </style>
 </head>
 
 <body>
 
-<header>
+<div class="about-page">
 
-<div class="sale-banner">
-🚚 FREE SHIPPING on orders over $75 • Premium Australian 3D Printing
+  <!-- HEADER -->
+
+  <header class="about-header">
+
+    <div class="about-header-inner">
+
+      <a href="index.html" class="about-logo">
+        <img src="logo.png" alt="Perfect Prints">
+        <span>Perfect Prints</span>
+      </a>
+
+      <nav class="about-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="about.html" class="active">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+
+      <div class="about-actions">
+
+        <a href="account.html"
+           class="about-action"
+           aria-label="Account">
+          <i class="fa-regular fa-user"></i>
+        </a>
+
+        <a href="wishlist.html"
+           class="about-action"
+           aria-label="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+        </a>
+
+        <a href="cart.html"
+           class="about-action"
+           aria-label="Cart">
+          <i class="fa-solid fa-bag-shopping"></i>
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <div class="about-container">
+
+      <!-- HERO -->
+
+      <section class="about-hero">
+
+        <div>
+
+          <div class="about-eyebrow">
+            <i class="fa-solid fa-cube"></i>
+            Premium Australian 3D Printing
+          </div>
+
+          <h1>
+            FROM DIGITAL<br>
+            TO REAL.
+          </h1>
+
+          <p class="about-hero-text">
+            Perfect Prints turns digital designs into real,
+            high-quality 3D printed creations. We focus on
+            making unique prints that are fun to own,
+            display and share.
+          </p>
+
+          <div class="about-hero-buttons">
+
+            <a href="products.html" class="about-button">
+              Explore Products
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <a href="contact.html" class="about-button secondary">
+              Contact Us
+              <i class="fa-regular fa-envelope"></i>
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div class="about-hero-visual">
+
+          <div class="visual-label">
+            Made by Perfect Prints
+          </div>
+
+          <img
+            src="hero-dragon.png"
+            alt="Perfect Prints 3D printed dragon"
+          >
+
+        </div>
+
+      </section>
+
+
+      <!-- OUR STORY -->
+
+      <section class="about-section">
+
+        <div class="section-heading">
+
+          <span>Our Story</span>
+
+          <h2>
+            Built around creativity.
+          </h2>
+
+          <p>
+            Perfect Prints was created to turn interesting
+            3D designs into physical products that people
+            can actually hold, use and enjoy.
+          </p>
+
+        </div>
+
+
+        <div class="story-grid">
+
+          <div class="story-card">
+
+            <div class="story-icon">
+              <i class="fa-solid fa-lightbulb"></i>
+            </div>
+
+            <h3>The Idea</h3>
+
+            <p>
+              It started with a simple idea: take digital
+              3D designs and turn them into physical
+              creations. What begins on a screen can become
+              something real.
+            </p>
+
+          </div>
+
+
+          <div class="story-card">
+
+            <div class="story-icon">
+              <i class="fa-solid fa-print"></i>
+            </div>
+
+            <h3>The Printing</h3>
+
+            <p>
+              Each creation is produced layer by layer.
+              We focus on reliable prints, interesting
+              designs and products that look great when
+              they arrive.
+            </p>
+
+          </div>
+
+
+          <div class="story-card">
+
+            <div class="story-icon">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+
+            <h3>The Creativity</h3>
+
+            <p>
+              From articulated animals to custom ideas,
+              3D printing gives us the ability to make
+              something different instead of settling for
+              ordinary.
+            </p>
+
+          </div>
+
+
+          <div class="story-card">
+
+            <div class="story-icon">
+              <i class="fa-solid fa-rocket"></i>
+            </div>
+
+            <h3>The Future</h3>
+
+            <p>
+              Perfect Prints is always looking for new
+              designs, new ideas and better ways to turn
+              digital concepts into real products.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- WHAT MATTERS -->
+
+      <section class="about-section">
+
+        <div class="section-heading">
+
+          <span>What Matters</span>
+
+          <h2>
+            More than just a print.
+          </h2>
+
+          <p>
+            Every part of Perfect Prints is built around
+            making the experience simple, creative and
+            enjoyable.
+          </p>
+
+        </div>
+
+
+        <div class="values-grid">
+
+          <div class="value-card">
+
+            <div class="value-number">01</div>
+
+            <h3>Quality</h3>
+
+            <p>
+              We aim for clean, reliable prints that are
+              ready to be enjoyed straight away.
+            </p>
+
+          </div>
+
+
+          <div class="value-card">
+
+            <div class="value-number">02</div>
+
+            <h3>Creativity</h3>
+
+            <p>
+              Interesting designs and custom ideas are at
+              the centre of what Perfect Prints is about.
+            </p>
+
+          </div>
+
+
+          <div class="value-card">
+
+            <div class="value-number">03</div>
+
+            <h3>Customer First</h3>
+
+            <p>
+              We want ordering a print to be simple,
+              straightforward and enjoyable from start
+              to finish.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- HOW IT WORKS -->
+
+      <section class="about-section">
+
+        <div class="section-heading">
+
+          <span>How It Works</span>
+
+          <h2>
+            From idea to creation.
+          </h2>
+
+          <p>
+            Our process takes a digital idea and turns it
+            into something you can actually hold.
+          </p>
+
+        </div>
+
+
+        <div class="process">
+
+          <div class="process-line"></div>
+
+          <div class="process-grid">
+
+
+            <div class="process-step">
+
+              <div class="process-number">
+                01
+              </div>
+
+              <h3>Choose</h3>
+
+              <p>
+                Pick a design from our collection or
+                bring us your own idea.
+              </p>
+
+            </div>
+
+
+            <div class="process-step">
+
+              <div class="process-number">
+                02
+              </div>
+
+              <h3>Prepare</h3>
+
+              <p>
+                The design is prepared for the
+                3D printing process.
+              </p>
+
+            </div>
+
+
+            <div class="process-step">
+
+              <div class="process-number">
+                03
+              </div>
+
+              <h3>Print</h3>
+
+              <p>
+                The printer creates the object layer
+                by layer.
+              </p>
+
+            </div>
+
+
+            <div class="process-step">
+
+              <div class="process-number">
+                04
+              </div>
+
+              <h3>Enjoy</h3>
+
+              <p>
+                Your finished creation is packed and
+                prepared for delivery.
+              </p>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- STATS -->
+
+      <section class="about-section">
+
+        <div class="about-stats">
+
+          <div class="about-stat">
+
+            <strong>6+</strong>
+
+            <span>Products Available</span>
+
+          </div>
+
+
+          <div class="about-stat">
+
+            <strong>2–4</strong>
+
+            <span>Business Day Shipping</span>
+
+          </div>
+
+
+          <div class="about-stat">
+
+            <strong>100%</strong>
+
+            <span>Made With Care</span>
+
+          </div>
+
+
+          <div class="about-stat">
+
+            <strong>AU</strong>
+
+            <span>Australian Business</span>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- CTA -->
+
+      <section class="about-cta">
+
+        <div class="about-cta-content">
+
+          <h2>
+            Ready to see what we print?
+          </h2>
+
+          <p>
+            Explore the Perfect Prints collection or
+            get in touch about creating something custom.
+          </p>
+
+        </div>
+
+        <a href="products.html" class="about-button">
+          Explore Products
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer class="about-footer">
+
+    <div class="about-footer-inner">
+
+      <div class="about-footer-brand">
+        <strong>Perfect Prints</strong>
+        — Premium Australian 3D Printing
+      </div>
+
+      <div class="about-footer-links">
+        <a href="products.html">Products</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+    </div>
+
+  </footer>
+
 </div>
-
-<nav>
-
-<div class="logo">
-🐉 Perfect Prints
-</div>
-
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="products.html">Products</a></li>
-<li><a href="gallery.html">Gallery</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
-
-<button class="cart-btn" onclick="openCart()">
-🛒 Cart
-<span id="cartCount">0</span>
-</button>
-
-</nav>
-
-</header>
-
-<section class="hero small-hero">
-
-<h1>About Perfect Prints</h1>
-
-<p>
-We're passionate about creating fun, high-quality articulated
-3D prints that people love to collect, display and play with.
-</p>
-
-</section>
-
-<section>
-
-<h2>Our Story</h2>
-
-<div class="cards">
-
-<div class="card">
-
-<div class="card-content">
-
-<h3>🚀 Our Beginning</h3>
-
-<p>
-Perfect Prints started with one goal:
-to create amazing quality 3D prints that everyone could enjoy.
-Every model is carefully printed, cleaned and inspected before shipping.
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="card-content">
-
-<h3>🎯 Our Mission</h3>
-
-<p>
-We believe every customer deserves professional-quality prints,
-fast shipping and excellent customer service at affordable prices.
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="card-content">
-
-<h3>🌎 Looking Ahead</h3>
-
-<p>
-As we grow, we plan to offer hundreds of exciting models,
-exclusive designs and even more custom printing services.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<h2>Why Choose Perfect Prints?</h2>
-
-<div class="reviews">
-
-<div class="review">
-
-<h3>🖨️ Premium Printers</h3>
-
-<p>
-Every print is produced using carefully calibrated printers
-to achieve smooth layers and excellent detail.
-</p>
-
-</div>
-
-<div class="review">
-
-<h3>🎨 Huge Colour Selection</h3>
-
-<p>
-Choose from silk, matte, rainbow,
-metallic, glow-in-the-dark and many more colours.
-</p>
-
-</div>
-
-<div class="review">
-
-<h3>📦 Safe Packaging</h3>
-
-<p>
-Orders are securely packaged to protect your print
-during shipping.
-</p>
-
-</div>
-
-<div class="review">
-
-<h3>⚡ Fast Production</h3>
-
-<p>
-Most orders are printed and shipped
-within just a few business days.
-</p>
-
-</div>
-
-<div class="review">
-
-<h3>💬 Friendly Support</h3>
-
-<p>
-Need help choosing a print?
-We're always happy to answer questions.
-</p>
-
-</div>
-
-<div class="review">
-
-<h3>⭐ Quality Guaranteed</h3>
-
-<p>
-Every order is inspected before shipping
-to ensure it meets our high standards.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<h2>Our Values</h2>
-
-<div class="cards">
-
-<div class="card">
-
-<div class="card-content">
-
-<h3>❤️ Passion</h3>
-
-<p>
-We genuinely enjoy creating awesome 3D prints
-for collectors and families.
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="card-content">
-
-<h3>🏆 Quality</h3>
-
-<p>
-Every product is printed using premium materials
-and checked before it leaves our workshop.
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="card-content">
-
-<h3>🤝 Trust</h3>
-
-<p>
-Honest pricing, friendly communication,
-and excellent customer service are at the heart of our business.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section>
-
-<h2>Fun Facts</h2>
-
-<div class="cards">
-
-<div class="card">
-
-<div class="card-content">
-
-<h1>100+</h1>
-
-<p>
-Prints Sold
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="card-content">
-
-<h1>★★★★★</h1>
-
-<p>
-Customer Rating
-</p>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="card-content">
-
-<h1>50+</h1>
-
-<p>
-Colours Available
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<div id="cartPanel" class="cart-panel">
-
-<div class="cart-header">
-
-<h2>Your Cart</h2>
-
-<button onclick="closeCart()">
-✖
-</button>
-
-</div>
-
-<div id="cartItems">
-
-<p>Your cart is empty.</p>
-
-</div>
-
-<div class="cart-footer">
-
-<h3>
-Total:
-$
-<span id="cartTotal">0</span>
-</h3>
-
-<button class="checkout-btn">
-Checkout
-</button>
-
-</div>
-
-</div>
-
-<footer>
-
-<h2>🐉 Perfect Prints</h2>
-
-<p>
-Designed with passion.
-Printed with precision.
-Delivered with care.
-</p>
-
-<p>
-© 2026 Perfect Prints. All Rights Reserved.
-</p>
-
-</footer>
 
 </body>
-
 </html>
