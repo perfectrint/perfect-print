@@ -1,209 +1,1184 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account | Perfect Prints</title>
 
-    <title>Perfect Prints | My Account</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(39,169,255,.10), transparent 30%),
+        radial-gradient(circle at 85% 25%, rgba(140,77,255,.10), transparent 30%),
+        #050711;
+      color: #f4f7ff;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .account-page {
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+      padding-bottom: 70px;
+    }
+
+    /* HEADER */
+
+    .account-header {
+      height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(117,151,255,.14);
+    }
+
+    .account-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .account-logo img {
+      width: 43px;
+      height: 43px;
+      object-fit: contain;
+    }
+
+    .account-nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      color: #9ba7c2;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .account-nav a {
+      transition: .2s;
+    }
+
+    .account-nav a:hover,
+    .account-nav .active {
+      color: #64c7ff;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 9px;
+    }
+
+    .header-action {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(117,151,255,.16);
+      background: rgba(13,18,37,.65);
+      display: grid;
+      place-items: center;
+      color: #cbd5ef;
+      transition: .2s;
+    }
+
+    .header-action:hover {
+      border-color: rgba(77,180,255,.55);
+      color: #64c7ff;
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+
+    .account-hero {
+      padding: 65px 0 38px;
+    }
+
+    .eyebrow {
+      color: #64c7ff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .account-hero h1 {
+      margin: 0;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .account-hero p {
+      color: #9ba7c2;
+      margin: 18px 0 0;
+      max-width: 650px;
+      line-height: 1.7;
+    }
+
+    /* GLASS */
+
+    .glass {
+      background: linear-gradient(
+        145deg,
+        rgba(15,21,43,.90),
+        rgba(8,11,24,.76)
+      );
+      border: 1px solid rgba(117,151,255,.16);
+      box-shadow: 0 24px 70px rgba(0,0,0,.30);
+      border-radius: 24px;
+    }
+
+    /* LOGIN */
+
+    .auth-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .auth-card {
+      padding: 34px;
+    }
+
+    .auth-card h2 {
+      margin: 0 0 8px;
+      font-size: 25px;
+    }
+
+    .auth-card > p {
+      color: #9ba7c2;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #cbd5ef;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #667390;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      height: 50px;
+      border-radius: 13px;
+      border: 1px solid rgba(117,151,255,.16);
+      background: rgba(5,7,17,.72);
+      color: #fff;
+      padding: 0 15px 0 45px;
+      outline: none;
+      font-family: inherit;
+      transition: .2s;
+    }
+
+    .input-wrap input:focus {
+      border-color: rgba(77,180,255,.65);
+      box-shadow: 0 0 0 3px rgba(39,169,255,.08);
+    }
+
+    .main-btn {
+      width: 100%;
+      height: 50px;
+      border: 0;
+      border-radius: 13px;
+      background: linear-gradient(135deg,#27a9ff,#8c4dff);
+      color: white;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      transition: .2s;
+      box-shadow: 0 12px 35px rgba(39,169,255,.15);
+    }
+
+    .main-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(39,169,255,.25);
+    }
+
+    .switch-auth {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 13px;
+      color: #9ba7c2;
+    }
+
+    .switch-auth button {
+      border: 0;
+      background: none;
+      color: #64c7ff;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 700;
+    }
+
+    /* BENEFITS */
+
+    .benefits {
+      padding: 34px;
+    }
+
+    .benefits h2 {
+      margin: 0 0 25px;
+      font-size: 24px;
+    }
+
+    .benefit {
+      display: flex;
+      gap: 17px;
+      padding: 19px 0;
+      border-bottom: 1px solid rgba(117,151,255,.10);
+    }
+
+    .benefit:last-child {
+      border-bottom: 0;
+    }
+
+    .benefit-icon {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: rgba(39,169,255,.09);
+      border: 1px solid rgba(39,169,255,.18);
+      color: #64c7ff;
+    }
+
+    .benefit strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .benefit span {
+      color: #8e9ab5;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* DASHBOARD */
+
+    .dashboard {
+      display: none;
+    }
+
+    .profile-card {
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .profile-info {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .profile-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 20px;
+      background: linear-gradient(135deg,#27a9ff,#8c4dff);
+      display: grid;
+      place-items: center;
+      font-size: 25px;
+      font-weight: 800;
+      box-shadow: 0 10px 35px rgba(39,169,255,.18);
+    }
+
+    .profile-info h2 {
+      margin: 0 0 6px;
+    }
+
+    .profile-info p {
+      margin: 0;
+      color: #8e9ab5;
+      font-size: 14px;
+    }
+
+    .logout-btn {
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: #cbd5ef;
+      border-radius: 11px;
+      padding: 11px 16px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 700;
+    }
+
+    .logout-btn:hover {
+      border-color: rgba(255,100,100,.35);
+      color: #ff8e8e;
+    }
+
+    .dashboard-grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1.4fr .6fr;
+      gap: 22px;
+    }
+
+    .dashboard-card {
+      padding: 27px;
+    }
+
+    .dashboard-card h3 {
+      margin: 0 0 22px;
+      font-size: 19px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 13px;
+    }
+
+    .stat {
+      padding: 19px;
+      border-radius: 16px;
+      background: rgba(5,7,17,.48);
+      border: 1px solid rgba(117,151,255,.11);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 27px;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: #8e9ab5;
+      font-size: 12px;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(117,151,255,.10);
+      font-size: 13px;
+    }
+
+    .order-item:last-child {
+      border-bottom: 0;
+    }
+
+    .order-item span {
+      color: #8e9ab5;
+    }
+
+    .status {
+      color: #59f39b !important;
+      font-weight: 700;
+    }
+
+    .empty-orders {
+      color: #8e9ab5;
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 10px 0;
+    }
+
+    .quick-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .quick-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      border-radius: 13px;
+      background: rgba(5,7,17,.45);
+      border: 1px solid rgba(117,151,255,.11);
+      color: #cbd5ef;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    .quick-link:hover {
+      border-color: rgba(77,180,255,.45);
+      color: #64c7ff;
+    }
+
+    /* FOOTER */
+
+    .account-footer {
+      text-align: center;
+      padding: 45px 0 0;
+      color: #68738e;
+      font-size: 12px;
+    }
+
+    .account-footer a {
+      color: #8e9ab5;
+    }
+
+    /* TOAST */
+
+    .toast {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      padding: 14px 18px;
+      border-radius: 13px;
+      background: rgba(13,18,37,.96);
+      border: 1px solid rgba(77,180,255,.35);
+      color: #fff;
+      box-shadow: 0 20px 50px rgba(0,0,0,.35);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: .3s;
+      z-index: 100;
+      font-size: 13px;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media(max-width:850px) {
+      .account-nav {
+        display: none;
+      }
+
+      .auth-layout,
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .account-page {
+        width: min(100% - 24px, 700px);
+      }
+    }
+
+    @media(max-width:600px) {
+      .account-header {
+        height: 72px;
+      }
+
+      .account-logo span {
+        display: none;
+      }
+
+      .header-actions .header-action:nth-child(2) {
+        display: none;
+      }
+
+      .account-hero {
+        padding: 42px 0 28px;
+      }
+
+      .auth-card,
+      .benefits,
+      .dashboard-card,
+      .profile-card {
+        padding: 22px;
+      }
+
+      .profile-card,
+      .profile-info {
+        align-items: flex-start;
+      }
+
+      .profile-card {
+        flex-direction: column;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="sale-banner">
-        🚚 FREE SHIPPING Australia Wide on Orders Over $75
+<div class="account-page">
+
+  <!-- HEADER -->
+  <header class="account-header">
+
+    <a href="index.html" class="account-logo">
+      <img src="logo.png" alt="Perfect Prints">
+      <span>PERFECT PRINTS</span>
+    </a>
+
+    <nav class="account-nav">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="account.html" class="active">Account</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="wishlist.html" class="header-action" title="Wishlist">
+        <i class="fa-regular fa-heart"></i>
+      </a>
+
+      <a href="cart.html" class="header-action" title="Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+      </a>
     </div>
 
-    <header>
+  </header>
 
-        <nav>
 
-            <div class="logo">
-                🐉 Perfect Prints
+  <!-- PAGE INTRO -->
+  <section class="account-hero">
+    <div class="eyebrow">Perfect Prints Account</div>
+    <h1 id="pageTitle">Your account.</h1>
+    <p id="pageSubtitle">
+      Sign in to keep track of your orders, manage your details and make your Perfect Prints experience easier.
+    </p>
+  </section>
+
+
+  <!-- SIGNED OUT -->
+  <section class="auth-layout" id="authSection">
+
+    <div class="glass auth-card">
+
+      <h2>Welcome back</h2>
+
+      <p>
+        Sign in to access your Perfect Prints account.
+      </p>
+
+      <form id="loginForm">
+
+        <div class="form-group">
+          <label>Email</label>
+
+          <div class="input-wrap">
+            <i class="fa-regular fa-envelope"></i>
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="you@example.com"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+
+          <div class="input-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Your password"
+              required
+            >
+          </div>
+        </div>
+
+        <button class="main-btn" type="submit">
+          Sign In
+        </button>
+
+      </form>
+
+      <div class="switch-auth">
+        Don't have an account?
+        <button onclick="showSignup()">Create one</button>
+      </div>
+
+    </div>
+
+
+    <div class="glass benefits">
+
+      <h2>Why create an account?</h2>
+
+      <div class="benefit">
+        <div class="benefit-icon">
+          <i class="fa-solid fa-box"></i>
+        </div>
+
+        <div>
+          <strong>Track your orders</strong>
+          <span>
+            Keep your Perfect Prints orders organised in one place.
+          </span>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <div class="benefit-icon">
+          <i class="fa-regular fa-heart"></i>
+        </div>
+
+        <div>
+          <strong>Save your favourites</strong>
+          <span>
+            Keep products you like saved to your wishlist.
+          </span>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <div class="benefit-icon">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+
+        <div>
+          <strong>Faster checkout</strong>
+          <span>
+            Keep your details ready for future Perfect Prints orders.
+          </span>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <div class="benefit-icon">
+          <i class="fa-solid fa-cube"></i>
+        </div>
+
+        <div>
+          <strong>Custom printing</strong>
+          <span>
+            Easily come back to your custom print requests.
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SIGN UP -->
+  <section class="glass auth-card" id="signupSection" style="display:none; max-width:620px; margin:auto;">
+
+    <h2>Create your account</h2>
+
+    <p>
+      Create a Perfect Prints account to save your details and keep track of your orders.
+    </p>
+
+    <form id="signupForm">
+
+      <div class="form-group">
+        <label>Name</label>
+
+        <div class="input-wrap">
+          <i class="fa-regular fa-user"></i>
+          <input
+            type="text"
+            id="signupName"
+            placeholder="Your name"
+            required
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+
+        <div class="input-wrap">
+          <i class="fa-regular fa-envelope"></i>
+          <input
+            type="email"
+            id="signupEmail"
+            placeholder="you@example.com"
+            required
+          >
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+
+        <div class="input-wrap">
+          <i class="fa-solid fa-lock"></i>
+          <input
+            type="password"
+            id="signupPassword"
+            placeholder="Create a password"
+            minlength="6"
+            required
+          >
+        </div>
+      </div>
+
+      <button class="main-btn" type="submit">
+        Create Account
+      </button>
+
+    </form>
+
+    <div class="switch-auth">
+      Already have an account?
+      <button onclick="showLogin()">Sign in</button>
+    </div>
+
+  </section>
+
+
+  <!-- ACCOUNT DASHBOARD -->
+  <section class="dashboard" id="dashboardSection">
+
+    <div class="glass profile-card">
+
+      <div class="profile-info">
+
+        <div class="profile-avatar" id="profileAvatar">
+          P
+        </div>
+
+        <div>
+          <h2 id="profileName">Perfect Prints Customer</h2>
+          <p id="profileEmail">customer@example.com</p>
+        </div>
+
+      </div>
+
+      <button class="logout-btn" onclick="logout()">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        Sign Out
+      </button>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+      <div>
+
+        <div class="glass dashboard-card">
+
+          <h3>Account overview</h3>
+
+          <div class="stat-grid">
+
+            <div class="stat">
+              <strong id="orderCount">0</strong>
+              <span>Total Orders</span>
             </div>
 
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Shop</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-
-            <div class="header-icons">
-
-                <a href="account.html">
-                    👤
-                </a>
-
-                <a href="wishlist.html">
-                    ❤️
-                </a>
-
-                <a href="cart.html">
-                    🛒
-                    <span id="cartCount">0</span>
-                </a>
-
+            <div class="stat">
+              <strong id="wishlistCount">0</strong>
+              <span>Wishlist Items</span>
             </div>
 
-        </nav>
-
-    </header>
-
-
-    <main class="account-page">
-
-        <section>
-
-            <div class="section-heading">
-
-                <h2>👤 My Account</h2>
-
-                <p>
-                    Manage your Perfect Prints customer details.
-                </p>
-
+            <div class="stat">
+              <strong id="cartCount">0</strong>
+              <span>Cart Items</span>
             </div>
 
+          </div>
 
-            <div class="account-card">
-
-                <div class="account-icon">
-                    👤
-                </div>
-
-                <h2 id="accountWelcome">
-                    Welcome to Perfect Prints!
-                </h2>
-
-                <p>
-                    Save your details so they're ready when you order.
-                </p>
+        </div>
 
 
-                <form id="accountForm">
+        <div class="glass dashboard-card" style="margin-top:22px;">
 
-                    <label for="accountName">
-                        Your Name
-                    </label>
+          <h3>Recent orders</h3>
 
-                    <input
-                        type="text"
-                        id="accountName"
-                        placeholder="Enter your name"
-                        required
-                    >
+          <div id="ordersList"></div>
+
+        </div>
+
+      </div>
 
 
-                    <label for="accountEmail">
-                        Email Address
-                    </label>
+      <div class="glass dashboard-card">
 
-                    <input
-                        type="email"
-                        id="accountEmail"
-                        placeholder="Enter your email"
-                        required
-                    >
+        <h3>Quick links</h3>
 
+        <div class="quick-links">
 
-                    <label for="accountPhone">
-                        Phone Number
-                    </label>
+          <a href="products.html" class="quick-link">
+            <span>
+              <i class="fa-solid fa-cubes"></i>
+              Browse Products
+            </span>
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
 
-                    <input
-                        type="tel"
-                        id="accountPhone"
-                        placeholder="Enter your phone number"
-                    >
+          <a href="wishlist.html" class="quick-link">
+            <span>
+              <i class="fa-regular fa-heart"></i>
+              My Wishlist
+            </span>
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
 
+          <a href="cart.html" class="quick-link">
+            <span>
+              <i class="fa-solid fa-bag-shopping"></i>
+              My Cart
+            </span>
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
 
-                    <button
-                        type="submit"
-                        class="checkout-btn"
-                    >
-                        💾 Save Details
-                    </button>
+          <a href="checkout.html" class="quick-link">
+            <span>
+              <i class="fa-solid fa-credit-card"></i>
+              Checkout
+            </span>
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
 
-                </form>
+          <a href="contact.html" class="quick-link">
+            <span>
+              <i class="fa-regular fa-envelope"></i>
+              Contact Perfect Prints
+            </span>
+            <i class="fa-solid fa-chevron-right"></i>
+          </a>
 
+        </div>
 
-                <button
-                    onclick="clearAccount()"
-                    class="account-delete-btn"
-                >
-                    🗑️ Clear Account Details
-                </button>
+      </div>
 
-            </div>
+    </div>
 
-        </section>
-
-
-        <section>
-
-            <div class="section-heading">
-
-                <h2>📦 Your Orders</h2>
-
-                <p>
-                    Your orders will appear here after checkout.
-                </p>
-
-            </div>
-
-            <div id="accountOrders">
-
-                <div class="account-empty">
-
-                    <div>📦</div>
-
-                    <h3>No orders yet</h3>
-
-                    <p>
-                        Your completed orders will appear here.
-                    </p>
-
-                    <a
-                     href="products.html"
-                        class="button button-purple"
-                    >
-                        🛍️ Start Shopping
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
+  </section>
 
 
-    <footer>
+  <footer class="account-footer">
+    <p>
+      © 2026 Perfect Prints · Premium Australian 3D Printing
+    </p>
 
-           <footer>
+    <p>
+      <a href="products.html">Products</a>
+      ·
+      <a href="contact.html">Contact</a>
+      ·
+      <a href="index.html">Home</a>
+    </p>
+  </footer>
 
-        <h2>🐉 Perfect Prints</h2>
+</div>
 
-        <p>
-            Creating amazing articulated 3D prints with quality,
-            creativity and care.
-        </p>
 
-        <p>
-            © 2026 Perfect Prints. All Rights Reserved.
-        </p>
+<div class="toast" id="toast"></div>
 
-    </footer>
 
-    <script src="script.js"></script>
+<script>
+  const ACCOUNT_KEY = "perfectPrintsAccount";
+  const ORDERS_KEY = "perfectPrintsOrders";
+  const WISHLIST_KEY = "perfectPrintsWishlist";
+  const CART_KEY = "perfectPrintsCart";
+
+
+  function getAccount() {
+    try {
+      return JSON.parse(localStorage.getItem(ACCOUNT_KEY));
+    } catch {
+      return null;
+    }
+  }
+
+
+  function getOrders() {
+    try {
+      return JSON.parse(localStorage.getItem(ORDERS_KEY)) || [];
+    } catch {
+      return [];
+    }
+  }
+
+
+  function getWishlist() {
+    try {
+      return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
+    } catch {
+      return [];
+    }
+  }
+
+
+  function getCart() {
+    try {
+      return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+    } catch {
+      return [];
+    }
+  }
+
+
+  function showToast(message) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2600);
+  }
+
+
+  function showSignup() {
+
+    document.getElementById("authSection").style.display = "none";
+    document.getElementById("signupSection").style.display = "block";
+
+    document.getElementById("pageTitle").textContent = "Create your account.";
+    document.getElementById("pageSubtitle").textContent =
+      "Set up your Perfect Prints account and keep everything in one place.";
+  }
+
+
+  function showLogin() {
+
+    document.getElementById("signupSection").style.display = "none";
+    document.getElementById("authSection").style.display = "grid";
+
+    document.getElementById("pageTitle").textContent = "Your account.";
+    document.getElementById("pageSubtitle").textContent =
+      "Sign in to keep track of your orders, manage your details and make your Perfect Prints experience easier.";
+  }
+
+
+  function showDashboard() {
+
+    const account = getAccount();
+
+    if (!account) return;
+
+    document.getElementById("authSection").style.display = "none";
+    document.getElementById("signupSection").style.display = "none";
+    document.getElementById("dashboardSection").style.display = "block";
+
+    document.getElementById("pageTitle").textContent = "Welcome back.";
+
+    document.getElementById("pageSubtitle").textContent =
+      "Your Perfect Prints dashboard.";
+
+    const name = account.name || "Perfect Prints Customer";
+    const email = account.email || "";
+
+    document.getElementById("profileName").textContent = name;
+    document.getElementById("profileEmail").textContent = email;
+
+    const firstLetter = name.trim().charAt(0).toUpperCase() || "P";
+    document.getElementById("profileAvatar").textContent = firstLetter;
+
+    updateDashboard();
+  }
+
+
+  function updateDashboard() {
+
+    const orders = getOrders();
+    const wishlist = getWishlist();
+    const cart = getCart();
+
+    document.getElementById("orderCount").textContent = orders.length;
+    document.getElementById("wishlistCount").textContent = wishlist.length;
+
+    let cartTotal = 0;
+
+    cart.forEach(item => {
+      cartTotal += Number(item.quantity || 1);
+    });
+
+    document.getElementById("cartCount").textContent = cartTotal;
+
+    const ordersList = document.getElementById("ordersList");
+
+    if (!orders.length) {
+
+      ordersList.innerHTML = `
+        <div class="empty-orders">
+          You haven't placed an order yet.
+          <br><br>
+          <a href="products.html" style="color:#64c7ff;font-weight:700;">
+            Browse our prints
+          </a>
+        </div>
+      `;
+
+      return;
+    }
+
+
+    const recentOrders = orders.slice(-5).reverse();
+
+    ordersList.innerHTML = recentOrders.map((order, index) => {
+
+      const orderNumber =
+        order.id ||
+        order.orderNumber ||
+        ("PP-" + String(orders.length - index).padStart(4, "0"));
+
+      const total =
+        order.total !== undefined
+          ? "$" + Number(order.total).toFixed(2)
+          : "Order";
+
+      const status =
+        order.status ||
+        "New";
+
+      return `
+        <div class="order-item">
+          <div>
+            <strong>${escapeHtml(orderNumber)}</strong>
+            <br>
+            <span>${total}</span>
+          </div>
+
+          <div class="status">
+            ${escapeHtml(status)}
+          </div>
+        </div>
+      `;
+
+    }).join("");
+  }
+
+
+  function escapeHtml(value) {
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+
+  document.getElementById("signupForm").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const name =
+      document.getElementById("signupName").value.trim();
+
+    const email =
+      document.getElementById("signupEmail").value.trim();
+
+    const password =
+      document.getElementById("signupPassword").value;
+
+    const account = {
+      name: name,
+      email: email,
+      password: password,
+      createdAt: new Date().toISOString()
+    };
+
+    localStorage.setItem(
+      ACCOUNT_KEY,
+      JSON.stringify(account)
+    );
+
+    showToast("Account created successfully");
+
+    setTimeout(() => {
+      showDashboard();
+    }, 500);
+  });
+
+
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const email =
+      document.getElementById("loginEmail").value.trim();
+
+    const password =
+      document.getElementById("loginPassword").value;
+
+    const account = getAccount();
+
+    if (!account) {
+
+      showToast("No account found. Create one first.");
+      return;
+    }
+
+    if (
+      email.toLowerCase() !== account.email.toLowerCase() ||
+      password !== account.password
+    ) {
+
+      showToast("Email or password is incorrect.");
+      return;
+    }
+
+    showToast("Signed in successfully");
+
+    setTimeout(() => {
+      showDashboard();
+    }, 500);
+  });
+
+
+  function logout() {
+
+    localStorage.removeItem(ACCOUNT_KEY);
+
+    showToast("You have been signed out");
+
+    setTimeout(() => {
+      location.reload();
+    }, 500);
+  }
+
+
+  /* LOAD CORRECT STATE */
+
+  if (getAccount()) {
+    showDashboard();
+  } else {
+    showLogin();
+  }
+</script>
 
 </body>
-
 </html>
