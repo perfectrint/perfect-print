@@ -1314,3 +1314,57 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 });
+// ================================
+// PERFECT PRINTS ACCOUNT MEMORY
+// ================================
+
+const ACCOUNT_KEY = "perfectPrintsAccount";
+
+// Save account
+function saveAccount(account) {
+    localStorage.setItem(ACCOUNT_KEY, JSON.stringify(account));
+}
+
+// Get saved account
+function getAccount() {
+    const saved = localStorage.getItem(ACCOUNT_KEY);
+
+    if (!saved) {
+        return null;
+    }
+
+    try {
+        return JSON.parse(saved);
+    } catch (error) {
+        console.error("Could not load account:", error);
+        return null;
+    }
+}
+
+// Check if account exists when page loads
+document.addEventListener("DOMContentLoaded", () => {
+    const account = getAccount();
+
+    if (account) {
+        console.log("Account remembered:", account);
+
+        // Fill account fields if they exist
+        const name = document.querySelector("#accountName");
+        const email = document.querySelector("#accountEmail");
+
+        if (name && account.name) {
+            name.value = account.name;
+        }
+
+        if (email && account.email) {
+            email.value = account.email;
+        }
+
+        // Update account display
+        const accountName = document.querySelector("#loggedInName");
+
+        if (accountName) {
+            accountName.textContent = account.name || "My Account";
+        }
+    }
+});
